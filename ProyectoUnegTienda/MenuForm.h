@@ -56,22 +56,36 @@ namespace ProyectoUnegTienda {
 				// 
 				// empezarSimulacionBoton
 				// 
-				this->empezarSimulacionBoton->Location = System::Drawing::Point(420, 118);
+				this->empezarSimulacionBoton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+				this->empezarSimulacionBoton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+					static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(192)));
+				this->empezarSimulacionBoton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+				this->empezarSimulacionBoton->Cursor = System::Windows::Forms::Cursors::Hand;
+				this->empezarSimulacionBoton->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+				this->empezarSimulacionBoton->Font = (gcnew System::Drawing::Font(L"Castellar", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+				this->empezarSimulacionBoton->Location = System::Drawing::Point(144, 322);
 				this->empezarSimulacionBoton->Name = L"empezarSimulacionBoton";
-				this->empezarSimulacionBoton->Size = System::Drawing::Size(212, 122);
+				this->empezarSimulacionBoton->Size = System::Drawing::Size(322, 45);
 				this->empezarSimulacionBoton->TabIndex = 0;
 				this->empezarSimulacionBoton->Text = L"Empezar Simulación";
-				this->empezarSimulacionBoton->UseVisualStyleBackColor = true;
+				this->empezarSimulacionBoton->UseVisualStyleBackColor = false;
 				this->empezarSimulacionBoton->Click += gcnew System::EventHandler(this, &MenuForm::EmpezarFormularioClick);
 				// 
 				// MenuForm
 				// 
-				this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+				this->AcceptButton = this->empezarSimulacionBoton;
+				this->AutoScaleDimensions = System::Drawing::SizeF(5, 15);
 				this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-				this->ClientSize = System::Drawing::Size(1053, 401);
+				this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+				this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+					static_cast<System::Int32>(static_cast<System::Byte>(0)));
+				this->ClientSize = System::Drawing::Size(619, 431);
 				this->Controls->Add(this->empezarSimulacionBoton);
+				this->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
 				this->Name = L"MenuForm";
-				this->Text = L"Menú del formulario";
+				this->Text = L"Inicio";
 				this->Load += gcnew System::EventHandler(this, &MenuForm::MenuForm_Load);
 				this->ResumeLayout(false);
 
