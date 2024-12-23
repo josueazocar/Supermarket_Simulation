@@ -56,6 +56,7 @@ namespace ProyectoUnegTienda {
 				// 
 				// empezarSimulacionBoton
 				// 
+				this->empezarSimulacionBoton->Anchor = System::Windows::Forms::AnchorStyles::None;
 				this->empezarSimulacionBoton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 				this->empezarSimulacionBoton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
 					static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(192)));
@@ -85,7 +86,8 @@ namespace ProyectoUnegTienda {
 				this->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 				this->Name = L"MenuForm";
-				this->Text = L"Inicio";
+				this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+				this->Text = L"Carrito de Compras (inicio)";
 				this->Load += gcnew System::EventHandler(this, &MenuForm::MenuForm_Load);
 				this->ResumeLayout(false);
 

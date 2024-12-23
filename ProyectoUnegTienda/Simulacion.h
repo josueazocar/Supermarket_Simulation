@@ -34,11 +34,11 @@ namespace ProyectoUnegTienda {
            {
                this->simulacionTexto = (gcnew System::Windows::Forms::Label());
                this->SuspendLayout();
-               // prueba
+               // 
                // simulacionTexto
                // 
                this->simulacionTexto->AutoSize = true;
-               this->simulacionTexto->Location = System::Drawing::Point(376, 7);
+               this->simulacionTexto->Location = System::Drawing::Point(447, 108);
                this->simulacionTexto->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
                this->simulacionTexto->Name = L"simulacionTexto";
                this->simulacionTexto->Size = System::Drawing::Size(58, 13);
@@ -52,7 +52,7 @@ namespace ProyectoUnegTienda {
                this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
                this->ClientSize = System::Drawing::Size(1037, 369);
                this->Controls->Add(this->simulacionTexto);
-               this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+               this->Margin = System::Windows::Forms::Padding(2);
                this->Name = L"Simulacion";
                this->Text = L"Simulación";
                this->Load += gcnew System::EventHandler(this, &Simulacion::Simulacion_Load_1);
