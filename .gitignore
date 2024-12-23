@@ -1,32 +1,27 @@
-# Prerequisites
-*.d
+# Visual Studio
+.vs/
+.vscode/
+*.vcxproj.user
+*.suo
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
+# Compilación
 *.exe
-*.out
-*.app
+*.dll
+*.obj
+*.o
+*.lib
+*.so
+
+# Archivos de depuración
+*.pdb
+*.ipch
+*.idb
+*.lastcodeanalysissucceeded
+
+# Otros archivos generados automáticamente
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Carpetas de compilación
+build/

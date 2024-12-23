@@ -1,0 +1,6 @@
+﻿  Main.cpp
+  Simulacion.cpp
+C:\Users\jass0\source\repos\ProyectoUnegTienda\ProyectoUnegTienda\Main.cpp(8,6): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  Generating Code...
+  Main.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  ProyectoUnegTienda.vcxproj -> C:\Users\jass0\source\repos\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.exe

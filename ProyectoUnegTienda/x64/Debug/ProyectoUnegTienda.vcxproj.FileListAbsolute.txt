@@ -1,0 +1,4 @@
+C:\Users\jass0\source\repos\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.vcxproj.AssemblyReference.cache
+C:\Users\jass0\source\repos\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.vcxproj.GenerateResource.cache
+C:\Users\jass0\source\repos\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.MenuForm.resources
+C:\Users\jass0\source\repos\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.Simulacion.resources
