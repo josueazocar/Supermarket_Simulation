@@ -127,12 +127,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="pila.cpp" />
     <ClCompile Include="Simulacion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="pila.h" />
     <ClInclude Include="Simulacion.h">
       <FileType>CppForm</FileType>
     </ClInclude>

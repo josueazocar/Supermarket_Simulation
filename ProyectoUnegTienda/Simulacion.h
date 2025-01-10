@@ -38,9 +38,12 @@ namespace ProyectoUnegTienda {
     private: System::Windows::Forms::Label^ label2;
     private: System::Windows::Forms::Label^ label6;
     private: System::Windows::Forms::Label^ label7;
-
+    private:
+        System::Windows::Forms::Timer^ timer;
+        int contador;
 
     private: System::Windows::Forms::Label^ label10;
+    private: System::Windows::Forms::Label^ label10_2;
     private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel2;
     private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel3;
 
@@ -57,6 +60,7 @@ namespace ProyectoUnegTienda {
                this->label2 = (gcnew System::Windows::Forms::Label());
                this->label7 = (gcnew System::Windows::Forms::Label());
                this->label10 = (gcnew System::Windows::Forms::Label());
+               this->label10_2 = (gcnew System::Windows::Forms::Label());
                this->panel1 = (gcnew System::Windows::Forms::Panel());
                this->label1 = (gcnew System::Windows::Forms::Label());
                this->label6 = (gcnew System::Windows::Forms::Label());
@@ -165,7 +169,7 @@ namespace ProyectoUnegTienda {
                this->label10->Name = L"label10";
                this->label10->Size = System::Drawing::Size(11, 16);
                this->label10->TabIndex = 7;
-               this->label10->Text = L".";
+               this->label10->Text = L"Carrito #6 \n";
                this->label10->Click += gcnew System::EventHandler(this, &Simulacion::label10_Click);
                // 
                // panel1
@@ -278,6 +282,8 @@ private: System::Void flowLayoutPanel2_Paint(System::Object^ sender, System::Win
 }
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+private: System::Void OnTimedEvent(System::Object^ sender, System::EventArgs^ e);
+
 private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e) {
     
 }
@@ -285,5 +291,3 @@ private: System::Void flowLayoutPanel3_Paint(System::Object^ sender, System::Win
 }
 };
 }
-
-
