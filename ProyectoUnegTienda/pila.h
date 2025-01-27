@@ -23,6 +23,7 @@ namespace Tienda {
 }
 
 // Declaraciones de funciones
+int tiempo_aletorio();
 int numeroaleatorio();
 int numeroaleatorio_for();
 const char* seleccionarNombreAleatorio(std::set<int>& indices_utilizados);
@@ -44,6 +45,7 @@ extern std::mt19937 rng;
 extern std::uniform_int_distribution<int> cantidad;
 extern std::uniform_int_distribution<int> cantidad_for;
 extern std::uniform_int_distribution<int> distribucion;
+extern std::uniform_int_distribution<int> tiempo_seleccion;
 extern std::set<int> indices_utilizados;
 extern std::set<int> indices_utilizados2;
 extern std::set<int> indices_utilizados3;

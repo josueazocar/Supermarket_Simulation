@@ -22,6 +22,11 @@ std::mt19937 rng(static_cast<unsigned int>(std::time(0)));
 std::uniform_int_distribution<int> cantidad(1, 5);
 std::uniform_int_distribution<int> cantidad_for(1, 10);
 std::uniform_int_distribution<int> distribucion(0, 9);
+std::uniform_int_distribution<int> tiempo_seleccion(1000, 5000);
+
+int tiempo_aletorio() {
+    return tiempo_seleccion(rng);
+}
 
 int numeroaleatorio() {
     return cantidad(rng);

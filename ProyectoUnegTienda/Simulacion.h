@@ -55,7 +55,9 @@ namespace ProyectoUnegTienda {
         System::Windows::Forms::Timer^ timer4;
         System::Windows::Forms::Timer ^ timer5;
         System::Windows::Forms::Timer ^ timer6;
+        System::Windows::Forms::Timer^ timerCronometro;
 
+        int segundosTranscurridos;
         int contador;
         int contador2;
         int contador3;
@@ -67,6 +69,7 @@ namespace ProyectoUnegTienda {
     private: System::Windows::Forms::Label^ label10_2;
     private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel2;
     private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel3;
+    private: System::Windows::Forms::Label^ label8;
 
 
     private: System::ComponentModel::IContainer^ components;
@@ -74,24 +77,23 @@ namespace ProyectoUnegTienda {
 
            void InitializeComponent(void)
            {
+               this->components = (gcnew System::ComponentModel::Container());
+               this->timerCronometro = (gcnew System::Windows::Forms::Timer(this->components));
                this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
                this->label3 = (gcnew System::Windows::Forms::Label());
-               this->label3_2 = (gcnew System::Windows::Forms::Label());
                this->label4 = (gcnew System::Windows::Forms::Label());
-               this->label4_2 = (gcnew System::Windows::Forms::Label());
-
                this->label5 = (gcnew System::Windows::Forms::Label());
+               this->label3_2 = (gcnew System::Windows::Forms::Label());
+               this->label4_2 = (gcnew System::Windows::Forms::Label());
                this->label5_2 = (gcnew System::Windows::Forms::Label());
-
                this->label2 = (gcnew System::Windows::Forms::Label());
                this->label2_2 = (gcnew System::Windows::Forms::Label());
-
                this->label7 = (gcnew System::Windows::Forms::Label());
                this->label7_2 = (gcnew System::Windows::Forms::Label());
-
                this->label10 = (gcnew System::Windows::Forms::Label());
                this->label10_2 = (gcnew System::Windows::Forms::Label());
                this->panel1 = (gcnew System::Windows::Forms::Panel());
+               this->label8 = (gcnew System::Windows::Forms::Label());
                this->label1 = (gcnew System::Windows::Forms::Label());
                this->label6 = (gcnew System::Windows::Forms::Label());
                this->flowLayoutPanel2 = (gcnew System::Windows::Forms::FlowLayoutPanel());
@@ -100,6 +102,11 @@ namespace ProyectoUnegTienda {
                this->panel1->SuspendLayout();
                this->flowLayoutPanel3->SuspendLayout();
                this->SuspendLayout();
+               // 
+               // timerCronometro
+               // 
+               this->timerCronometro->Interval = 1000;
+               this->timerCronometro->Tick += gcnew System::EventHandler(this, &Simulacion::ActualizarCronometro);
                // 
                // flowLayoutPanel1
                // 
@@ -122,9 +129,9 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Byte>(0)));
                this->label3->Location = System::Drawing::Point(3, 0);
                this->label3->Name = L"label3";
-               this->label3->Size = System::Drawing::Size(100, 96);
+               this->label3->Size = System::Drawing::Size(76, 16);
                this->label3->TabIndex = 1;
-               this->label3->Text = L"Cliente: #1 \n";
+               this->label3->Text = L"Carrito: #1 \n";
                this->label3->Click += gcnew System::EventHandler(this, &Simulacion::label3_Click);
                // 
                // label4
@@ -134,11 +141,11 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(192)));
                this->label4->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label4->Location = System::Drawing::Point(109, 0);
+               this->label4->Location = System::Drawing::Point(85, 0);
                this->label4->Name = L"label4";
-               this->label4->Size = System::Drawing::Size(100, 96);
+               this->label4->Size = System::Drawing::Size(76, 16);
                this->label4->TabIndex = 2;
-               this->label4->Text = L"Cliente: #2 \n";
+               this->label4->Text = L"Carrito: #2 \n";
                this->label4->Click += gcnew System::EventHandler(this, &Simulacion::label4_Click);
                // 
                // label5
@@ -148,12 +155,33 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(255)));
                this->label5->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label5->Location = System::Drawing::Point(215, 0);
+               this->label5->Location = System::Drawing::Point(167, 0);
                this->label5->Name = L"label5";
-               this->label5->Size = System::Drawing::Size(100, 96);
+               this->label5->Size = System::Drawing::Size(76, 16);
                this->label5->TabIndex = 3;
-               this->label5->Text = L"Cliente: #3 \n";
+               this->label5->Text = L"Carrito: #3 \n";
                this->label5->Click += gcnew System::EventHandler(this, &Simulacion::label5_Click);
+               // 
+               // label3_2
+               // 
+               this->label3_2->Location = System::Drawing::Point(0, 0);
+               this->label3_2->Name = L"label3_2";
+               this->label3_2->Size = System::Drawing::Size(100, 23);
+               this->label3_2->TabIndex = 0;
+               // 
+               // label4_2
+               // 
+               this->label4_2->Location = System::Drawing::Point(0, 0);
+               this->label4_2->Name = L"label4_2";
+               this->label4_2->Size = System::Drawing::Size(100, 23);
+               this->label4_2->TabIndex = 0;
+               // 
+               // label5_2
+               // 
+               this->label5_2->Location = System::Drawing::Point(0, 0);
+               this->label5_2->Name = L"label5_2";
+               this->label5_2->Size = System::Drawing::Size(100, 23);
+               this->label5_2->TabIndex = 0;
                // 
                // label2
                // 
@@ -164,10 +192,17 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Byte>(0)));
                this->label2->Location = System::Drawing::Point(3, 0);
                this->label2->Name = L"label2";
-               this->label2->Size = System::Drawing::Size(100, 96);
+               this->label2->Size = System::Drawing::Size(76, 16);
                this->label2->TabIndex = 0;
-               this->label2->Text = L"Cliente: #4 \n";
+               this->label2->Text = L"Carrito: #4 \n";
                this->label2->Click += gcnew System::EventHandler(this, &Simulacion::label2_Click);
+               // 
+               // label2_2
+               // 
+               this->label2_2->Location = System::Drawing::Point(0, 0);
+               this->label2_2->Name = L"label2_2";
+               this->label2_2->Size = System::Drawing::Size(100, 23);
+               this->label2_2->TabIndex = 0;
                // 
                // label7
                // 
@@ -176,12 +211,19 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(192)));
                this->label7->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label7->Location = System::Drawing::Point(109, 0);
+               this->label7->Location = System::Drawing::Point(85, 0);
                this->label7->Name = L"label7";
-               this->label7->Size = System::Drawing::Size(100, 96);
+               this->label7->Size = System::Drawing::Size(76, 16);
                this->label7->TabIndex = 4;
-               this->label7->Text = L"Cliente: #5 \n";
+               this->label7->Text = L"Carrito: #5 \n";
                this->label7->Click += gcnew System::EventHandler(this, &Simulacion::label7_Click);
+               // 
+               // label7_2
+               // 
+               this->label7_2->Location = System::Drawing::Point(0, 0);
+               this->label7_2->Name = L"label7_2";
+               this->label7_2->Size = System::Drawing::Size(100, 23);
+               this->label7_2->TabIndex = 0;
                // 
                // label10
                // 
@@ -190,23 +232,44 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(255)));
                this->label10->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label10->Location = System::Drawing::Point(215, 0);
+               this->label10->Location = System::Drawing::Point(167, 0);
                this->label10->Name = L"label10";
-               this->label10->Size = System::Drawing::Size(11, 16);
+               this->label10->Size = System::Drawing::Size(72, 16);
                this->label10->TabIndex = 7;
                this->label10->Text = L"Carrito #6 \n";
                this->label10->Click += gcnew System::EventHandler(this, &Simulacion::label10_Click);
+               // 
+               // label10_2
+               // 
+               this->label10_2->Location = System::Drawing::Point(0, 0);
+               this->label10_2->Name = L"label10_2";
+               this->label10_2->Size = System::Drawing::Size(100, 23);
+               this->label10_2->TabIndex = 0;
                // 
                // panel1
                // 
                this->panel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
                this->panel1->BackColor = System::Drawing::Color::Sienna;
+               this->panel1->Controls->Add(this->label8);
                this->panel1->Controls->Add(this->label1);
                this->panel1->Location = System::Drawing::Point(0, 469);
                this->panel1->Name = L"panel1";
                this->panel1->Size = System::Drawing::Size(1075, 211);
                this->panel1->TabIndex = 2;
                this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Simulacion::panel1_Paint);
+               // 
+               // label8
+               // 
+               this->label8->AutoSize = true;
+               this->label8->BackColor = System::Drawing::Color::Snow;
+               this->label8->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                   static_cast<System::Byte>(0)));
+               this->label8->Location = System::Drawing::Point(2, 188);
+               this->label8->Name = L"label8";
+               this->label8->Size = System::Drawing::Size(78, 18);
+               this->label8->TabIndex = 1;
+               this->label8->Text = L"00:00:00";
+               this->label8->Click += gcnew System::EventHandler(this, &Simulacion::label8_Click);
                // 
                // label1
                // 
@@ -287,7 +350,13 @@ namespace ProyectoUnegTienda {
 
         public:
             void EmpezarSimulacion();
-        private: System::Void Simulacion_Load(System::Object^ sender, System::EventArgs^ e);
+            private: System::Void Simulacion_Load(System::Object^ sender, System::EventArgs^ e);
+
+private: System::Void ActualizarCronometro(System::Object^ sender, System::EventArgs^ e) {
+    this->segundosTranscurridos++;
+    TimeSpan^ tiempo = TimeSpan::FromSeconds(this->segundosTranscurridos);
+    this->label8->Text = String::Format("{0:D2}:{1:D2}:{2:D2}", tiempo->Hours, tiempo->Minutes, tiempo->Seconds);
+}
      
     private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
     }
@@ -307,18 +376,20 @@ private: System::Void flowLayoutPanel2_Paint(System::Object^ sender, System::Win
 }
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
 }
-private: System::Void OnTimedEvent2(System::Object^ sender, System::EventArgs^ e);
-private: System::Void OnTimedEvent3(System::Object^ sender, System::EventArgs^ e);
-private: System::Void OnTimedEvent4(System::Object^ sender, System::EventArgs^ e);
-private: System::Void OnTimedEvent5(System::Object^ sender, System::EventArgs^ e);
-private: System::Void OnTimedEvent6(System::Object^ sender, System::EventArgs^ e);
+private: System::Void llenado_de_carrito2(System::Object^ sender, System::EventArgs^ e);
+private: System::Void llenado_de_carrito3(System::Object^ sender, System::EventArgs^ e);
+private: System::Void llenado_de_carrito4(System::Object^ sender, System::EventArgs^ e);
+private: System::Void llenado_de_carrito5(System::Object^ sender, System::EventArgs^ e);
+private: System::Void llenado_de_carrito6(System::Object^ sender, System::EventArgs^ e);
 
-private: System::Void OnTimedEvent(System::Object^ sender, System::EventArgs^ e);
+private: System::Void llenado_de_carrito(System::Object^ sender, System::EventArgs^ e);
 
 private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e) {
     
 }
 private: System::Void flowLayoutPanel3_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

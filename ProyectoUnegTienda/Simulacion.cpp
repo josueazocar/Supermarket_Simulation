@@ -31,38 +31,38 @@ void Simulacion::EmpezarSimulacion()
 
     // Configura el primer temporizador
     timer = gcnew System::Windows::Forms::Timer();
-    timer->Interval = 1000; // 1000 ms = 1 segundo
-    timer->Tick += gcnew EventHandler(this, &Simulacion::OnTimedEvent);
+    timer->Interval = tiempo_aletorio();
+    timer->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito);
     timer->Start();
 
-    // Configura el segundo temporizador
+    // Configura el segundo temporizador con un retraso de 5 segundos
     timer2 = gcnew System::Windows::Forms::Timer();
-    timer2->Interval = 1000; // 1000 ms = 1 segundo
-    timer2->Tick += gcnew EventHandler(this, &Simulacion::OnTimedEvent2);
+    timer2->Interval = tiempo_aletorio();
+    timer2->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito2);
     timer2->Start();
 
-    // Configura el segundo temporizador
+    // Configura el tercer temporizador con un retraso de 10 segundos
     timer3 = gcnew System::Windows::Forms::Timer();
-    timer3->Interval = 1000; // 1000 ms = 1 segundo
-    timer3->Tick += gcnew EventHandler(this, &Simulacion::OnTimedEvent3);
+    timer3->Interval = tiempo_aletorio();
+    timer3->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito3);
     timer3->Start();
 
-    // Configura el segundo temporizador
+    // Configura el cuarto temporizador con un retraso de 15 segundos
     timer4 = gcnew System::Windows::Forms::Timer();
-    timer4->Interval = 1000; // 1000 ms = 1 segundo
-    timer4->Tick += gcnew EventHandler(this, &Simulacion::OnTimedEvent4);
+    timer4->Interval = tiempo_aletorio();
+    timer4->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito4);
     timer4->Start();
 
-    // Configura el segundo temporizador
+    // Configura el quinto temporizador con un retraso de 20 segundos
     timer5 = gcnew System::Windows::Forms::Timer();
-    timer5->Interval = 1000; // 1000 ms = 1 segundo
-    timer5->Tick += gcnew EventHandler(this, &Simulacion::OnTimedEvent5);
+    timer5->Interval = tiempo_aletorio(); // 21000 ms = 21 segundos (1 segundo + 20 segundos de retraso)
+    timer5->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito5);
     timer5->Start();
 
-    // Configura el segundo temporizador
+    // Configura el sexto temporizador con un retraso de 25 segundos
     timer6 = gcnew System::Windows::Forms::Timer();
-    timer6->Interval = 1000; // 1000 ms = 1 segundo
-    timer6->Tick += gcnew EventHandler(this, &Simulacion::OnTimedEvent6);
+    timer6->Interval = tiempo_aletorio();
+    timer6->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito6);
     timer6->Start();
 
     System::Diagnostics::Debug::WriteLine("Temporizadores iniciados.");
@@ -71,76 +71,78 @@ void Simulacion::EmpezarSimulacion()
 System::Void Simulacion::Simulacion_Load(System::Object^ sender, System::EventArgs^ e) {
     EmpezarSimulacion(); // Iniciar la simulación al cargar el formulario 
     System::Diagnostics::Debug::WriteLine("Simulacion_Load llamado.");
+    this->segundosTranscurridos = 0;
+    this->timerCronometro->Start();
 }
 
-System::Void Simulacion::OnTimedEvent(System::Object^ sender, System::EventArgs^ e) {
+System::Void Simulacion::llenado_de_carrito(System::Object^ sender, System::EventArgs^ e) {
     if (contador < 10) {
         agregarProductoAlCarrito(carrito, indices_utilizados, total_productos[0]);
-        mostrarcarrito(carrito, label10_2, label10);
+        mostrarcarrito(carrito, label3_2, label3);
         contador++;
     }
     else {
         timer->Stop(); // Detener el temporizador después de 10 iteraciones
-        mostrar_total_productos(label10, total_productos[0]);
+        mostrar_total_productos(label3, total_productos[0]);
     }
 }
 
-System::Void Simulacion::OnTimedEvent2(System::Object^ sender, System::EventArgs^ e) {
+System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::EventArgs^ e) { 
     if (contador2 < 10) {
         agregarProductoAlCarrito(carrito2, indices_utilizados2, total_productos[1]);
-        mostrarcarrito(carrito2, label3_2, label3);
+        mostrarcarrito(carrito2, label4_2, label4);
         contador2++;
     }
     else {
         timer2->Stop(); // Detener el temporizador después de 10 iteraciones
-        mostrar_total_productos(label3, total_productos[1]);
+        mostrar_total_productos(label4, total_productos[1]);
     }
 }
 
-System::Void Simulacion::OnTimedEvent3(System::Object^ sender, System::EventArgs^ e) {
+System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::EventArgs^ e) {
     if (contador3 < 10) {
         agregarProductoAlCarrito(carrito3, indices_utilizados3, total_productos[2]);
-        mostrarcarrito(carrito3, label4_2, label4);
+        mostrarcarrito(carrito3, label5_2, label5);
         contador3++;
     }
     else {
         timer3->Stop(); // Detener el temporizador después de 10 iteraciones
-        mostrar_total_productos(label4, total_productos[2]);
+        mostrar_total_productos(label5, total_productos[2]);
     }
 }
 
-System::Void Simulacion::OnTimedEvent4(System::Object^ sender, System::EventArgs^ e) {
+System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::EventArgs^ e) {
     if (contador4 < 10) {
         agregarProductoAlCarrito(carrito4, indices_utilizados4, total_productos[3]);
-        mostrarcarrito(carrito4, label5_2, label5);
+        mostrarcarrito(carrito4, label2_2, label2);
         contador4++;
     }
     else {
         timer4->Stop(); // Detener el temporizador después de 10 iteraciones
-        mostrar_total_productos(label5, total_productos[3]);
+        mostrar_total_productos(label2, total_productos[3]);
     }
 }
 
-System::Void Simulacion::OnTimedEvent5(System::Object^ sender, System::EventArgs^ e) {
+System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::EventArgs^ e) {
     if (contador5 < 10) {
         agregarProductoAlCarrito(carrito5, indices_utilizados5, total_productos[4]);
-        mostrarcarrito(carrito5, label2_2, label2);
+        mostrarcarrito(carrito5, label7_2, label7);
         contador5++;
     }
     else {
         timer5->Stop(); // Detener el temporizador después de 10 iteraciones
-        mostrar_total_productos(label2, total_productos[4]);
+        mostrar_total_productos(label7, total_productos[4]);
     }
 }
 
-System::Void Simulacion::OnTimedEvent6(System::Object^ sender, System::EventArgs^ e) {
+System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::EventArgs^ e) {
     if (contador6 < 10) {
         agregarProductoAlCarrito(carrito6, indices_utilizados6, total_productos[5]);
-        mostrarcarrito(carrito6, label7_2, label7);
+        mostrarcarrito(carrito6, label10_2, label10);
         contador6++;
     }
     else {
         timer6->Stop(); // Detener el temporizador después de 10 iteraciones
-        mostrar_total_productos(label7, total_productos[5]);
+        mostrar_total_productos(label10, total_productos[5]);
     }
 }
