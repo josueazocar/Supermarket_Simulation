@@ -33,14 +33,35 @@ namespace ProyectoUnegTienda {
     private: System::Windows::Forms::Panel^ panel1;
     private: System::Windows::Forms::Label^ label1;
     private: System::Windows::Forms::Label^ label3;
+    private: System::Windows::Forms::Label^ label3_2;
     private: System::Windows::Forms::Label^ label4;
+
+	private: System::Windows::Forms::Label^ label4_2;;
+
     private: System::Windows::Forms::Label^ label5;
+    private: System::Windows::Forms::Label^ label5_2;
+
     private: System::Windows::Forms::Label^ label2;
+    private: System::Windows::Forms::Label^ label2_2;
+           
     private: System::Windows::Forms::Label^ label6;
     private: System::Windows::Forms::Label^ label7;
+    private: System::Windows::Forms::Label^ label7_2;
+
     private:
         System::Windows::Forms::Timer^ timer;
+        System::Windows::Forms::Timer^ timer2;
+        System::Windows::Forms::Timer^ timer3;
+        System::Windows::Forms::Timer^ timer4;
+        System::Windows::Forms::Timer ^ timer5;
+        System::Windows::Forms::Timer ^ timer6;
+
         int contador;
+        int contador2;
+        int contador3;
+        int contador4;
+        int contador5;
+        int contador6;
 
     private: System::Windows::Forms::Label^ label10;
     private: System::Windows::Forms::Label^ label10_2;
@@ -55,10 +76,19 @@ namespace ProyectoUnegTienda {
            {
                this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
                this->label3 = (gcnew System::Windows::Forms::Label());
+               this->label3_2 = (gcnew System::Windows::Forms::Label());
                this->label4 = (gcnew System::Windows::Forms::Label());
+               this->label4_2 = (gcnew System::Windows::Forms::Label());
+
                this->label5 = (gcnew System::Windows::Forms::Label());
+               this->label5_2 = (gcnew System::Windows::Forms::Label());
+
                this->label2 = (gcnew System::Windows::Forms::Label());
+               this->label2_2 = (gcnew System::Windows::Forms::Label());
+
                this->label7 = (gcnew System::Windows::Forms::Label());
+               this->label7_2 = (gcnew System::Windows::Forms::Label());
+
                this->label10 = (gcnew System::Windows::Forms::Label());
                this->label10_2 = (gcnew System::Windows::Forms::Label());
                this->panel1 = (gcnew System::Windows::Forms::Panel());
@@ -94,8 +124,7 @@ namespace ProyectoUnegTienda {
                this->label3->Name = L"label3";
                this->label3->Size = System::Drawing::Size(100, 96);
                this->label3->TabIndex = 1;
-               this->label3->Text = L"Cliente: #1\n Articulo 1: 30$\n Articulo 2: 20$\n Articulo 3: 30$\n Articulo 4: 15$\n "
-                   L"Articulo 5: 89$\n";
+               this->label3->Text = L"Cliente: #1 \n";
                this->label3->Click += gcnew System::EventHandler(this, &Simulacion::label3_Click);
                // 
                // label4
@@ -109,8 +138,7 @@ namespace ProyectoUnegTienda {
                this->label4->Name = L"label4";
                this->label4->Size = System::Drawing::Size(100, 96);
                this->label4->TabIndex = 2;
-               this->label4->Text = L"Cliente: #2\n Articulo 1: 30$\n Articulo 2: 20$\n Articulo 3: 30$\n Articulo 4: 15$\n "
-                   L"Articulo 5: 89$\n";
+               this->label4->Text = L"Cliente: #2 \n";
                this->label4->Click += gcnew System::EventHandler(this, &Simulacion::label4_Click);
                // 
                // label5
@@ -124,8 +152,7 @@ namespace ProyectoUnegTienda {
                this->label5->Name = L"label5";
                this->label5->Size = System::Drawing::Size(100, 96);
                this->label5->TabIndex = 3;
-               this->label5->Text = L"Cliente: #3\n Articulo 1: 30$\n Articulo 2: 20$\n Articulo 3: 30$\n Articulo 4: 15$\n "
-                   L"Articulo 5: 89$\n";
+               this->label5->Text = L"Cliente: #3 \n";
                this->label5->Click += gcnew System::EventHandler(this, &Simulacion::label5_Click);
                // 
                // label2
@@ -139,8 +166,7 @@ namespace ProyectoUnegTienda {
                this->label2->Name = L"label2";
                this->label2->Size = System::Drawing::Size(100, 96);
                this->label2->TabIndex = 0;
-               this->label2->Text = L"Cliente: #4\n Articulo 1: 30$\n Articulo 2: 20$\n Articulo 3: 30$\n Articulo 4: 15$\n "
-                   L"Articulo 5: 89$\n";
+               this->label2->Text = L"Cliente: #4 \n";
                this->label2->Click += gcnew System::EventHandler(this, &Simulacion::label2_Click);
                // 
                // label7
@@ -154,8 +180,7 @@ namespace ProyectoUnegTienda {
                this->label7->Name = L"label7";
                this->label7->Size = System::Drawing::Size(100, 96);
                this->label7->TabIndex = 4;
-               this->label7->Text = L"Cliente: #5\n Articulo 1: 30$\n Articulo 2: 20$\n Articulo 3: 30$\n Articulo 4: 15$\n "
-                   L"Articulo 5: 89$\n";
+               this->label7->Text = L"Cliente: #5 \n";
                this->label7->Click += gcnew System::EventHandler(this, &Simulacion::label7_Click);
                // 
                // label10
@@ -282,6 +307,12 @@ private: System::Void flowLayoutPanel2_Paint(System::Object^ sender, System::Win
 }
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+private: System::Void OnTimedEvent2(System::Object^ sender, System::EventArgs^ e);
+private: System::Void OnTimedEvent3(System::Object^ sender, System::EventArgs^ e);
+private: System::Void OnTimedEvent4(System::Object^ sender, System::EventArgs^ e);
+private: System::Void OnTimedEvent5(System::Object^ sender, System::EventArgs^ e);
+private: System::Void OnTimedEvent6(System::Object^ sender, System::EventArgs^ e);
+
 private: System::Void OnTimedEvent(System::Object^ sender, System::EventArgs^ e);
 
 private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e) {

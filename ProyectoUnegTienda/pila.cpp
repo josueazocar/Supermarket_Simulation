@@ -2,11 +2,22 @@
 
 int indice_aleatorio;
 int indice;
+int total_productos[6];
 std::set<int> indices_utilizados;
+std::set<int> indices_utilizados2;
+std::set<int> indices_utilizados3;
+std::set<int> indices_utilizados4;
+std::set<int> indices_utilizados5;
+std::set<int> indices_utilizados6;
 
 // Inicialización de variables globales
 Tienda::productos articulos[10];
 std::stack<Tienda::productos> carrito;
+std::stack<Tienda::productos> carrito2;
+std::stack<Tienda::productos> carrito3;
+std::stack<Tienda::productos> carrito4;
+std::stack<Tienda::productos> carrito5;
+std::stack<Tienda::productos> carrito6;
 std::mt19937 rng(static_cast<unsigned int>(std::time(0)));
 std::uniform_int_distribution<int> cantidad(1, 5);
 std::uniform_int_distribution<int> cantidad_for(1, 10);
@@ -100,15 +111,32 @@ void seleccionar_indice_random(std::set<int>& indices_utilizados) {
     indice_aleatorio = indice;
 }
 
-void agregarProductoAlCarrito() {
+void agregarProductoAlCarrito(std::stack<Tienda::productos>& carrito, std::set<int>& indices_utilizados, int &total_productos) {
     seleccionar_indice_random(indices_utilizados);
-    carrito.push(articulos[indice]);
+    articulos[indice].cantidad = numeroaleatorio();
+    total_productos = total_productos + articulos[indice].cantidad;
+
+    if (articulos[indice].stock < articulos[indice].cantidad) {
+        articulos[indice].cantidad = articulos[indice].stock;
+    }
+    if (total_productos <= 30) {
+        carrito.push(articulos[indice]);
+        articulos[indice].stock = articulos[indice].stock - articulos[indice].cantidad;
+    }
+    else {
+        total_productos = total_productos - articulos[indice].cantidad;
+    }
 }
 
-void mostrarcarrito(std::stack<Tienda::productos>& carrito, System::Windows::Forms::Label^ label10_2, System::Windows::Forms::Label^ label10) {
+void mostrarcarrito(std::stack<Tienda::productos>& carrito, System::Windows::Forms::Label^ label_2, System::Windows::Forms::Label^ label) {
     while (!carrito.empty()) {
-        label10_2->Text = gcnew System::String(carrito.top().nombres) + " " + carrito.top().precio + "Bs\n";
-        label10->Text = label10->Text + label10_2->Text;
+        label_2->Text = carrito.top().cantidad + " " + gcnew System::String(carrito.top().nombres) + " " + carrito.top().precio + "Bs\n";
+        label->Text = label->Text + label_2->Text;
         carrito.pop();
     }
+    
+}
+
+void mostrar_total_productos(System::Windows::Forms::Label^ label, int& total_productos) {
+	label->Text = label->Text + total_productos + " productos en total";
 }
