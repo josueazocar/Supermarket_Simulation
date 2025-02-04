@@ -24,6 +24,9 @@
     <ClCompile Include="pila.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cola_clientes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuForm.h">
@@ -33,6 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pila.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cola_clientes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

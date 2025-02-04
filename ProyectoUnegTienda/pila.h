@@ -35,12 +35,8 @@ void mostrar_total_productos(System::Windows::Forms::Label^ label, int& total_pr
 
 // Declaración de variables globales
 extern Tienda::productos articulos[10];
-extern std::stack<Tienda::productos> carrito;
-extern std::stack<Tienda::productos> carrito2;
-extern std::stack<Tienda::productos> carrito3;
-extern std::stack<Tienda::productos> carrito4;
-extern std::stack<Tienda::productos> carrito5;
-extern std::stack<Tienda::productos> carrito6;
+extern std::stack<Tienda::productos> carrito[6];
+
 extern std::mt19937 rng;
 extern std::uniform_int_distribution<int> cantidad;
 extern std::uniform_int_distribution<int> cantidad_for;

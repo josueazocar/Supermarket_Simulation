@@ -1,5 +1,6 @@
 #include "Simulacion.h"
 #include "pila.h"
+#include "cola_clientes.h"
 #include <iostream>
 #include <string.h>
 #include <random>
@@ -77,72 +78,79 @@ System::Void Simulacion::Simulacion_Load(System::Object^ sender, System::EventAr
 
 System::Void Simulacion::llenado_de_carrito(System::Object^ sender, System::EventArgs^ e) {
     if (contador < 10) {
-        agregarProductoAlCarrito(carrito, indices_utilizados, total_productos[0]);
-        mostrarcarrito(carrito, label3_2, label3);
+        agregarProductoAlCarrito(carrito[0], indices_utilizados, total_productos[0]);
+        mostrarcarrito(carrito[0], label3_2, label3);
         contador++;
     }
     else {
         timer->Stop(); // Detener el temporizador después de 10 iteraciones
         mostrar_total_productos(label3, total_productos[0]);
+        carritos_llenos[0] = true;
+        
     }
 }
 
 System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::EventArgs^ e) { 
     if (contador2 < 10) {
-        agregarProductoAlCarrito(carrito2, indices_utilizados2, total_productos[1]);
-        mostrarcarrito(carrito2, label4_2, label4);
+        agregarProductoAlCarrito(carrito[1], indices_utilizados2, total_productos[1]);
+        mostrarcarrito(carrito[1], label4_2, label4);
         contador2++;
     }
     else {
         timer2->Stop(); // Detener el temporizador después de 10 iteraciones
         mostrar_total_productos(label4, total_productos[1]);
+        carritos_llenos[1] = true;
     }
 }
 
 System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::EventArgs^ e) {
     if (contador3 < 10) {
-        agregarProductoAlCarrito(carrito3, indices_utilizados3, total_productos[2]);
-        mostrarcarrito(carrito3, label5_2, label5);
+        agregarProductoAlCarrito(carrito[2], indices_utilizados3, total_productos[2]);
+        mostrarcarrito(carrito[2], label5_2, label5);
         contador3++;
     }
     else {
         timer3->Stop(); // Detener el temporizador después de 10 iteraciones
         mostrar_total_productos(label5, total_productos[2]);
+        carritos_llenos[2] = true;
     }
 }
 
 System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::EventArgs^ e) {
     if (contador4 < 10) {
-        agregarProductoAlCarrito(carrito4, indices_utilizados4, total_productos[3]);
-        mostrarcarrito(carrito4, label2_2, label2);
+        agregarProductoAlCarrito(carrito[3], indices_utilizados4, total_productos[3]);
+        mostrarcarrito(carrito[3], label2_2, label2);
         contador4++;
     }
     else {
         timer4->Stop(); // Detener el temporizador después de 10 iteraciones
         mostrar_total_productos(label2, total_productos[3]);
+        carritos_llenos[3] = true;
     }
 }
 
 System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::EventArgs^ e) {
     if (contador5 < 10) {
-        agregarProductoAlCarrito(carrito5, indices_utilizados5, total_productos[4]);
-        mostrarcarrito(carrito5, label7_2, label7);
+        agregarProductoAlCarrito(carrito[4], indices_utilizados5, total_productos[4]);
+        mostrarcarrito(carrito[4], label7_2, label7);
         contador5++;
     }
     else {
         timer5->Stop(); // Detener el temporizador después de 10 iteraciones
         mostrar_total_productos(label7, total_productos[4]);
+        carritos_llenos[4] = true;
     }
 }
 
 System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::EventArgs^ e) {
     if (contador6 < 10) {
-        agregarProductoAlCarrito(carrito6, indices_utilizados6, total_productos[5]);
-        mostrarcarrito(carrito6, label10_2, label10);
+        agregarProductoAlCarrito(carrito[5], indices_utilizados6, total_productos[5]);
+        mostrarcarrito(carrito[5], label10_2, label10);
         contador6++;
     }
     else {
         timer6->Stop(); // Detener el temporizador después de 10 iteraciones
         mostrar_total_productos(label10, total_productos[5]);
+        carritos_llenos[5] = true;
     }
 }

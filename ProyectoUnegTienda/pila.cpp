@@ -12,12 +12,8 @@ std::set<int> indices_utilizados6;
 
 // Inicialización de variables globales
 Tienda::productos articulos[10];
-std::stack<Tienda::productos> carrito;
-std::stack<Tienda::productos> carrito2;
-std::stack<Tienda::productos> carrito3;
-std::stack<Tienda::productos> carrito4;
-std::stack<Tienda::productos> carrito5;
-std::stack<Tienda::productos> carrito6;
+std::stack<Tienda::productos> carrito[6];
+
 std::mt19937 rng(static_cast<unsigned int>(std::time(0)));
 std::uniform_int_distribution<int> cantidad(1, 5);
 std::uniform_int_distribution<int> cantidad_for(1, 10);
@@ -116,7 +112,7 @@ void seleccionar_indice_random(std::set<int>& indices_utilizados) {
     indice_aleatorio = indice;
 }
 
-void agregarProductoAlCarrito(std::stack<Tienda::productos>& carrito, std::set<int>& indices_utilizados, int &total_productos) {
+void agregarProductoAlCarrito(std::stack<Tienda::productos>& carrito, std::set<int>& indices_utilizados, int& total_productos) {
     seleccionar_indice_random(indices_utilizados);
     articulos[indice].cantidad = numeroaleatorio();
     total_productos = total_productos + articulos[indice].cantidad;

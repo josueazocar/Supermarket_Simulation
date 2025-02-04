@@ -126,11 +126,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cola_clientes.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pila.cpp" />
     <ClCompile Include="Simulacion.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cola_clientes.h" />
     <ClInclude Include="MenuForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
