@@ -76,7 +76,13 @@ System::Void Simulacion::Simulacion_Load(System::Object^ sender, System::EventAr
     this->timerCronometro->Start();
 }
 
+
+
+
+
 System::Void Simulacion::llenado_de_carrito(System::Object^ sender, System::EventArgs^ e) {
+    AsignacionDatos(0);
+   
     if (contador < 10) {
         agregarProductoAlCarrito(carrito[0], indices_utilizados, total_productos[0]);
         mostrarcarrito(carrito[0], label3_2, label3);
@@ -86,11 +92,19 @@ System::Void Simulacion::llenado_de_carrito(System::Object^ sender, System::Even
         timer->Stop(); // Detener el temporizador después de 10 iteraciones
         mostrar_total_productos(label3, total_productos[0]);
         carritos_llenos[0] = true;
-        
-    }
+            }
+    AgregarClienteCola(0);
+    
+    int cantidadClientes = TamanoCola(); // Implementa esta función para obtener la cantidad de clientes en la cola
+    label9->Text = "Clientes en cola: " + cantidadClientes;
+
 }
 
+
+
+
 System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::EventArgs^ e) { 
+    AsignacionDatos(1);
     if (contador2 < 10) {
         agregarProductoAlCarrito(carrito[1], indices_utilizados2, total_productos[1]);
         mostrarcarrito(carrito[1], label4_2, label4);
@@ -101,7 +115,9 @@ System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::Eve
         mostrar_total_productos(label4, total_productos[1]);
         carritos_llenos[1] = true;
     }
+    AgregarClienteCola(1);
 }
+
 
 System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::EventArgs^ e) {
     if (contador3 < 10) {
@@ -116,6 +132,7 @@ System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::Eve
     }
 }
 
+
 System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::EventArgs^ e) {
     if (contador4 < 10) {
         agregarProductoAlCarrito(carrito[3], indices_utilizados4, total_productos[3]);
@@ -129,6 +146,7 @@ System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::Eve
     }
 }
 
+
 System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::EventArgs^ e) {
     if (contador5 < 10) {
         agregarProductoAlCarrito(carrito[4], indices_utilizados5, total_productos[4]);
@@ -141,6 +159,7 @@ System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::Eve
         carritos_llenos[4] = true;
     }
 }
+
 
 System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::EventArgs^ e) {
     if (contador6 < 10) {

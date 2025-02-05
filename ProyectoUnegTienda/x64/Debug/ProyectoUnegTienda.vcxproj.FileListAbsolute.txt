@@ -10,3 +10,7 @@ C:\Users\Azocar\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug
 C:\Users\Azocar\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.MenuForm.resources
 C:\Users\Azocar\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.Simulacion.resources
 C:\Users\Azocar\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.vcxproj.GenerateResource.cache
+C:\Users\User\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.vcxproj.AssemblyReference.cache
+C:\Users\User\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.MenuForm.resources
+C:\Users\User\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.Simulacion.resources
+C:\Users\User\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.vcxproj.GenerateResource.cache
