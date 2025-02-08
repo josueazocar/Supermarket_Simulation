@@ -6,7 +6,7 @@ int indice_random;
 int tamano;
 int tiempo_generacionMinimo = 10000; //tiempo en segundos
 int tiempo_generacionMaximo = 20000; //tiempo en segundos
-
+int ReferenciaCliente=0;
 std::vector<bool> carritos_llenos(6, false);
 std::vector<bool> carritos_utilizados(6, false);
 std::vector<bool> SeñaldeFuncionamiento(6, false);
@@ -71,9 +71,9 @@ void seleccionarDatosAleatorio(std::set<int>& indices_usados) {
 
     void AsignacionDatos(int indice_cliente) {
         seleccionarDatosAleatorio(indices_usados);
-        obtenerNombreAleatorio() = cliente[indice_cliente].nombres;
-        obtenerCedulaAleatoria() = cliente[indice_cliente].cedula;
-        obtenerTelefonoAleatorio() = cliente[indice_cliente].telefono;
+        cliente[indice_cliente].nombres = obtenerNombreAleatorio();
+        cliente[indice_cliente].cedula = obtenerCedulaAleatoria();
+        cliente[indice_cliente].telefono = obtenerTelefonoAleatorio();
 		cliente[indice_cliente].carrito_id = indice_cliente;
     }
 
@@ -94,42 +94,19 @@ void AgregarClienteCola(int indice_carrito) {
             }
 }
 
+void QuitarClienteCola(int indice_carrito) {
+    if (!verificarCarritoLleno(indice_carrito)) {
+        if (!cola_clientes.empty()) {
+            cola_clientes.pop();
+            std::cout << "Carrito vacio, cliente a salido de la cola." << std::endl;
+        }
+    }
+}
+
 int tiempo_aletorio_clientes() {
     return tiempo_clientes(rng);
 }
 
-/*
-void GestionarClientes() {
-  
-        if (carritos_utilizados[0] == false) {
-            SeñaldeFuncionamiento[0] = true;
-        }
-        else
-            if (carritos_utilizados[1] == false) {
-                SeñaldeFuncionamiento[1] = true;
-            }
-            else
-                if (carritos_utilizados[2] == false) {
-                    SeñaldeFuncionamiento[2] = true;
-                }
-                else
-                    if (carritos_utilizados[3] == false) {
-                        SeñaldeFuncionamiento[3] = true;
-                    }
-                    else
-                        if (carritos_utilizados[4] == false) {
-                            SeñaldeFuncionamiento[4] = true;
-                        }
-                        else
-                            if (carritos_utilizados[5] == false) {
-                                SeñaldeFuncionamiento[5] = true;
-                            }
-
-        // Esperar un tiempo aleatorio antes de generar el próximo cliente
-       // std::this_thread::sleep_for(std::chrono::seconds(tiempo_generacion(rng)));
-   
-}
-*/
 
 
         

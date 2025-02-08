@@ -139,6 +139,21 @@ void mostrarcarrito(std::stack<Tienda::productos>& carrito, System::Windows::For
     
 }
 
+
+void mostrarcarrito2(const std::stack<Tienda::productos>& carrito, System::Windows::Forms::Label^ label, int nro_carrito) {
+    System::String^ contenido = "Carrito #" + nro_carrito + "\n";
+    std::stack<Tienda::productos> temp = carrito;
+
+    while (!temp.empty()) {
+        contenido += temp.top().cantidad + " " +
+            gcnew System::String(temp.top().nombres) + " " +
+            temp.top().precio + "Bs\n";
+        temp.pop();
+    }
+
+    label->Text = contenido;
+}
+
 void mostrar_total_productos(System::Windows::Forms::Label^ label, int& total_productos) {
 	label->Text = label->Text + total_productos + " productos en total";
 }

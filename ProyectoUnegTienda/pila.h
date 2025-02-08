@@ -25,6 +25,7 @@ namespace Tienda {
 }
 
 // Declaraciones de funciones
+void mostrarcarrito2(const std::stack<Tienda::productos>& carrito, System::Windows::Forms::Label^ label, int nro_carrito);
 int tiempo_aletorio();
 int numeroaleatorio();
 int numeroaleatorio_for();

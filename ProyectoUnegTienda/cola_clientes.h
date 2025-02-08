@@ -18,13 +18,14 @@
 
 namespace Tienda {
 	struct clientes {
-		char nombres[30];
-		char cedula[12];
-		char telefono[12];
+		std:: string nombres;
+		std:: string cedula;
+		std:: string telefono;
 		int carrito_id; // ID del carrito asignado al cliente
 	};
 }
 
+extern int ReferenciaCliente;
 
 extern Tienda::clientes cliente[6];
 extern std::queue<Tienda::clientes> cola_clientes;
@@ -48,4 +49,5 @@ std::string obtenerTelefonoAleatorio();
 void AsignacionDatos(int indice_cliente);
 int TamanoCola();
 int tiempo_aletorio_clientes();
+void QuitarClienteCola(int indice_carrito);
 #endif // COLA_CLIENTES_H
