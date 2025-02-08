@@ -1,6 +1,6 @@
 // "Simulacion.h"
-#pragma once
 
+#pragma once
 namespace ProyectoUnegTienda {
 
     using namespace System;
@@ -56,6 +56,7 @@ namespace ProyectoUnegTienda {
         System::Windows::Forms::Timer ^ timer5;
         System::Windows::Forms::Timer ^ timer6;
         System::Windows::Forms::Timer^ timerCronometro;
+        System::Windows::Forms::Timer^ timer_gestion_de_clientes;
 
         int segundosTranscurridos;
         int contador;
@@ -410,7 +411,7 @@ private: System::Void llenado_de_carrito3(System::Object^ sender, System::EventA
 private: System::Void llenado_de_carrito4(System::Object^ sender, System::EventArgs^ e);
 private: System::Void llenado_de_carrito5(System::Object^ sender, System::EventArgs^ e);
 private: System::Void llenado_de_carrito6(System::Object^ sender, System::EventArgs^ e);
-
+private: System::Void GestionarClientes(System::Object^ sender, System::EventArgs^ e);
 private: System::Void llenado_de_carrito(System::Object^ sender, System::EventArgs^ e);
 
 private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -421,7 +422,6 @@ private: System::Void flowLayoutPanel3_Paint(System::Object^ sender, System::Win
 private: System::Void label8_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label9_Click(System::Object^ sender, System::EventArgs^ e) {
-   
 }
 };
 }

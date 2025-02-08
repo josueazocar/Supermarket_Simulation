@@ -19,6 +19,7 @@ std::uniform_int_distribution<int> cantidad(1, 5);
 std::uniform_int_distribution<int> cantidad_for(1, 10);
 std::uniform_int_distribution<int> distribucion(0, 9);
 std::uniform_int_distribution<int> tiempo_seleccion(1000, 5000);
+std::uniform_int_distribution<int> tiempo_seleccion_segundos(1, 5);
 
 int tiempo_aletorio() {
     return tiempo_seleccion(rng);
@@ -140,4 +141,12 @@ void mostrarcarrito(std::stack<Tienda::productos>& carrito, System::Windows::For
 
 void mostrar_total_productos(System::Windows::Forms::Label^ label, int& total_productos) {
 	label->Text = label->Text + total_productos + " productos en total";
+}
+
+void Proceso_llenado_completo(int contador, std::stack<Tienda::productos>& carrito, std::set<int>& indices_utilizados, int& total_productos, System::Windows::Forms::Label^ label_2, System::Windows::Forms::Label^ label) {
+    for (contador = 0;contador < 10;contador++) {
+        agregarProductoAlCarrito(carrito, indices_utilizados, total_productos);
+        mostrarcarrito(carrito, label_2, label);
+
+    }
 }

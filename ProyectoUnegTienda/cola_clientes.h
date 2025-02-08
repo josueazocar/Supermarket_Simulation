@@ -21,7 +21,7 @@ namespace Tienda {
 		char nombres[30];
 		char cedula[12];
 		char telefono[12];
-		//int carrito_id; // ID del carrito asignado al cliente
+		int carrito_id; // ID del carrito asignado al cliente
 	};
 }
 
@@ -29,10 +29,11 @@ namespace Tienda {
 extern Tienda::clientes cliente[6];
 extern std::queue<Tienda::clientes> cola_clientes;
 
-
+extern std::mt19937 rng;
 extern std::vector<bool> carritos_llenos;
 extern std::vector<bool> carritos_utilizados;
-extern std::uniform_int_distribution<int> tiempo_generacion;
+extern std::vector<bool> SeñaldeFuncionamiento;
+extern std::uniform_int_distribution<int> tiempo_cliente;
 extern std::uniform_int_distribution<int> rangoAleatorio;
 extern std::set<int> indices_usados;
 
@@ -46,4 +47,5 @@ std::string obtenerCedulaAleatoria();
 std::string obtenerTelefonoAleatorio();
 void AsignacionDatos(int indice_cliente);
 int TamanoCola();
+int tiempo_aletorio_clientes();
 #endif // COLA_CLIENTES_H
