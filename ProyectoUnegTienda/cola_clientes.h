@@ -26,12 +26,17 @@ namespace Tienda {
 }
 
 extern int ReferenciaCliente;
+extern int tiempoCarrito[6];
+extern int CronometroCarrito[6];
+extern int num_ejecuciones[6];
+extern int tiempoMoverAlfinal;
 
 extern Tienda::clientes cliente[6];
 extern std::queue<Tienda::clientes> cola_clientes;
 
 extern std::mt19937 rng;
 extern std::vector<bool> carritos_llenos;
+extern std::vector<bool> clientePagando;
 extern std::vector<bool> carritos_utilizados;
 extern std::vector<bool> SeñaldeFuncionamiento;
 extern std::uniform_int_distribution<int> tiempo_cliente;
@@ -50,4 +55,6 @@ void AsignacionDatos(int indice_cliente);
 int TamanoCola();
 int tiempo_aletorio_clientes();
 void QuitarClienteCola(int indice_carrito);
+void TiempoClienteEnCola(int indice);
+void moverClienteAlFinal(int carrito_id);
 #endif // COLA_CLIENTES_H

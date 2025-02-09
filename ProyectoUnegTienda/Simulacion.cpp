@@ -24,6 +24,7 @@ void Simulacion::EmpezarSimulacion()
     // Inicializa y empieza el temporizador 
     inicializarArticulos();
 
+    
     // Inicializa el contador_carrito1
     contador_carrito1 = 0;
     contador_carrito2 = 0;
@@ -40,38 +41,44 @@ void Simulacion::EmpezarSimulacion()
 
     // Configura el primer temporizador
     timer_carrito1 = gcnew System::Windows::Forms::Timer();
-    timer_carrito1->Interval = tiempo_aletorio();
+    tiempoCarrito[0]= tiempo_aletorio();
+    timer_carrito1->Interval = tiempoCarrito[0];
     timer_carrito1->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito);
    // timer_carrito1->Tick += gcnew EventHandler(this, &Simulacion::Creacion_de_factura);
     timer_carrito1->Start();
 
     // Configura el segundo temporizador con un retraso de 5 segundos
     timer_carrito2 = gcnew System::Windows::Forms::Timer();
-    timer_carrito2->Interval = tiempo_aletorio();
+    tiempoCarrito[1] = tiempo_aletorio();
+    timer_carrito2->Interval = tiempoCarrito[1];
     timer_carrito2->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito2);
     timer_carrito2->Start();
 
     // Configura el tercer temporizador con un retraso de 10 segundos
     timer_carrito3 = gcnew System::Windows::Forms::Timer();
-    timer_carrito3->Interval = tiempo_aletorio();
+    tiempoCarrito[2] = tiempo_aletorio();
+    timer_carrito3->Interval = tiempoCarrito[2];
     timer_carrito3->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito3);
     timer_carrito3->Start();
 
     // Configura el cuarto temporizador con un retraso de 15 segundos
     timer_carrito4 = gcnew System::Windows::Forms::Timer();
-    timer_carrito4->Interval = tiempo_aletorio();
+    tiempoCarrito[3] = tiempo_aletorio();
+    timer_carrito4->Interval = tiempoCarrito[3];
     timer_carrito4->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito4);
     timer_carrito4->Start();
 
     // Configura el quinto temporizador con un retraso de 20 segundos
     timer_carrito5 = gcnew System::Windows::Forms::Timer();
-    timer_carrito5->Interval = tiempo_aletorio(); // 21000 ms = 21 segundos (1 segundo + 20 segundos de retraso)
+    tiempoCarrito[4] = tiempo_aletorio();
+    timer_carrito5->Interval = tiempoCarrito[4]; // 21000 ms = 21 segundos (1 segundo + 20 segundos de retraso)
     timer_carrito5->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito5);
     timer_carrito5->Start();
 
     // Configura el sexto temporizador con un retraso de 25 segundos
     timer_carrito6 = gcnew System::Windows::Forms::Timer();
-    timer_carrito6->Interval = tiempo_aletorio();
+    tiempoCarrito[5] = tiempo_aletorio();
+    timer_carrito6->Interval = tiempoCarrito[5];
     timer_carrito6->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito6);
     timer_carrito6->Start();
 
@@ -79,6 +86,11 @@ void Simulacion::EmpezarSimulacion()
     timer_gestion_de_clientes->Interval = tiempo_aletorio_clientes();
     timer_gestion_de_clientes->Tick += gcnew EventHandler(this, &Simulacion::GestionarClientes);
     timer_gestion_de_clientes->Start();
+
+    timer_MoverClientesAlFinal = gcnew System::Windows::Forms::Timer();
+    timer_MoverClientesAlFinal->Interval = 1000;
+    timer_MoverClientesAlFinal->Tick += gcnew EventHandler(this, &Simulacion::MoverClientesAlFinal);
+    timer_MoverClientesAlFinal->Start();
 
     System::Diagnostics::Debug::WriteLine("Temporizadores iniciados.");
 }
@@ -89,6 +101,44 @@ System::Void Simulacion::Simulacion_Load(System::Object^ sender, System::EventAr
     this->segundosTranscurridos = 0;
     this->timerCronometro->Start();
 }
+
+
+System::Void Simulacion::MoverClientesAlFinal(System::Object^ sender, System::EventArgs^ e) {
+
+	if (CronometroCarrito[0] >= tiempoMoverAlfinal) {
+		moverClienteAlFinal(0);
+		CronometroCarrito[0] = 0;
+	} else 
+		if (CronometroCarrito[1] >= tiempoMoverAlfinal) {
+			moverClienteAlFinal(1);
+			CronometroCarrito[1] = 0;
+		}
+		else
+			if (CronometroCarrito[2] >= tiempoMoverAlfinal) {
+				moverClienteAlFinal(2);
+				CronometroCarrito[2] = 0;
+			}
+			else
+				if (CronometroCarrito[3] >= tiempoMoverAlfinal) {
+					moverClienteAlFinal(3);
+					CronometroCarrito[3] = 0;
+				}
+				else
+					if (CronometroCarrito[4] >= tiempoMoverAlfinal) {
+						moverClienteAlFinal(4);
+						CronometroCarrito[4] = 0;
+					}
+					else
+						if (CronometroCarrito[5] >= tiempoMoverAlfinal) {
+							moverClienteAlFinal(5);
+							CronometroCarrito[5] = 0;
+						}
+
+    int cantidadClientes = TamanoCola(); // Implementa esta función para obtener la cantidad de clientes en la cola
+    label9->Text = "Clientes en cola: " + cantidadClientes;
+}
+
+
 
 System::Void Simulacion::GestionarClientes(System::Object^ sender, System::EventArgs^ e) {
 
@@ -116,7 +166,6 @@ System::Void Simulacion::GestionarClientes(System::Object^ sender, System::Event
                             SeñaldeFuncionamiento[5] = true;
                         }
 
-
 }
 
 
@@ -142,8 +191,7 @@ System::Void Simulacion::GestionarClientes(System::Object^ sender, System::Event
 
 
         }
-        int cantidadClientes = TamanoCola(); // Implementa esta función para obtener la cantidad de clientes en la cola
-        label9->Text = "Clientes en cola: " + cantidadClientes;
+            TiempoClienteEnCola(0);
     }
 
 
@@ -166,7 +214,7 @@ System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::Eve
             }
             
         }
-
+    TiempoClienteEnCola(1);
     }
 
 
@@ -192,6 +240,7 @@ System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::Eve
         }
            
     }
+    TiempoClienteEnCola(2);
 }
 
 
@@ -217,6 +266,8 @@ System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::Eve
             }
             
         }
+
+    TiempoClienteEnCola(3);
 }
 
 
@@ -242,6 +293,7 @@ System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::Eve
             }
        
         }
+    TiempoClienteEnCola(4);
 }
 
 
@@ -263,6 +315,7 @@ System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::Eve
             }
             
         }
+	TiempoClienteEnCola(5);
 }
 
 System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::EventArgs^ e) {
@@ -291,6 +344,7 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
            
             if (contador_carrito1 == 11) {
 
+                clientePagando[id_carrito_factura] = true;
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
@@ -313,8 +367,6 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             if (contador_carrito1==12) {
                 label12->Text = label12->Text +"                      Total: "+ Precio_total_para_factura + "Bs";
                 Precio_total_para_factura = 0;
-                carritos_llenos[id_carrito_factura] = false;
-                carritos_utilizados[id_carrito_factura] = false;
 				QuitarClienteCola(id_carrito_factura);
                 indices_utilizados.clear();
                 contador_carrito1=0;
@@ -343,6 +395,7 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             //Actualizar label12 (factura) - Agregar el elemento
 
             if (contador_carrito2 == 11) {
+                clientePagando[id_carrito_factura] = true;
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
@@ -364,8 +417,6 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             if (contador_carrito2 == 12) {
                 label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
                 Precio_total_para_factura = 0;
-                carritos_llenos[id_carrito_factura] = false;
-                carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados2.clear();
                 contador_carrito2=0;
@@ -394,6 +445,7 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             label11->Text = label5->Text;
             //Actualizar label12 (factura) - Agregar el elemento
             if (contador_carrito3 == 11) {
+                clientePagando[id_carrito_factura] = true;
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
@@ -414,8 +466,6 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             if (contador_carrito3 == 12) {
                 label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
                 Precio_total_para_factura = 0;
-                carritos_llenos[id_carrito_factura] = false;
-                carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados3.clear();
                 contador_carrito3=0;
@@ -443,6 +493,7 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             //Actualizar label12 (factura) - Agregar el elemento
 
             if (contador_carrito4 == 11) {
+                clientePagando[id_carrito_factura] = true;
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
@@ -463,8 +514,6 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             if (contador_carrito4 == 12) {
                 label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
                 Precio_total_para_factura = 0;
-                carritos_llenos[id_carrito_factura] = false;
-                carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados4.clear();
                 contador_carrito4=0;
@@ -493,6 +542,7 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             //Actualizar label12 (factura) - Agregar el elemento
 
             if (contador_carrito5 == 11) {
+                clientePagando[id_carrito_factura] = true;
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
@@ -513,8 +563,6 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             if (contador_carrito5 == 12) {
                 label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
                 Precio_total_para_factura = 0;
-                carritos_llenos[id_carrito_factura] = false;
-                carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados5.clear();
                 contador_carrito5=0;
@@ -543,6 +591,7 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             //Actualizar label12 (factura) - Agregar el elemento
 
             if (contador_carrito6 == 11) {
+                clientePagando[id_carrito_factura] = true;
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
@@ -563,8 +612,6 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             if (contador_carrito6 == 12) {
                 label12->Text = label12->Text + "                     Total: " + Precio_total_para_factura + "Bs";
                 Precio_total_para_factura = 0;
-                carritos_llenos[id_carrito_factura] = false;
-                carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados6.clear();
                 contador_carrito6=0;

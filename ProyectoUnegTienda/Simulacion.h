@@ -57,6 +57,7 @@ namespace ProyectoUnegTienda {
         System::Windows::Forms::Timer ^ timer_carrito6;
         System::Windows::Forms::Timer^ timerCronometro;
         System::Windows::Forms::Timer^ timer_gestion_de_clientes;
+        System::Windows::Forms::Timer^ timer_MoverClientesAlFinal;
         System::Windows::Forms::Timer^ timer_creacion_factura;
 
         int segundosTranscurridos;
@@ -414,6 +415,7 @@ private: System::Void llenado_de_carrito5(System::Object^ sender, System::EventA
 private: System::Void llenado_de_carrito6(System::Object^ sender, System::EventArgs^ e);
 private: System::Void GestionarClientes(System::Object^ sender, System::EventArgs^ e);
 private: System::Void llenado_de_carrito(System::Object^ sender, System::EventArgs^ e);
+private: System::Void MoverClientesAlFinal(System::Object^ sender, System::EventArgs^ e);
 
 private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e) {
     

@@ -4,13 +4,19 @@
 int indice1;
 int indice_random;
 int tamano;
-int tiempo_generacionMinimo = 10000; //tiempo en segundos
-int tiempo_generacionMaximo = 20000; //tiempo en segundos
+int tiempo_generacionMinimo = 10000; 
+int tiempo_generacionMaximo = 20000; 
 int ReferenciaCliente=0;
+int tiempoMoverAlfinal = 100000;
+
+int tiempoCarrito[6] = { 0,0,0,0,0,0 };
+int CronometroCarrito[6] = { 0,0,0,0,0,0 };
+int num_ejecuciones[6] = { 0,0,0,0,0,0 };
+
 std::vector<bool> carritos_llenos(6, false);
 std::vector<bool> carritos_utilizados(6, false);
 std::vector<bool> SeñaldeFuncionamiento(6, false);
-
+std::vector<bool> clientePagando(6, false);
 std::set<int> indices_usados;
 
 // Inicialización de variables globales
@@ -95,6 +101,11 @@ void AgregarClienteCola(int indice_carrito) {
 }
 
 void QuitarClienteCola(int indice_carrito) {
+    clientePagando[indice_carrito] = false;
+    carritos_llenos[indice_carrito] = false;
+    carritos_utilizados[indice_carrito] = false;
+    SeñaldeFuncionamiento[indice_carrito] == false;
+
     if (!verificarCarritoLleno(indice_carrito)) {
         if (!cola_clientes.empty()) {
             cola_clientes.pop();
@@ -107,8 +118,47 @@ int tiempo_aletorio_clientes() {
     return tiempo_clientes(rng);
 }
 
+void TiempoClienteEnCola (int indice) {
 
+    if (SeñaldeFuncionamiento[indice] == true && clientePagando[indice] == false) {
 
+        num_ejecuciones[indice]++;
+        CronometroCarrito[indice] = num_ejecuciones[indice] * tiempoCarrito[indice];
+    }
+    else {
+        num_ejecuciones[indice] = 0;
+    }
+}
+
+void moverClienteAlFinal(int carrito_id) {
+    std::queue<Tienda::clientes> cola_temporal;
+    Tienda::clientes cliente_encontrado;
+    bool encontrado = false;
+
+    // Buscar el cliente y mover los demás a la cola temporal
+    while (!cola_clientes.empty()) {
+        Tienda::clientes cliente_actual = cola_clientes.front();
+        cola_clientes.pop();
+
+        if (cliente_actual.carrito_id == carrito_id && !encontrado) {
+            cliente_encontrado = cliente_actual;
+            encontrado = true;
+        }
+        else {
+            cola_temporal.push(cliente_actual);
+        }
+    }
+
+    // Restaurar la cola original y agregar el cliente al final
+    while (!cola_temporal.empty()) {
+        cola_clientes.push(cola_temporal.front());
+        cola_temporal.pop();
+    }
+
+    if (encontrado) {
+        cola_clientes.push(cliente_encontrado);
+    }
+}
         
     
 
