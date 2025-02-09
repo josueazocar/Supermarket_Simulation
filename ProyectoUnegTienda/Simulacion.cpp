@@ -108,30 +108,36 @@ System::Void Simulacion::MoverClientesAlFinal(System::Object^ sender, System::Ev
 	if (CronometroCarrito[0] >= tiempoMoverAlfinal) {
 		moverClienteAlFinal(0);
 		CronometroCarrito[0] = 0;
+		num_ejecuciones[0] = 0;
 	} else 
 		if (CronometroCarrito[1] >= tiempoMoverAlfinal) {
 			moverClienteAlFinal(1);
 			CronometroCarrito[1] = 0;
+            num_ejecuciones[1] = 0;
 		}
 		else
 			if (CronometroCarrito[2] >= tiempoMoverAlfinal) {
 				moverClienteAlFinal(2);
 				CronometroCarrito[2] = 0;
+                num_ejecuciones[2] = 0;
 			}
 			else
 				if (CronometroCarrito[3] >= tiempoMoverAlfinal) {
 					moverClienteAlFinal(3);
 					CronometroCarrito[3] = 0;
+                    num_ejecuciones[3] = 0;
 				}
 				else
 					if (CronometroCarrito[4] >= tiempoMoverAlfinal) {
 						moverClienteAlFinal(4);
 						CronometroCarrito[4] = 0;
+                        num_ejecuciones[4] = 0;
 					}
 					else
 						if (CronometroCarrito[5] >= tiempoMoverAlfinal) {
 							moverClienteAlFinal(5);
 							CronometroCarrito[5] = 0;
+                            num_ejecuciones[5] = 0;
 						}
 
     int cantidadClientes = TamanoCola(); // Implementa esta función para obtener la cantidad de clientes en la cola
