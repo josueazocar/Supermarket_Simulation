@@ -24,15 +24,14 @@ void Simulacion::EmpezarSimulacion()
     // Inicializa y empieza el temporizador 
     inicializarArticulos();
 
-    // Inicializa el contador
-    contador = 0;
-    contador2 = 0;
-    contador3 = 0;
-    contador4 = 0;
-    contador5 = 0;
-    contador6 = 0;
-    contador7 = 0;
-    Precio_total = 0;
+    // Inicializa el contador_carrito1
+    contador_carrito1 = 0;
+    contador_carrito2 = 0;
+    contador_carrito3 = 0;
+    contador_carrito4 = 0;
+    contador_carrito5 = 0;
+    contador_carrito6 = 0;
+    Precio_total_para_factura = 0;
 
     timer_creacion_factura = gcnew System::Windows::Forms::Timer();
     timer_creacion_factura->Interval = 2000;
@@ -40,41 +39,41 @@ void Simulacion::EmpezarSimulacion()
     timer_creacion_factura->Start();
 
     // Configura el primer temporizador
-    timer = gcnew System::Windows::Forms::Timer();
-    timer->Interval = tiempo_aletorio();
-    timer->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito);
-   // timer->Tick += gcnew EventHandler(this, &Simulacion::Creacion_de_factura);
-    timer->Start();
+    timer_carrito1 = gcnew System::Windows::Forms::Timer();
+    timer_carrito1->Interval = tiempo_aletorio();
+    timer_carrito1->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito);
+   // timer_carrito1->Tick += gcnew EventHandler(this, &Simulacion::Creacion_de_factura);
+    timer_carrito1->Start();
 
     // Configura el segundo temporizador con un retraso de 5 segundos
-    timer2 = gcnew System::Windows::Forms::Timer();
-    timer2->Interval = tiempo_aletorio();
-    timer2->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito2);
-    timer2->Start();
+    timer_carrito2 = gcnew System::Windows::Forms::Timer();
+    timer_carrito2->Interval = tiempo_aletorio();
+    timer_carrito2->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito2);
+    timer_carrito2->Start();
 
     // Configura el tercer temporizador con un retraso de 10 segundos
-    timer3 = gcnew System::Windows::Forms::Timer();
-    timer3->Interval = tiempo_aletorio();
-    timer3->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito3);
-    timer3->Start();
+    timer_carrito3 = gcnew System::Windows::Forms::Timer();
+    timer_carrito3->Interval = tiempo_aletorio();
+    timer_carrito3->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito3);
+    timer_carrito3->Start();
 
     // Configura el cuarto temporizador con un retraso de 15 segundos
-    timer4 = gcnew System::Windows::Forms::Timer();
-    timer4->Interval = tiempo_aletorio();
-    timer4->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito4);
-    timer4->Start();
+    timer_carrito4 = gcnew System::Windows::Forms::Timer();
+    timer_carrito4->Interval = tiempo_aletorio();
+    timer_carrito4->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito4);
+    timer_carrito4->Start();
 
     // Configura el quinto temporizador con un retraso de 20 segundos
-    timer5 = gcnew System::Windows::Forms::Timer();
-    timer5->Interval = tiempo_aletorio(); // 21000 ms = 21 segundos (1 segundo + 20 segundos de retraso)
-    timer5->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito5);
-    timer5->Start();
+    timer_carrito5 = gcnew System::Windows::Forms::Timer();
+    timer_carrito5->Interval = tiempo_aletorio(); // 21000 ms = 21 segundos (1 segundo + 20 segundos de retraso)
+    timer_carrito5->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito5);
+    timer_carrito5->Start();
 
     // Configura el sexto temporizador con un retraso de 25 segundos
-    timer6 = gcnew System::Windows::Forms::Timer();
-    timer6->Interval = tiempo_aletorio();
-    timer6->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito6);
-    timer6->Start();
+    timer_carrito6 = gcnew System::Windows::Forms::Timer();
+    timer_carrito6->Interval = tiempo_aletorio();
+    timer_carrito6->Tick += gcnew EventHandler(this, &Simulacion::llenado_de_carrito6);
+    timer_carrito6->Start();
 
     timer_gestion_de_clientes = gcnew System::Windows::Forms::Timer();
     timer_gestion_de_clientes->Interval = tiempo_aletorio_clientes();
@@ -124,18 +123,18 @@ System::Void Simulacion::GestionarClientes(System::Object^ sender, System::Event
 
     System::Void Simulacion::llenado_de_carrito(System::Object ^ sender, System::EventArgs ^ e) {
 
-        if (SeñaldeFuncionamiento[0] == true && contador < 10) {
+        if (SeñaldeFuncionamiento[0] == true && contador_carrito1 < 10) {
             carritos_utilizados[0] = true;
 
                 agregarProductoAlCarrito(carrito[0], indices_utilizados, total_productos[0]);
                 mostrarcarrito2(carrito[0], label3, 1);
-                contador++;
+                contador_carrito1++;
             
         }
         else {
-            if (contador == 10) {
+            if (contador_carrito1 == 10) {
                 mostrar_total_productos(label3, total_productos[0]);
-                contador++;
+                contador_carrito1++;
                 carritos_llenos[0] = true;
                 AsignacionDatos(0);
                 AgregarClienteCola(0);
@@ -150,17 +149,17 @@ System::Void Simulacion::GestionarClientes(System::Object^ sender, System::Event
 
 System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::EventArgs^ e) {
    
-    if (SeñaldeFuncionamiento[1] == true && contador2 < 10) {
+    if (SeñaldeFuncionamiento[1] == true && contador_carrito2 < 10) {
         carritos_utilizados[1] = true;
    
             agregarProductoAlCarrito(carrito[1], indices_utilizados2, total_productos[1]);
             mostrarcarrito2(carrito[1], label4, 2);
-            contador2++;
+            contador_carrito2++;
     }
         else {
-            if (contador2 == 10) {
+            if (contador_carrito2 == 10) {
                 mostrar_total_productos(label4, total_productos[1]);
-                contador2++;
+                contador_carrito2++;
                 carritos_llenos[1] = true;
                 AsignacionDatos(1);
                 AgregarClienteCola(1);
@@ -175,18 +174,18 @@ System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::Eve
 
 System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::EventArgs^ e) {
    
-    if (SeñaldeFuncionamiento[2] == true && contador3 < 10) {
+    if (SeñaldeFuncionamiento[2] == true && contador_carrito3 < 10) {
         carritos_utilizados[2] = true;
 
 
             agregarProductoAlCarrito(carrito[2], indices_utilizados3, total_productos[2]);
             mostrarcarrito2(carrito[2], label5, 3);
-            contador3++;
+            contador_carrito3++;
 
     } else {
-        if (contador3 == 10) {
+        if (contador_carrito3 == 10) {
             mostrar_total_productos(label5, total_productos[2]);
-            contador3++;
+            contador_carrito3++;
             carritos_llenos[2] = true;
             AsignacionDatos(2);
             AgregarClienteCola(2);
@@ -198,19 +197,19 @@ System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::Eve
 
 System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::EventArgs^ e) {
  
-    if (SeñaldeFuncionamiento[3] == true && contador4 < 10) {
+    if (SeñaldeFuncionamiento[3] == true && contador_carrito4 < 10) {
         carritos_utilizados[3] = true;
 
 
             agregarProductoAlCarrito(carrito[3], indices_utilizados4, total_productos[3]);
             mostrarcarrito2(carrito[3], label2, 4);
-            contador4++;
+            contador_carrito4++;
 
     }
         else {
-            if (contador4 == 10) {
+            if (contador_carrito4 == 10) {
                 mostrar_total_productos(label2, total_productos[3]);
-                contador4++;
+                contador_carrito4++;
                 carritos_llenos[3] = true;
                 AsignacionDatos(3);
                 AgregarClienteCola(3);
@@ -224,19 +223,19 @@ System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::Eve
 System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::EventArgs^ e) {
 
        
-    if (SeñaldeFuncionamiento[4] == true && contador5 < 10) {
+    if (SeñaldeFuncionamiento[4] == true && contador_carrito5 < 10) {
         carritos_utilizados[4] = true;
 
 
             agregarProductoAlCarrito(carrito[4], indices_utilizados5, total_productos[4]);
             mostrarcarrito2(carrito[4], label7, 5);
-            contador5++;
+            contador_carrito5++;
 
     }
         else {
-            if (contador5 == 10) {
+            if (contador_carrito5 == 10) {
                 mostrar_total_productos(label7, total_productos[4]);
-                contador5++;
+                contador_carrito5++;
                 carritos_llenos[4] = true;
                 AsignacionDatos(4);
                 AgregarClienteCola(4);
@@ -248,16 +247,16 @@ System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::Eve
 
 System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::EventArgs^ e) {
   
-    if (SeñaldeFuncionamiento[5] == true && contador6 < 10) {
+    if (SeñaldeFuncionamiento[5] == true && contador_carrito6 < 10) {
         carritos_utilizados[5] = true;
             agregarProductoAlCarrito(carrito[5], indices_utilizados6, total_productos[5]);
             mostrarcarrito2(carrito[5], label10, 6);
-            contador6++;
+            contador_carrito6++;
     }
         else {
-            if (contador6 == 10) {
+            if (contador_carrito6 == 10) {
                 mostrar_total_productos(label10, total_productos[5]);
-                contador6++;
+                contador_carrito6++;
                 carritos_llenos[5] = true;
                 AsignacionDatos(5);
                 AgregarClienteCola(5);
@@ -290,14 +289,14 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
 
            
            
-            if (contador == 11) {
+            if (contador_carrito1 == 11) {
 
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
                     "TELEFONO: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].telefono) +"\n" + "_________________________" +"\n" + "\n";
                     
-                contador++;
+                contador_carrito1++;
             }
               
 
@@ -305,23 +304,23 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
                 producto.precio + "Bs\n";
 
             
-		    Precio_total += producto.cantidad * producto.precio;
+		    Precio_total_para_factura += producto.cantidad * producto.precio;
 
             //Eliminar el producto del carrito
             carrito[id_carrito_factura].pop();
         }
         else {
-            if (contador==12) {
-                label12->Text = label12->Text +"                      Total: "+ Precio_total + "Bs";
-                Precio_total = 0;
+            if (contador_carrito1==12) {
+                label12->Text = label12->Text +"                      Total: "+ Precio_total_para_factura + "Bs";
+                Precio_total_para_factura = 0;
                 carritos_llenos[id_carrito_factura] = false;
                 carritos_utilizados[id_carrito_factura] = false;
 				QuitarClienteCola(id_carrito_factura);
                 indices_utilizados.clear();
-                contador=0;
+                contador_carrito1=0;
             }
             quitar_total_productos(label3, total_productos[0], 1);
-            label11->Text = "";
+            label11->Text = "En espera para vaciar carrito...";
         }
 
 	} else if ((id_carrito_factura == 1) && (carritos_llenos[1] == true)) {
@@ -343,36 +342,36 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             label11->Text = label4->Text;
             //Actualizar label12 (factura) - Agregar el elemento
 
-            if (contador2 == 11) {
+            if (contador_carrito2 == 11) {
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
                     "TELEFONO: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].telefono) + "\n" + "_________________________" + "\n" + "\n";
 
-                contador2++;
+                contador_carrito2++;
             }
 
             label12->Text += gcnew System::String(producto.nombres) + ".........." + producto.cantidad + " x " +
                 producto.precio + "Bs\n";
 
-            Precio_total += producto.cantidad * producto.precio;
+            Precio_total_para_factura += producto.cantidad * producto.precio;
 
             //Eliminar el producto del carrito
             carrito[id_carrito_factura].pop();
 
         }
         else {
-            if (contador2 == 12) {
-                label12->Text = label12->Text + "                      Total: " + Precio_total + "Bs";
-                Precio_total = 0;
+            if (contador_carrito2 == 12) {
+                label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
+                Precio_total_para_factura = 0;
                 carritos_llenos[id_carrito_factura] = false;
                 carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados2.clear();
-                contador2=0;
+                contador_carrito2=0;
             }
             quitar_total_productos(label4, total_productos[1], 2);
-            label11->Text = "";
+            label11->Text = "En espera para vaciar carrito...";
         }
     }
     else if ((id_carrito_factura == 2) && (carritos_llenos[2] == true)) {
@@ -394,35 +393,35 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             label5->Text = nuevoTextoCarrito;
             label11->Text = label5->Text;
             //Actualizar label12 (factura) - Agregar el elemento
-            if (contador3 == 11) {
+            if (contador_carrito3 == 11) {
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
                     "TELEFONO: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].telefono) + "\n" + "_________________________" + "\n" + "\n";
 
-                contador3++;
+                contador_carrito3++;
             }
 
             label12->Text += gcnew System::String(producto.nombres) + ".........." + producto.cantidad + " x " +
                 producto.precio + "Bs\n";
 
-            Precio_total += producto.cantidad * producto.precio;
+            Precio_total_para_factura += producto.cantidad * producto.precio;
 
             //Eliminar el producto del carrito
             carrito[id_carrito_factura].pop();
         }
         else {
-            if (contador3 == 12) {
-                label12->Text = label12->Text + "                      Total: " + Precio_total + "Bs";
-                Precio_total = 0;
+            if (contador_carrito3 == 12) {
+                label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
+                Precio_total_para_factura = 0;
                 carritos_llenos[id_carrito_factura] = false;
                 carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados3.clear();
-                contador3=0;
+                contador_carrito3=0;
             }
             quitar_total_productos(label5, total_productos[2], 3);
-            label11->Text = "";
+            label11->Text = "En espera para vaciar carrito...";
         }
 	} else if ((id_carrito_factura == 3) && (carritos_llenos[3] == true)) {
 	
@@ -443,35 +442,35 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             label11->Text = label2->Text;
             //Actualizar label12 (factura) - Agregar el elemento
 
-            if (contador4 == 11) {
+            if (contador_carrito4 == 11) {
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
                     "TELEFONO: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].telefono) + "\n" + "_________________________" + "\n" + "\n";
 
-                contador4++;
+                contador_carrito4++;
             }
 
             label12->Text += gcnew System::String(producto.nombres) + ".........." + producto.cantidad + " x " +
                 producto.precio + "Bs\n";
 
-            Precio_total += producto.cantidad * producto.precio;
+            Precio_total_para_factura += producto.cantidad * producto.precio;
 
             //Eliminar el producto del carrito
             carrito[id_carrito_factura].pop();
         }
         else {
-            if (contador4 == 12) {
-                label12->Text = label12->Text + "                      Total: " + Precio_total + "Bs";
-                Precio_total = 0;
+            if (contador_carrito4 == 12) {
+                label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
+                Precio_total_para_factura = 0;
                 carritos_llenos[id_carrito_factura] = false;
                 carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados4.clear();
-                contador4=0;
+                contador_carrito4=0;
             }
             quitar_total_productos(label2, total_productos[3], 4);
-            label11->Text = "";
+            label11->Text = "En espera para vaciar carrito...";
         }
 
 	} else if ((id_carrito_factura == 4) && (carritos_llenos[4] == true)) {
@@ -493,35 +492,35 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             label11->Text = label7->Text;
             //Actualizar label12 (factura) - Agregar el elemento
 
-            if (contador5 == 11) {
+            if (contador_carrito5 == 11) {
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
                     "TELEFONO: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].telefono) + "\n" + "_________________________" + "\n" + "\n";
 
-                contador5++;
+                contador_carrito5++;
             }
 
             label12->Text += gcnew System::String(producto.nombres) + ".........." + producto.cantidad + " x " +
                 producto.precio + "Bs\n";
 
-            Precio_total += producto.cantidad * producto.precio;
+            Precio_total_para_factura += producto.cantidad * producto.precio;
 
             //Eliminar el producto del carrito
             carrito[id_carrito_factura].pop();
         }
         else {
-            if (contador5 == 12) {
-                label12->Text = label12->Text + "                      Total: " + Precio_total + "Bs";
-                Precio_total = 0;
+            if (contador_carrito5 == 12) {
+                label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
+                Precio_total_para_factura = 0;
                 carritos_llenos[id_carrito_factura] = false;
                 carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados5.clear();
-                contador5=0;
+                contador_carrito5=0;
             }
             quitar_total_productos(label7, total_productos[4], 5);
-            label11->Text = "";
+            label11->Text = "En espera para vaciar carrito...";
         }
 	} else if ((id_carrito_factura == 5) && (carritos_llenos[5] == true)) {
 		
@@ -543,35 +542,35 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             label11->Text = label10->Text;
             //Actualizar label12 (factura) - Agregar el elemento
 
-            if (contador6 == 11) {
+            if (contador_carrito6 == 11) {
                 ReferenciaCliente = ReferenciaCliente++;
                 label12->Text = "FACTURA: " + "\n" + "DATOS DEL CLIENTE : " + "\n" + "REFERENCIA: " + ReferenciaCliente + "\n" + "CEDULA: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].cedula) +
                     "\n" + "NOMBRE: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].nombres) + "\n" +
                     "TELEFONO: " + msclr::interop::marshal_as<System::String^>(cliente[id_carrito_factura].telefono) + "\n" + "_________________________" + "\n" + "\n";
 
-                contador6++;
+                contador_carrito6++;
             }
 
             label12->Text += gcnew System::String(producto.nombres) + ".........." + producto.cantidad + " x " +
                 producto.precio + "Bs\n";
 
-            Precio_total += producto.cantidad * producto.precio;
+            Precio_total_para_factura += producto.cantidad * producto.precio;
 
             //Eliminar el producto del carrito
             carrito[id_carrito_factura].pop();
 	}
         else {
-            if (contador6 == 12) {
-                label12->Text = label12->Text + "                     Total: " + Precio_total + "Bs";
-                Precio_total = 0;
+            if (contador_carrito6 == 12) {
+                label12->Text = label12->Text + "                     Total: " + Precio_total_para_factura + "Bs";
+                Precio_total_para_factura = 0;
                 carritos_llenos[id_carrito_factura] = false;
                 carritos_utilizados[id_carrito_factura] = false;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados6.clear();
-                contador6=0;
+                contador_carrito6=0;
             }
             quitar_total_productos(label10, total_productos[5], 6);
-            label11->Text = "";
+            label11->Text = "En espera para vaciar carrito...";
         }
     }
 }
