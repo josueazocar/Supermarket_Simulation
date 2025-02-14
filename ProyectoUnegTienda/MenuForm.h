@@ -101,7 +101,7 @@ namespace ProyectoUnegTienda {
 		private: System::Void EmpezarFormularioClick(System::Object^ sender, System::EventArgs^ e) {
 
 			this->Hide(); 
-			 Simulacion^ simulationForm = gcnew Simulacion();
+			Simulacion^ simulationForm = gcnew Simulacion();
 			simulationForm->ShowDialog(); 
 			this->Show();
 

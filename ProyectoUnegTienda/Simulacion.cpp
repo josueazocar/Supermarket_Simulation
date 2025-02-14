@@ -24,7 +24,8 @@ void Simulacion::EmpezarSimulacion()
     // Inicializa y empieza el temporizador 
     inicializarArticulos();
 
-    
+    std::srand(static_cast<unsigned>(std::time(nullptr))); // Inicializar el generador de números aleatorios
+
     // Inicializa el contador_carrito1
     contador_carrito1 = 0;
     contador_carrito2 = 0;
@@ -87,10 +88,24 @@ void Simulacion::EmpezarSimulacion()
     timer_gestion_de_clientes->Tick += gcnew EventHandler(this, &Simulacion::GestionarClientes);
     timer_gestion_de_clientes->Start();
 
+
+    pausarOreanudarButton = gcnew System::Windows::Forms::Button();
+    pausarOreanudarButton->Text = "Pausar";
+    pausarOreanudarButton->Location = System::Drawing::Point(47, 50);
+    pausarOreanudarButton->Size = System::Drawing::Size(178, 80);
+    pausarOreanudarButton->UseVisualStyleBackColor = false;
+    pausarOreanudarButton->Click += gcnew System::EventHandler(this, &Simulacion::pausarOreanudarButton_click);
+    pausarOreanudarButton->BringToFront();
+    pausarOreanudarButton->UseVisualStyleBackColor = false;
+    panel1->Controls->Add(this->pausarOreanudarButton);
+
+    //this->Controls->Add(pausarOreanudarButton);
     timer_MoverClientesAlFinal = gcnew System::Windows::Forms::Timer();
     timer_MoverClientesAlFinal->Interval = 1000;
     timer_MoverClientesAlFinal->Tick += gcnew EventHandler(this, &Simulacion::MoverClientesAlFinal);
     timer_MoverClientesAlFinal->Start();
+    etiquetasClientes = gcnew System::Collections::Generic::List<Label^>();
+
 
     System::Diagnostics::Debug::WriteLine("Temporizadores iniciados.");
 }
@@ -105,42 +120,17 @@ System::Void Simulacion::Simulacion_Load(System::Object^ sender, System::EventAr
 
 System::Void Simulacion::MoverClientesAlFinal(System::Object^ sender, System::EventArgs^ e) {
 
-	if (CronometroCarrito[0] >= tiempoMoverAlfinal) {
-		moverClienteAlFinal(0);
-		CronometroCarrito[0] = 0;
-		num_ejecuciones[0] = 0;
-	} else 
-		if (CronometroCarrito[1] >= tiempoMoverAlfinal) {
-			moverClienteAlFinal(1);
-			CronometroCarrito[1] = 0;
-            num_ejecuciones[1] = 0;
-		}
-		else
-			if (CronometroCarrito[2] >= tiempoMoverAlfinal) {
-				moverClienteAlFinal(2);
-				CronometroCarrito[2] = 0;
-                num_ejecuciones[2] = 0;
-			}
-			else
-				if (CronometroCarrito[3] >= tiempoMoverAlfinal) {
-					moverClienteAlFinal(3);
-					CronometroCarrito[3] = 0;
-                    num_ejecuciones[3] = 0;
-				}
-				else
-					if (CronometroCarrito[4] >= tiempoMoverAlfinal) {
-						moverClienteAlFinal(4);
-						CronometroCarrito[4] = 0;
-                        num_ejecuciones[4] = 0;
-					}
-					else
-						if (CronometroCarrito[5] >= tiempoMoverAlfinal) {
-							moverClienteAlFinal(5);
-							CronometroCarrito[5] = 0;
-                            num_ejecuciones[5] = 0;
-						}
+	const int num_carritos = 6; // Número total de carritos
+    for (int i = 0; i < num_carritos; ++i) {
+        if (CronometroCarrito[i] >= tiempoMoverAlfinal) {
+            moverClienteAlFinal(i);
+            CronometroCarrito[i] = 0;
+            num_ejecuciones[i] = 0;
+        }
+    }
 
     int cantidadClientes = TamanoCola(); // Implementa esta función para obtener la cantidad de clientes en la cola
+    ActualizarVisualizacionCola(); // Asegúrate de actualizar la visualización de la cola
     label9->Text = "Clientes en cola: " + cantidadClientes;
 }
 
@@ -180,10 +170,14 @@ System::Void Simulacion::GestionarClientes(System::Object^ sender, System::Event
 
         if (SeñaldeFuncionamiento[0] == true && contador_carrito1 < 10) {
             carritos_utilizados[0] = true;
+            if (contador_carrito1 < 1) {
+                AsignacionDatos(0);
+            }
 
-                agregarProductoAlCarrito(carrito[0], indices_utilizados, total_productos[0]);
-                mostrarcarrito2(carrito[0], label3, 1);
-                contador_carrito1++;
+
+            agregarProductoAlCarrito(carrito[0], indices_utilizados, total_productos[0]);
+            mostrarcarrito2(carrito[0], label3, 1);
+            contador_carrito1++;
             
         }
         else {
@@ -191,7 +185,6 @@ System::Void Simulacion::GestionarClientes(System::Object^ sender, System::Event
                 mostrar_total_productos(label3, total_productos[0]);
                 contador_carrito1++;
                 carritos_llenos[0] = true;
-                AsignacionDatos(0);
                 AgregarClienteCola(0);
             }
 
@@ -205,23 +198,24 @@ System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::Eve
    
     if (SeñaldeFuncionamiento[1] == true && contador_carrito2 < 10) {
         carritos_utilizados[1] = true;
-   
-            agregarProductoAlCarrito(carrito[1], indices_utilizados2, total_productos[1]);
-            mostrarcarrito2(carrito[1], label4, 2);
-            contador_carrito2++;
-    }
-        else {
-            if (contador_carrito2 == 10) {
-                mostrar_total_productos(label4, total_productos[1]);
-                contador_carrito2++;
-                carritos_llenos[1] = true;
-                AsignacionDatos(1);
-                AgregarClienteCola(1);
-            }
-            
+        if (contador_carrito2 < 1) {
+            AsignacionDatos(1);
         }
-    TiempoClienteEnCola(1);
+   
+        agregarProductoAlCarrito(carrito[1], indices_utilizados2, total_productos[1]);
+        mostrarcarrito2(carrito[1], label4, 2);
+        contador_carrito2++;
+    } else {
+        if (contador_carrito2 == 10) {
+            mostrar_total_productos(label4, total_productos[1]);
+            contador_carrito2++;
+            carritos_llenos[1] = true;
+            AgregarClienteCola(1);
+        }
+            
     }
+    TiempoClienteEnCola(1);
+ }
 
 
 
@@ -230,18 +224,21 @@ System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::Eve
    
     if (SeñaldeFuncionamiento[2] == true && contador_carrito3 < 10) {
         carritos_utilizados[2] = true;
+        if (contador_carrito3 < 1) {
+            AsignacionDatos(2);
+        }
 
 
-            agregarProductoAlCarrito(carrito[2], indices_utilizados3, total_productos[2]);
-            mostrarcarrito2(carrito[2], label5, 3);
-            contador_carrito3++;
+
+        agregarProductoAlCarrito(carrito[2], indices_utilizados3, total_productos[2]);
+        mostrarcarrito2(carrito[2], label5, 3);
+        contador_carrito3++;
 
     } else {
         if (contador_carrito3 == 10) {
             mostrar_total_productos(label5, total_productos[2]);
             contador_carrito3++;
             carritos_llenos[2] = true;
-            AsignacionDatos(2);
             AgregarClienteCola(2);
         }
            
@@ -255,23 +252,24 @@ System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::Eve
     if (SeñaldeFuncionamiento[3] == true && contador_carrito4 < 10) {
         carritos_utilizados[3] = true;
 
-
-            agregarProductoAlCarrito(carrito[3], indices_utilizados4, total_productos[3]);
-            mostrarcarrito2(carrito[3], label2, 4);
-            contador_carrito4++;
-
-    }
-        else {
-            if (contador_carrito4 == 10) {
-                mostrar_total_productos(label2, total_productos[3]);
-                contador_carrito4++;
-                carritos_llenos[3] = true;
-                AsignacionDatos(3);
-                AgregarClienteCola(3);
-
-            }
-            
+        if (contador_carrito4 < 1) {
+            AsignacionDatos(3);
         }
+
+        agregarProductoAlCarrito(carrito[3], indices_utilizados4, total_productos[3]);
+        mostrarcarrito2(carrito[3], label2, 4);
+        contador_carrito4++;
+
+    } else {
+        if (contador_carrito4 == 10) {
+            mostrar_total_productos(label2, total_productos[3]);
+            contador_carrito4++;
+            carritos_llenos[3] = true;
+            AgregarClienteCola(3);
+
+        }
+            
+    }
 
     TiempoClienteEnCola(3);
 }
@@ -284,21 +282,23 @@ System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::Eve
         carritos_utilizados[4] = true;
 
 
-            agregarProductoAlCarrito(carrito[4], indices_utilizados5, total_productos[4]);
-            mostrarcarrito2(carrito[4], label7, 5);
-            contador_carrito5++;
-
-    }
-        else {
-            if (contador_carrito5 == 10) {
-                mostrar_total_productos(label7, total_productos[4]);
-                contador_carrito5++;
-                carritos_llenos[4] = true;
-                AsignacionDatos(4);
-                AgregarClienteCola(4);
-            }
-       
+        if (contador_carrito5 < 1) {
+            AsignacionDatos(4);
         }
+
+        agregarProductoAlCarrito(carrito[4], indices_utilizados5, total_productos[4]);
+        mostrarcarrito2(carrito[4], label7, 5);
+        contador_carrito5++;
+
+    } else {
+        if (contador_carrito5 == 10) {
+            mostrar_total_productos(label7, total_productos[4]);
+            contador_carrito5++;
+            carritos_llenos[4] = true;
+            AgregarClienteCola(4);
+        }
+       
+    }
     TiempoClienteEnCola(4);
 }
 
@@ -306,21 +306,24 @@ System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::Eve
 System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::EventArgs^ e) {
   
     if (SeñaldeFuncionamiento[5] == true && contador_carrito6 < 10) {
+
+       if (contador_carrito6 < 1) { 
+           AsignacionDatos(5);
+       }
+
         carritos_utilizados[5] = true;
-            agregarProductoAlCarrito(carrito[5], indices_utilizados6, total_productos[5]);
-            mostrarcarrito2(carrito[5], label10, 6);
+        agregarProductoAlCarrito(carrito[5], indices_utilizados6, total_productos[5]);
+        mostrarcarrito2(carrito[5], label10, 6);
+        contador_carrito6++;
+    } else {
+        if (contador_carrito6 == 10) {
+            mostrar_total_productos(label10, total_productos[5]);
             contador_carrito6++;
-    }
-        else {
-            if (contador_carrito6 == 10) {
-                mostrar_total_productos(label10, total_productos[5]);
-                contador_carrito6++;
-                carritos_llenos[5] = true;
-                AsignacionDatos(5);
-                AgregarClienteCola(5);
-            }
-            
+            carritos_llenos[5] = true;
+            AgregarClienteCola(5);
         }
+            
+    }
 	TiempoClienteEnCola(5);
 }
 
@@ -626,4 +629,79 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
             label11->Text = "En espera para vaciar carrito...";
         }
     }
+}
+
+void Simulacion::ActualizarVisualizacionCola() {
+    // Hacer todos los Labels invisibles inicialmente
+    puestoEnCola->Visible = false;
+    puestoEnCola2->Visible = false;
+    puestoEnCola3->Visible = false;
+    puestoEnCola4->Visible = false;
+    puestoEnCola5->Visible = false;
+    puestoEnCola6->Visible = false;
+
+    // Crear nuevas etiquetas según el estado de la cola
+    std::queue<Tienda::clientes> tempCola = cola_clientes;
+    int labelIndex = 1;
+
+    while (!tempCola.empty() && labelIndex <= 6) {
+        Tienda::clientes cliente = tempCola.front();
+        tempCola.pop();
+
+        Label^ label;
+        switch (labelIndex) {
+            case 1: label = puestoEnCola; break;
+            case 2: label = puestoEnCola2; break;
+            case 3: label = puestoEnCola3; break;
+            case 4: label = puestoEnCola4; break;
+            case 5: label = puestoEnCola5; break;
+            case 6: label = puestoEnCola6; break;
+        }
+
+        label->Text = gcnew String(cliente.nombres.c_str());
+        label->BackColor = Color::FromName(gcnew String(cliente.color.c_str())); //Color en base a los colores aleatorios generados
+        label->Visible = true; // Hacer visible el Label
+        label->ForeColor = Color::White; //texto blanco
+
+        labelIndex++;
+    }
+}
+System::Void Simulacion::pausarOreanudarButton_click(System::Object^ sender, System::EventArgs^ e) {
+    if (isPaused) {
+        ReanudarTemporizadores();
+        pausarOreanudarButton->Text = "Pausar";
+    }
+    else {
+        PausarTemporizadores();
+        pausarOreanudarButton->Text = "Reanudar";
+    }
+    isPaused = !isPaused;
+    System::Diagnostics::Debug::WriteLine("boton presionado.");
+}
+System::Void Simulacion::PausarTemporizadores() {
+    timer_creacion_factura->Stop();
+    timer_carrito1->Stop();
+    timer_carrito2->Stop();
+    timer_carrito3->Stop();
+    timer_carrito4->Stop();
+    timer_carrito5->Stop();
+    timer_carrito6->Stop();
+    timer_gestion_de_clientes->Stop();
+    timer_MoverClientesAlFinal->Stop();
+    timerCronometro->Stop(); // Pausar el cronómetro
+    System::Diagnostics::Debug::WriteLine("Simulación pausada.");
+}
+
+System::Void Simulacion::ReanudarTemporizadores() {
+    timer_creacion_factura->Start();
+    timer_carrito1->Start();
+    timer_carrito2->Start();
+    timer_carrito3->Start();
+    timer_carrito4->Start();
+    timer_carrito5->Start();
+    timer_carrito6->Start();
+    timer_gestion_de_clientes->Start();
+    timer_MoverClientesAlFinal->Start();
+    timerCronometro->Start(); 
+    System::Diagnostics::Debug::WriteLine("Simulación reanudada.");
 }

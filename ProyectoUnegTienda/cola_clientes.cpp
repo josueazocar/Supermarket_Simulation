@@ -1,5 +1,7 @@
 #include "cola_clientes.h"
 #include "pila.h"
+#include <cstdlib> // Para std::rand y std::srand
+#include <ctime>   // Para std::time
 
 int indice1;
 int indice_random;
@@ -75,12 +77,21 @@ void seleccionarDatosAleatorio(std::set<int>& indices_usados) {
         return telefonos[indice_random];
     }
 
+    std::string generarColorAleatorio() {
+        const char* colores[] = { "Red", "Green", "Blue", "Yellow", "Purple", "Orange", "Pink", "Brown", "Gray", "Black" };
+        int num_colores = sizeof(colores) / sizeof(colores[0]);
+        int indice = std::rand() % num_colores;
+        return colores[indice];
+    }
+
     void AsignacionDatos(int indice_cliente) {
         seleccionarDatosAleatorio(indices_usados);
         cliente[indice_cliente].nombres = obtenerNombreAleatorio();
         cliente[indice_cliente].cedula = obtenerCedulaAleatoria();
         cliente[indice_cliente].telefono = obtenerTelefonoAleatorio();
 		cliente[indice_cliente].carrito_id = indice_cliente;
+		cliente[indice_cliente].color = generarColorAleatorio();
+
     }
 
    int TamanoCola() {

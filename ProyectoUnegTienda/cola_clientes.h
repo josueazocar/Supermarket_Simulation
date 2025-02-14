@@ -21,6 +21,7 @@ namespace Tienda {
 		std:: string nombres;
 		std:: string cedula;
 		std:: string telefono;
+		std:: string color;
 		int carrito_id; // ID del carrito asignado al cliente
 	};
 }
