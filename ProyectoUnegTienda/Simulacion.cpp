@@ -678,9 +678,9 @@ void Simulacion::ActualizarVisualizacionCola() {
         }
 
         label->Text = gcnew String(cliente.nombres.c_str());
-        label->BackColor = Color::FromName(gcnew String(cliente.color.c_str())); //Color en base a los colores aleatorios generados
+        int argbColor = std::stoi(cliente.color);
+        label->BackColor = Color::FromArgb(argbColor);
         label->Visible = true; // Hacer visible el Label
-        label->ForeColor = Color::White; //texto blanco
 
         // Centrar el texto
         label->TextAlign = ContentAlignment::MiddleCenter;

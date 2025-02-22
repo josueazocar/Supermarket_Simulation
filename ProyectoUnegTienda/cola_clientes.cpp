@@ -90,11 +90,12 @@ void seleccionarDatosAleatorio(std::set<int>& indices_usados) {
         cliente[indice_cliente].cedula = obtenerCedulaAleatoria();
         cliente[indice_cliente].telefono = obtenerTelefonoAleatorio();
 		cliente[indice_cliente].carrito_id = indice_cliente;
-		cliente[indice_cliente].color = generarColorAleatorio();
 
         if (label) {
-			label->BackColor = System::Drawing::Color::FromName(gcnew System::String(cliente[indice_cliente].color.c_str()));
-            label->ForeColor = System::Drawing::Color::White;
+
+            System::Drawing::Color bgColor = label->BackColor;
+            cliente[indice_cliente].color = std::to_string(bgColor.ToArgb());
+
         }
 
     }
