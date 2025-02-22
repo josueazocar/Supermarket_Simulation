@@ -52,10 +52,12 @@ void AgregarClienteCola(int indice_carrito);
 std::string obtenerNombreAleatorio();
 std::string obtenerCedulaAleatoria();
 std::string obtenerTelefonoAleatorio();
-void AsignacionDatos(int indice_cliente);
+void ReiniciarColaClientes();
+void AsignacionDatos(int indice_cliente, System::Windows::Forms::Label^ label);
 int TamanoCola();
 int tiempo_aletorio_clientes();
 void QuitarClienteCola(int indice_carrito);
 void TiempoClienteEnCola(int indice);
 void moverClienteAlFinal(int carrito_id);
+
 #endif // COLA_CLIENTES_H

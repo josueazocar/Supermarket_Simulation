@@ -103,7 +103,9 @@ namespace ProyectoUnegTienda {
 			this->Hide(); 
 			Simulacion^ simulationForm = gcnew Simulacion();
 			simulationForm->ShowDialog(); 
-			this->Show();
+			if (!this->IsDisposed) {
+				this->Show();
+			}
 
 		}
 	};

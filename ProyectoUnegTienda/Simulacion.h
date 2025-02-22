@@ -92,6 +92,7 @@ namespace ProyectoUnegTienda {
     private: System::Windows::Forms::Label^ puestoEnCola6;
     private: bool isPaused = false; //para controlar la pausa de la simulacion
     private: System::Windows::Forms::Button^ pausarOreanudarButton;
+    private: System::Windows::Forms::Button^ cerrarProgramaButton;
 
 
     private: System::ComponentModel::IContainer^ components;
@@ -125,6 +126,7 @@ namespace ProyectoUnegTienda {
                this->puestoEnCola5 = (gcnew System::Windows::Forms::Label());
                this->puestoEnCola6 = (gcnew System::Windows::Forms::Label());
                this->pausarOreanudarButton = (gcnew System::Windows::Forms::Button());
+               this->cerrarProgramaButton = (gcnew System::Windows::Forms::Button());
                this->flowLayoutPanel1->SuspendLayout();
                this->panel1->SuspendLayout();
                this->flowLayoutPanel2->SuspendLayout();
@@ -245,7 +247,7 @@ namespace ProyectoUnegTienda {
                // 
                this->panel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
                this->panel1->BackColor = System::Drawing::Color::Sienna;
-               //this->panel1->Controls->Add(this->pausarOreanudarButton);
+               this->panel1->Controls->Add(this->cerrarProgramaButton);
                this->panel1->Controls->Add(this->label8);
                this->panel1->Location = System::Drawing::Point(0, 729);
                this->panel1->Margin = System::Windows::Forms::Padding(4);
@@ -380,9 +382,9 @@ namespace ProyectoUnegTienda {
                // puestoEnCola
                // 
                this->puestoEnCola->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola->Location = System::Drawing::Point(1566, 69);
+               this->puestoEnCola->Location = System::Drawing::Point(1535, 48);
                this->puestoEnCola->Name = L"puestoEnCola";
-               this->puestoEnCola->Size = System::Drawing::Size(64, 49);
+               this->puestoEnCola->Size = System::Drawing::Size(138, 70);
                this->puestoEnCola->TabIndex = 4;
                this->puestoEnCola->Text = L"ElementoDeCola1";
                this->puestoEnCola->Visible = false;
@@ -390,9 +392,9 @@ namespace ProyectoUnegTienda {
                // puestoEnCola2
                // 
                this->puestoEnCola2->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola2->Location = System::Drawing::Point(1566, 133);
+               this->puestoEnCola2->Location = System::Drawing::Point(1535, 132);
                this->puestoEnCola2->Name = L"puestoEnCola2";
-               this->puestoEnCola2->Size = System::Drawing::Size(64, 49);
+               this->puestoEnCola2->Size = System::Drawing::Size(138, 70);
                this->puestoEnCola2->TabIndex = 6;
                this->puestoEnCola2->Text = L"ElementoDeCola2";
                this->puestoEnCola2->Visible = false;
@@ -400,19 +402,20 @@ namespace ProyectoUnegTienda {
                // puestoEnCola3
                // 
                this->puestoEnCola3->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola3->Location = System::Drawing::Point(1566, 201);
+               this->puestoEnCola3->Location = System::Drawing::Point(1535, 221);
                this->puestoEnCola3->Name = L"puestoEnCola3";
-               this->puestoEnCola3->Size = System::Drawing::Size(64, 49);
+               this->puestoEnCola3->Size = System::Drawing::Size(138, 70);
                this->puestoEnCola3->TabIndex = 7;
                this->puestoEnCola3->Text = L"ElementoDeCola3";
                this->puestoEnCola3->Visible = false;
+               this->puestoEnCola3->Click += gcnew System::EventHandler(this, &Simulacion::puestoEnCola3_Click);
                // 
                // puestoEnCola4
                // 
                this->puestoEnCola4->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola4->Location = System::Drawing::Point(1566, 272);
+               this->puestoEnCola4->Location = System::Drawing::Point(1535, 309);
                this->puestoEnCola4->Name = L"puestoEnCola4";
-               this->puestoEnCola4->Size = System::Drawing::Size(64, 49);
+               this->puestoEnCola4->Size = System::Drawing::Size(138, 70);
                this->puestoEnCola4->TabIndex = 8;
                this->puestoEnCola4->Text = L"ElementoDeCola4";
                this->puestoEnCola4->Visible = false;
@@ -420,9 +423,9 @@ namespace ProyectoUnegTienda {
                // puestoEnCola5
                // 
                this->puestoEnCola5->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola5->Location = System::Drawing::Point(1566, 338);
+               this->puestoEnCola5->Location = System::Drawing::Point(1535, 397);
                this->puestoEnCola5->Name = L"puestoEnCola5";
-               this->puestoEnCola5->Size = System::Drawing::Size(64, 49);
+               this->puestoEnCola5->Size = System::Drawing::Size(138, 70);
                this->puestoEnCola5->TabIndex = 9;
                this->puestoEnCola5->Text = L"ElementoDeCola1";
                this->puestoEnCola5->Visible = false;
@@ -430,12 +433,31 @@ namespace ProyectoUnegTienda {
                // puestoEnCola6
                // 
                this->puestoEnCola6->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola6->Location = System::Drawing::Point(1566, 409);
+               this->puestoEnCola6->Location = System::Drawing::Point(1535, 486);
                this->puestoEnCola6->Name = L"puestoEnCola6";
-               this->puestoEnCola6->Size = System::Drawing::Size(64, 49);
+               this->puestoEnCola6->Size = System::Drawing::Size(138, 70);
                this->puestoEnCola6->TabIndex = 10;
                this->puestoEnCola6->Text = L"puestoEnCola6";
                this->puestoEnCola6->Visible = false;
+               // 
+               // pausarOreanudarButton
+               // 
+               this->pausarOreanudarButton->Location = System::Drawing::Point(0, 0);
+               this->pausarOreanudarButton->Name = L"pausarOreanudarButton";
+               this->pausarOreanudarButton->Size = System::Drawing::Size(75, 23);
+               this->pausarOreanudarButton->TabIndex = 2;
+               // 
+               // cerrarProgramaButton
+               // 
+               this->cerrarProgramaButton->Location = System::Drawing::Point(968, 60);
+               this->cerrarProgramaButton->Name = L"cerrarProgramaButton";
+               this->cerrarProgramaButton->Size = System::Drawing::Size(178, 80);
+               this->cerrarProgramaButton->TabIndex = 2;
+               this->cerrarProgramaButton->Text = L"Salir";
+               this->cerrarProgramaButton->BringToFront();
+               this->cerrarProgramaButton->UseVisualStyleBackColor = false;
+               this->cerrarProgramaButton->ForeColor = System::Drawing::Color::White;
+               this->cerrarProgramaButton->Click += gcnew System::EventHandler(this, &Simulacion::CerrarPrograma);
                // 
                // Simulacion
                // 
@@ -536,6 +558,46 @@ private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void label12_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void flowLayoutPanel4_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void puestoEnCola3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void CerrarPrograma(System::Object^ sender, System::EventArgs^ e) {
+    // Detener todos los temporizadores
+    if (timerCronometro != nullptr) timerCronometro->Stop();
+    if (timer_carrito1 != nullptr) timer_carrito1->Stop();
+    if (timer_carrito2 != nullptr) timer_carrito2->Stop();
+    if (timer_carrito3 != nullptr) timer_carrito3->Stop();
+    if (timer_carrito4 != nullptr) timer_carrito4->Stop();
+    if (timer_carrito5 != nullptr) timer_carrito5->Stop();
+    if (timer_carrito6 != nullptr) timer_carrito6->Stop();
+    if (timer_gestion_de_clientes != nullptr) timer_gestion_de_clientes->Stop();
+    if (timer_MoverClientesAlFinal != nullptr) timer_MoverClientesAlFinal->Stop();
+    if (timer_creacion_factura != nullptr) timer_creacion_factura->Stop();
+
+    // Liberar recursos asignados dinámicamente
+    delete timerCronometro;
+    delete timer_carrito1;
+    delete timer_carrito2;
+    delete timer_carrito3;
+    delete timer_carrito4;
+    delete timer_carrito5;
+    delete timer_carrito6;
+    delete timer_gestion_de_clientes;
+    delete timer_MoverClientesAlFinal;
+    delete timer_creacion_factura;
+
+    // Restablecer variables
+    segundosTranscurridos = 0;
+    contador_carrito1 = 0;
+    contador_carrito2 = 0;
+    contador_carrito3 = 0;
+    contador_carrito4 = 0;
+    contador_carrito5 = 0;
+    contador_carrito6 = 0;
+    Precio_total_para_factura = 0;
+
+    // Cerrar el formulario
+    this->Close();
 }
 };
 }

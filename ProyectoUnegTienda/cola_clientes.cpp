@@ -78,19 +78,24 @@ void seleccionarDatosAleatorio(std::set<int>& indices_usados) {
     }
 
     std::string generarColorAleatorio() {
-        const char* colores[] = { "Red", "Green", "Blue", "Yellow", "Purple", "Orange", "Pink", "Brown", "Gray", "Black" };
+        const char* colores[] = { "Black", "Navy", "DarkGreen", "Maroon", "Purple", "Teal", "Olive", "DarkSlateGray", "DarkRed", "DarkBlue" };
         int num_colores = sizeof(colores) / sizeof(colores[0]);
         int indice = std::rand() % num_colores;
         return colores[indice];
     }
 
-    void AsignacionDatos(int indice_cliente) {
+    void AsignacionDatos(int indice_cliente, System::Windows::Forms::Label^ label) {
         seleccionarDatosAleatorio(indices_usados);
         cliente[indice_cliente].nombres = obtenerNombreAleatorio();
         cliente[indice_cliente].cedula = obtenerCedulaAleatoria();
         cliente[indice_cliente].telefono = obtenerTelefonoAleatorio();
 		cliente[indice_cliente].carrito_id = indice_cliente;
 		cliente[indice_cliente].color = generarColorAleatorio();
+
+        if (label) {
+			label->BackColor = System::Drawing::Color::FromName(gcnew System::String(cliente[indice_cliente].color.c_str()));
+            label->ForeColor = System::Drawing::Color::White;
+        }
 
     }
 
@@ -168,6 +173,24 @@ void moverClienteAlFinal(int carrito_id) {
 
     if (encontrado) {
         cola_clientes.push(cliente_encontrado);
+    }
+}
+void ReiniciarColaClientes() {
+    // Reiniciar variables globales
+    indice1 = 0;
+    indice_random = 0;
+    tamano = 0;
+    ReferenciaCliente = 0;
+    std::fill(std::begin(tiempoCarrito), std::end(tiempoCarrito), 0);
+    std::fill(std::begin(CronometroCarrito), std::end(CronometroCarrito), 0);
+    std::fill(std::begin(num_ejecuciones), std::end(num_ejecuciones), 0);
+    std::fill(std::begin(carritos_llenos), std::end(carritos_llenos), false);
+    std::fill(std::begin(carritos_utilizados), std::end(carritos_utilizados), false);
+    std::fill(std::begin(SeñaldeFuncionamiento), std::end(SeñaldeFuncionamiento), false);
+    std::fill(std::begin(clientePagando), std::end(clientePagando), false);
+    indices_usados.clear();
+    while (!cola_clientes.empty()) {
+        cola_clientes.pop();
     }
 }
         

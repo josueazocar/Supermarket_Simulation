@@ -21,10 +21,20 @@ using namespace System::Drawing;
 
 void Simulacion::EmpezarSimulacion()
 {
-    // Inicializa y empieza el temporizador 
-    inicializarArticulos();
+    // Reiniciar variables y valores en cola_clientes y pila
+    ReiniciarColaClientes();
+    ReiniciarPila();
 
-    std::srand(static_cast<unsigned>(std::time(nullptr))); // Inicializar el generador de números aleatorios
+    // Detener y limpiar los temporizadores existentes
+    if (timer_creacion_factura != nullptr) timer_creacion_factura->Stop();
+    if (timer_carrito1 != nullptr) timer_carrito1->Stop();
+    if (timer_carrito2 != nullptr) timer_carrito2->Stop();
+    if (timer_carrito3 != nullptr) timer_carrito3->Stop();
+    if (timer_carrito4 != nullptr) timer_carrito4->Stop();
+    if (timer_carrito5 != nullptr) timer_carrito5->Stop();
+    if (timer_carrito6 != nullptr) timer_carrito6->Stop();
+    if (timer_gestion_de_clientes != nullptr) timer_gestion_de_clientes->Stop();
+    if (timer_MoverClientesAlFinal != nullptr) timer_MoverClientesAlFinal->Stop();
 
     // Inicializa el contador_carrito1
     contador_carrito1 = 0;
@@ -34,7 +44,16 @@ void Simulacion::EmpezarSimulacion()
     contador_carrito5 = 0;
     contador_carrito6 = 0;
     Precio_total_para_factura = 0;
+    std::fill(std::begin(carritos_utilizados), std::end(carritos_utilizados), false);
+    std::fill(std::begin(carritos_llenos), std::end(carritos_llenos), false);
+    std::fill(std::begin(SeñaldeFuncionamiento), std::end(SeñaldeFuncionamiento), false);
 
+
+    // Inicializa y empieza el temporizador 
+    inicializarArticulos();
+    std::srand(static_cast<unsigned>(std::time(nullptr))); // Inicializar el generador de números aleatorios
+
+	// Configura el temporizador de creación de facturas
     timer_creacion_factura = gcnew System::Windows::Forms::Timer();
     timer_creacion_factura->Interval = 2000;
     timer_creacion_factura->Tick += gcnew EventHandler(this, &Simulacion::Creacion_de_factura);
@@ -93,13 +112,12 @@ void Simulacion::EmpezarSimulacion()
     pausarOreanudarButton->Text = "Pausar";
     pausarOreanudarButton->Location = System::Drawing::Point(47, 50);
     pausarOreanudarButton->Size = System::Drawing::Size(178, 80);
-    pausarOreanudarButton->UseVisualStyleBackColor = false;
     pausarOreanudarButton->Click += gcnew System::EventHandler(this, &Simulacion::pausarOreanudarButton_click);
     pausarOreanudarButton->BringToFront();
     pausarOreanudarButton->UseVisualStyleBackColor = false;
+	pausarOreanudarButton->ForeColor = System::Drawing::Color::White;
     panel1->Controls->Add(this->pausarOreanudarButton);
 
-    //this->Controls->Add(pausarOreanudarButton);
     timer_MoverClientesAlFinal = gcnew System::Windows::Forms::Timer();
     timer_MoverClientesAlFinal->Interval = 1000;
     timer_MoverClientesAlFinal->Tick += gcnew EventHandler(this, &Simulacion::MoverClientesAlFinal);
@@ -171,7 +189,7 @@ System::Void Simulacion::GestionarClientes(System::Object^ sender, System::Event
         if (SeñaldeFuncionamiento[0] == true && contador_carrito1 < 10) {
             carritos_utilizados[0] = true;
             if (contador_carrito1 < 1) {
-                AsignacionDatos(0);
+                AsignacionDatos(0, label3);
             }
 
 
@@ -199,7 +217,8 @@ System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::Eve
     if (SeñaldeFuncionamiento[1] == true && contador_carrito2 < 10) {
         carritos_utilizados[1] = true;
         if (contador_carrito2 < 1) {
-            AsignacionDatos(1);
+            AsignacionDatos(1, label4);
+
         }
    
         agregarProductoAlCarrito(carrito[1], indices_utilizados2, total_productos[1]);
@@ -225,7 +244,7 @@ System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::Eve
     if (SeñaldeFuncionamiento[2] == true && contador_carrito3 < 10) {
         carritos_utilizados[2] = true;
         if (contador_carrito3 < 1) {
-            AsignacionDatos(2);
+           AsignacionDatos(2, label5);
         }
 
 
@@ -253,7 +272,7 @@ System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::Eve
         carritos_utilizados[3] = true;
 
         if (contador_carrito4 < 1) {
-            AsignacionDatos(3);
+            AsignacionDatos(3, label2);
         }
 
         agregarProductoAlCarrito(carrito[3], indices_utilizados4, total_productos[3]);
@@ -283,7 +302,7 @@ System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::Eve
 
 
         if (contador_carrito5 < 1) {
-            AsignacionDatos(4);
+            AsignacionDatos(4, label7);
         }
 
         agregarProductoAlCarrito(carrito[4], indices_utilizados5, total_productos[4]);
@@ -308,7 +327,7 @@ System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::Eve
     if (SeñaldeFuncionamiento[5] == true && contador_carrito6 < 10) {
 
        if (contador_carrito6 < 1) { 
-           AsignacionDatos(5);
+           AsignacionDatos(5, label10);
        }
 
         carritos_utilizados[5] = true;
@@ -662,6 +681,12 @@ void Simulacion::ActualizarVisualizacionCola() {
         label->BackColor = Color::FromName(gcnew String(cliente.color.c_str())); //Color en base a los colores aleatorios generados
         label->Visible = true; // Hacer visible el Label
         label->ForeColor = Color::White; //texto blanco
+
+        // Centrar el texto
+        label->TextAlign = ContentAlignment::MiddleCenter;
+
+        // Aumentar el tamaño de la fuente
+        label->Font = gcnew System::Drawing::Font(label->Font->FontFamily, 12); // Cambia 12 por el tamaño de fuente deseado
 
         labelIndex++;
     }

@@ -165,3 +165,23 @@ void Proceso_llenado_completo(int contador, std::stack<Tienda::productos>& carri
 
     }
 }
+
+void ReiniciarPila() {
+    // Reiniciar variables globales
+    indice_aleatorio = 0;
+    indice = 0;
+    std::fill(std::begin(total_productos), std::end(total_productos), 0);
+    indices_utilizados.clear();
+    indices_utilizados2.clear();
+    indices_utilizados3.clear();
+    indices_utilizados4.clear();
+    indices_utilizados5.clear();
+    indices_utilizados6.clear();
+
+    // Vaciar los carritos
+    for (int i = 0; i < 6; ++i) {
+        while (!carrito[i].empty()) {
+            carrito[i].pop();
+        }
+    }
+}
