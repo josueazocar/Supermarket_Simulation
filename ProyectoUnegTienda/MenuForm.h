@@ -36,6 +36,7 @@ namespace ProyectoUnegTienda {
 				}
 			}
 		private: System::Windows::Forms::Button^ empezarSimulacionBoton;
+		private: System::Windows::Forms::Button^ SalirButton;
 		protected:
 
 		private:
@@ -52,6 +53,7 @@ namespace ProyectoUnegTienda {
 			void InitializeComponent(void)
 			{
 				this->empezarSimulacionBoton = (gcnew System::Windows::Forms::Button());
+				this->SalirButton = (gcnew System::Windows::Forms::Button());
 				this->SuspendLayout();
 				// 
 				// empezarSimulacionBoton
@@ -73,15 +75,35 @@ namespace ProyectoUnegTienda {
 				this->empezarSimulacionBoton->UseVisualStyleBackColor = false;
 				this->empezarSimulacionBoton->Click += gcnew System::EventHandler(this, &MenuForm::EmpezarFormularioClick);
 				// 
+				// SalirButton
+				// 
+				this->SalirButton->Anchor = System::Windows::Forms::AnchorStyles::None;
+				this->SalirButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+				this->SalirButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+					static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(192)));
+				this->SalirButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+				this->SalirButton->Cursor = System::Windows::Forms::Cursors::Hand;
+				this->SalirButton->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+				this->SalirButton->Font = (gcnew System::Drawing::Font(L"Castellar", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+					static_cast<System::Byte>(0)));
+				this->SalirButton->Location = System::Drawing::Point(145, 246);
+				this->SalirButton->Name = L"Salir";
+				this->SalirButton->Size = System::Drawing::Size(322, 45);
+				this->SalirButton->TabIndex = 1;
+				this->SalirButton->Text = L"Salir";
+				this->SalirButton->UseVisualStyleBackColor = false;
+				this->SalirButton->Click += gcnew System::EventHandler(this, &MenuForm::Salir);
+				// 
 				// MenuForm
 				// 
 				this->AcceptButton = this->empezarSimulacionBoton;
-				this->AutoScaleDimensions = System::Drawing::SizeF(5, 15);
+				this->AutoScaleDimensions = System::Drawing::SizeF(7, 17);
 				this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 				this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
 					static_cast<System::Int32>(static_cast<System::Byte>(0)));
 				this->ClientSize = System::Drawing::Size(619, 431);
+				this->Controls->Add(this->SalirButton);
 				this->Controls->Add(this->empezarSimulacionBoton);
 				this->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
@@ -107,6 +129,9 @@ namespace ProyectoUnegTienda {
 				this->Show();
 			}
 
+		}
+		private: System::Void Salir(System::Object^ sender, System::EventArgs^ e) {
+			Application::Exit();
 		}
 	};
 }
