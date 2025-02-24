@@ -1,15 +1,16 @@
 #include "cola_clientes.h"
 #include "pila.h"
+#include "MenuForm.h"
 #include <cstdlib> // Para std::rand y std::srand
 #include <ctime>   // Para std::time
 
 int indice1;
 int indice_random;
 int tamano;
-int tiempo_generacionMinimo = 10000; 
-int tiempo_generacionMaximo = 20000; 
+int tiempo_generacionMinimo;
+int tiempo_generacionMaximo;
 int ReferenciaCliente=0;
-int tiempoMoverAlfinal = 100000;
+int tiempoMoverAlfinal;
 
 int tiempoCarrito[6] = { 0,0,0,0,0,0 };
 int CronometroCarrito[6] = { 0,0,0,0,0,0 };
@@ -27,12 +28,16 @@ std::queue<Tienda::clientes> cola_clientes;
 
 
 // Generador de números aleatorios para el tiempo de generación de clientes
-std::uniform_int_distribution<int> tiempo_clientes(tiempo_generacionMinimo, tiempo_generacionMaximo); // intervalo minimo y maximo para la generacion de clientes
-std::uniform_int_distribution<int> rangoAleatorio(0, 29);
+std::uniform_int_distribution<int> rangoAleatorio(0, 49);
 
 
 // Función para generar un cliente aleatorio
 void seleccionarDatosAleatorio(std::set<int>& indices_usados) {
+
+    if (indices_usados.size() >= 49) {
+        indices_usados.clear();  // Reiniciamos el conjunto
+    }
+
     do {
         indice1 = rangoAleatorio(rng);
     } while (indices_usados.find(indice1) != indices_usados.end());
@@ -40,49 +45,55 @@ void seleccionarDatosAleatorio(std::set<int>& indices_usados) {
     indice_random = indice1;
 }
     std::string obtenerNombreAleatorio() {
-        std::string nombres[30] = {
+        std::string nombres[50] = {
             "Juan Pérez", "María Gómez", "Carlos Rodríguez", "Ana Torres", "Luis Martínez",
             "Laura Sánchez", "Pedro Díaz", "Sofía López", "Javier Morales", "Isabel Castro",
             "Diego Romero", "Valentina Silva", "Andrés Ortega", "Camila Ruiz", "Fernando Jiménez",
             "Gabriela Mendoza", "Ricardo Herrera", "Natalia Vargas", "Samuel Ríos", "Lucía Cordero",
             "Alejandro Salazar", "Claudia Paredes", "Miguel Ángel Fernández", "Patricia León", "David Castillo",
-            "Mariana Salas", "Cristian Soto", "Elena Aguirre", "Hugo Peña", "Silvia Bravo"
+            "Mariana Salas", "Cristian Soto", "Elena Aguirre", "Hugo Peña", "Silvia Bravo", 
+            "Raúl Méndez", "Adriana Guzmán", "José Luis Navarro", "Daniela Rojas", "Roberto Vega",
+            "Verónica Medina", "Arturo Delgado", "Carmen Vega", "Oscar Ponce", "Beatriz Campos",
+            "Manuel Rivas", "Lorena Miranda", "Francisco Montes", "Alicia Solís", "Guillermo Núñez",
+            "Rosa María Delgado", "Enrique Campos", "Teresa Orozco", "Jorge Méndez", "Alejandra Ríos"
         };
 
         return nombres[indice_random];
     }
 
     std::string obtenerCedulaAleatoria() {
-        std::string cedulas[30] = {
-            "V-12345678", "V-87654321", "V-23456789", "V-98765432", "V-34567890",
-            "V-09876543", "V-45678901", "V-10987654", "V-56789012", "V-21098765",
-            "V-67890123", "V-32109876", "V-78901234", "V-43210987", "V-89012345",
-            "V-54321098", "V-90123456", "V-65432109", "V-01234567", "V-76543210",
-            "V-13579246", "V-24681357", "V-35792468", "V-46813579", "V-57924680",
-            "V-68035791", "V-79146802", "V-80257913", "V-91368024", "V-02479135"
+        std::string cedulas[50] = {
+          "V-12345678", "V-27654321", "V-23456789", "V-28765432", "V-34567890",
+          "V-09876543", "V-15678901", "V-10987654", "V-16789012", "V-21098765",
+          "V-27890123", "V-32109876", "V-18901234", "V-13210987", "V-29012345",
+          "V-34321098", "V-20123456", "V-15432109", "V-01234567", "V-26543210",
+          "V-13579246", "V-24681357", "V-33792468", "V-16813579", "V-37924680",
+          "V-18035791", "V-29146802", "V-30257913", "V-31368024", "V-02479135",
+          "V-11223344", "V-22334455", "V-33445566", "V-44556677", "V-15667788",
+          "V-18778899", "V-17889900", "V-12990011", "V-23001122", "V-07112233",
+          "V-10203040", "V-20304050", "V-30405060", "V-40506070", "V-20607080",
+          "V-27708090", "V-25809010", "V-10901020", "V-11020304", "V-01020304"
         };
 
         return cedulas[indice_random];
     }
 
     std::string obtenerTelefonoAleatorio() {
-        std::string telefonos[30] = {
-            "0412-1234567", "0414-2345678", "0416-3456789", "0412-9876543", "0414-8765432",
-            "0416-7654321", "0412-6543210", "0414-5432109", "0416-4321098", "0412-3210987",
-            "0414-2109876", "0416-1098765", "0412-0987654", "0414-9876543", "0416-8765432",
-            "0412-7654321", "0414-6543210", "0416-5432109", "0412-4321098", "0414-3210987",
-            "0416-2109876", "0412-1098765", "0414-0987654", "0416-9876543", "0412-8765432",
-            "0414-7654321", "0416-6543210", "0412-5432109", "0414-4321098", "0416-3210987"
+        std::string telefonos[50] = {
+        "0412-1234567", "0414-2345678", "0416-3456789", "0412-9876543", "0414-8765432",
+        "0416-7654321", "0412-6543210", "0414-5432109", "0416-4321098", "0412-3210987",
+        "0414-2109876", "0416-1098765", "0412-0987654", "0414-9876543", "0416-8765432",
+        "0412-7654321", "0414-6543210", "0416-5432109", "0412-4321098", "0414-3210987",
+        "0416-2109876", "0412-1098765", "0414-0987654", "0416-9876543", "0412-8765432",
+        "0414-7654321", "0416-6543210", "0412-5432109", "0414-4321098", "0416-3210987",
+        "0412-1122334", "0414-2233445", "0416-3344556", "0412-4455667", "0414-5566778",
+        "0416-6677889", "0412-7788990", "0414-8899001", "0416-9900112", "0412-0011223",
+        "0414-1020304", "0416-2030405", "0412-3040506", "0414-4050607", "0416-5060708",
+        "0412-6070809", "0414-7080901", "0416-8090102", "0412-9102030", "0414-0102030"
         };
         return telefonos[indice_random];
     }
 
-    std::string generarColorAleatorio() {
-        const char* colores[] = { "Black", "Navy", "DarkGreen", "Maroon", "Purple", "Teal", "Olive", "DarkSlateGray", "DarkRed", "DarkBlue" };
-        int num_colores = sizeof(colores) / sizeof(colores[0]);
-        int indice = std::rand() % num_colores;
-        return colores[indice];
-    }
 
     void AsignacionDatos(int indice_cliente, System::Windows::Forms::Label^ label) {
         seleccionarDatosAleatorio(indices_usados);
@@ -121,7 +132,7 @@ void QuitarClienteCola(int indice_carrito) {
     clientePagando[indice_carrito] = false;
     carritos_llenos[indice_carrito] = false;
     carritos_utilizados[indice_carrito] = false;
-    SeñaldeFuncionamiento[indice_carrito] == false;
+    SeñaldeFuncionamiento[indice_carrito] = false;
 
     if (!verificarCarritoLleno(indice_carrito)) {
         if (!cola_clientes.empty()) {
@@ -131,7 +142,8 @@ void QuitarClienteCola(int indice_carrito) {
     }
 }
 
-int tiempo_aletorio_clientes() {
+int tiempo_aletorio_clientes(int tiempo_generacionMinimo,int tiempo_generacionMaximo) {
+    std::uniform_int_distribution<int> tiempo_clientes(tiempo_generacionMinimo, tiempo_generacionMaximo);
     return tiempo_clientes(rng);
 }
 
@@ -176,6 +188,7 @@ void moverClienteAlFinal(int carrito_id) {
         cola_clientes.push(cliente_encontrado);
     }
 }
+
 void ReiniciarColaClientes() {
     // Reiniciar variables globales
     indice1 = 0;

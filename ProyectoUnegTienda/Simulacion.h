@@ -63,6 +63,7 @@ namespace ProyectoUnegTienda {
         System::Windows::Forms::Timer^ timer_MoverClientesAlFinal;
         System::Windows::Forms::Timer^ timer_creacion_factura;
 
+        
         int segundosTranscurridos;
         int contador_carrito1;
         int contador_carrito2;
@@ -110,6 +111,7 @@ namespace ProyectoUnegTienda {
                this->label7 = (gcnew System::Windows::Forms::Label());
                this->label10 = (gcnew System::Windows::Forms::Label());
                this->panel1 = (gcnew System::Windows::Forms::Panel());
+               this->cerrarProgramaButton = (gcnew System::Windows::Forms::Button());
                this->label8 = (gcnew System::Windows::Forms::Label());
                this->label6 = (gcnew System::Windows::Forms::Label());
                this->flowLayoutPanel2 = (gcnew System::Windows::Forms::FlowLayoutPanel());
@@ -126,7 +128,6 @@ namespace ProyectoUnegTienda {
                this->puestoEnCola5 = (gcnew System::Windows::Forms::Label());
                this->puestoEnCola6 = (gcnew System::Windows::Forms::Label());
                this->pausarOreanudarButton = (gcnew System::Windows::Forms::Button());
-               this->cerrarProgramaButton = (gcnew System::Windows::Forms::Button());
                this->flowLayoutPanel1->SuspendLayout();
                this->panel1->SuspendLayout();
                this->flowLayoutPanel2->SuspendLayout();
@@ -147,9 +148,8 @@ namespace ProyectoUnegTienda {
                this->flowLayoutPanel1->Controls->Add(this->label4);
                this->flowLayoutPanel1->Controls->Add(this->label5);
                this->flowLayoutPanel1->Location = System::Drawing::Point(0, -1);
-               this->flowLayoutPanel1->Margin = System::Windows::Forms::Padding(4);
                this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
-               this->flowLayoutPanel1->Size = System::Drawing::Size(1059, 309);
+               this->flowLayoutPanel1->Size = System::Drawing::Size(794, 251);
                this->flowLayoutPanel1->TabIndex = 1;
                this->flowLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Simulacion::flowLayoutPanel1_Paint);
                // 
@@ -160,10 +160,9 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(192)));
                this->label3->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label3->Location = System::Drawing::Point(4, 0);
-               this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label3->Location = System::Drawing::Point(3, 0);
                this->label3->Name = L"label3";
-               this->label3->Size = System::Drawing::Size(92, 19);
+               this->label3->Size = System::Drawing::Size(72, 16);
                this->label3->TabIndex = 1;
                this->label3->Text = L"Carrito #1 \n";
                this->label3->Click += gcnew System::EventHandler(this, &Simulacion::label3_Click);
@@ -175,10 +174,9 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(192)));
                this->label4->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label4->Location = System::Drawing::Point(104, 0);
-               this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label4->Location = System::Drawing::Point(81, 0);
                this->label4->Name = L"label4";
-               this->label4->Size = System::Drawing::Size(92, 19);
+               this->label4->Size = System::Drawing::Size(72, 16);
                this->label4->TabIndex = 2;
                this->label4->Text = L"Carrito #2 \n";
                this->label4->Click += gcnew System::EventHandler(this, &Simulacion::label4_Click);
@@ -190,10 +188,9 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(255)));
                this->label5->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label5->Location = System::Drawing::Point(204, 0);
-               this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label5->Location = System::Drawing::Point(159, 0);
                this->label5->Name = L"label5";
-               this->label5->Size = System::Drawing::Size(92, 19);
+               this->label5->Size = System::Drawing::Size(72, 16);
                this->label5->TabIndex = 3;
                this->label5->Text = L"Carrito #3 \n";
                this->label5->Click += gcnew System::EventHandler(this, &Simulacion::label5_Click);
@@ -205,10 +202,9 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(255)));
                this->label2->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label2->Location = System::Drawing::Point(4, 0);
-               this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label2->Location = System::Drawing::Point(3, 0);
                this->label2->Name = L"label2";
-               this->label2->Size = System::Drawing::Size(92, 19);
+               this->label2->Size = System::Drawing::Size(72, 16);
                this->label2->TabIndex = 0;
                this->label2->Text = L"Carrito #4 \n";
                this->label2->Click += gcnew System::EventHandler(this, &Simulacion::label2_Click);
@@ -220,10 +216,9 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(192)));
                this->label7->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label7->Location = System::Drawing::Point(104, 0);
-               this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label7->Location = System::Drawing::Point(81, 0);
                this->label7->Name = L"label7";
-               this->label7->Size = System::Drawing::Size(92, 19);
+               this->label7->Size = System::Drawing::Size(72, 16);
                this->label7->TabIndex = 4;
                this->label7->Text = L"Carrito #5 \n";
                this->label7->Click += gcnew System::EventHandler(this, &Simulacion::label7_Click);
@@ -235,10 +230,9 @@ namespace ProyectoUnegTienda {
                    static_cast<System::Int32>(static_cast<System::Byte>(255)));
                this->label10->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label10->Location = System::Drawing::Point(204, 0);
-               this->label10->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label10->Location = System::Drawing::Point(159, 0);
                this->label10->Name = L"label10";
-               this->label10->Size = System::Drawing::Size(92, 19);
+               this->label10->Size = System::Drawing::Size(72, 16);
                this->label10->TabIndex = 7;
                this->label10->Text = L"Carrito #6 \n";
                this->label10->Click += gcnew System::EventHandler(this, &Simulacion::label10_Click);
@@ -249,23 +243,36 @@ namespace ProyectoUnegTienda {
                this->panel1->BackColor = System::Drawing::Color::Sienna;
                this->panel1->Controls->Add(this->cerrarProgramaButton);
                this->panel1->Controls->Add(this->label8);
-               this->panel1->Location = System::Drawing::Point(0, 729);
-               this->panel1->Margin = System::Windows::Forms::Padding(4);
+               this->panel1->Location = System::Drawing::Point(0, 433);
                this->panel1->Name = L"panel1";
-               this->panel1->Size = System::Drawing::Size(1433, 213);
+               this->panel1->Size = System::Drawing::Size(1075, 332);
                this->panel1->TabIndex = 2;
                this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Simulacion::panel1_Paint);
+               // 
+               // cerrarProgramaButton
+               // 
+               this->cerrarProgramaButton->BackColor = System::Drawing::Color::DarkRed;
+               this->cerrarProgramaButton->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                   static_cast<System::Byte>(0)));
+               this->cerrarProgramaButton->ForeColor = System::Drawing::Color::White;
+               this->cerrarProgramaButton->Location = System::Drawing::Point(216, 92);
+               this->cerrarProgramaButton->Margin = System::Windows::Forms::Padding(2);
+               this->cerrarProgramaButton->Name = L"cerrarProgramaButton";
+               this->cerrarProgramaButton->Size = System::Drawing::Size(589, 34);
+               this->cerrarProgramaButton->TabIndex = 2;
+               this->cerrarProgramaButton->Text = L"Salir";
+               this->cerrarProgramaButton->UseVisualStyleBackColor = false;
+               this->cerrarProgramaButton->Click += gcnew System::EventHandler(this, &Simulacion::CerrarPrograma);
                // 
                // label8
                // 
                this->label8->AutoSize = true;
                this->label8->BackColor = System::Drawing::Color::Snow;
-               this->label8->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+               this->label8->Font = (gcnew System::Drawing::Font(L"Arial Rounded MT Bold", 36, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->label8->Location = System::Drawing::Point(4, 0);
-               this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label8->Location = System::Drawing::Point(545, 23);
                this->label8->Name = L"label8";
-               this->label8->Size = System::Drawing::Size(94, 23);
+               this->label8->Size = System::Drawing::Size(228, 55);
                this->label8->TabIndex = 1;
                this->label8->Text = L"00:00:00";
                this->label8->Click += gcnew System::EventHandler(this, &Simulacion::label8_Click);
@@ -278,10 +285,9 @@ namespace ProyectoUnegTienda {
                this->label6->Font = (gcnew System::Drawing::Font(L"Copperplate Gothic Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
                this->label6->ForeColor = System::Drawing::Color::Black;
-               this->label6->Location = System::Drawing::Point(1495, 11);
-               this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label6->Location = System::Drawing::Point(1121, 9);
                this->label6->Name = L"label6";
-               this->label6->Size = System::Drawing::Size(203, 25);
+               this->label6->Size = System::Drawing::Size(161, 20);
                this->label6->TabIndex = 3;
                this->label6->Text = L"Cola de Clientes";
                this->label6->TextAlign = System::Drawing::ContentAlignment::TopRight;
@@ -293,10 +299,9 @@ namespace ProyectoUnegTienda {
                this->flowLayoutPanel2->Controls->Add(this->flowLayoutPanel4);
                this->flowLayoutPanel2->Controls->Add(this->flowLayoutPanel5);
                this->flowLayoutPanel2->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-               this->flowLayoutPanel2->Location = System::Drawing::Point(1003, -1);
-               this->flowLayoutPanel2->Margin = System::Windows::Forms::Padding(4);
+               this->flowLayoutPanel2->Location = System::Drawing::Point(752, -1);
                this->flowLayoutPanel2->Name = L"flowLayoutPanel2";
-               this->flowLayoutPanel2->Size = System::Drawing::Size(431, 736);
+               this->flowLayoutPanel2->Size = System::Drawing::Size(323, 598);
                this->flowLayoutPanel2->TabIndex = 4;
                this->flowLayoutPanel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Simulacion::flowLayoutPanel2_Paint);
                // 
@@ -306,10 +311,9 @@ namespace ProyectoUnegTienda {
                this->flowLayoutPanel4->Controls->Add(this->label11);
                this->flowLayoutPanel4->Font = (gcnew System::Drawing::Font(L"Haettenschweiler", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
-               this->flowLayoutPanel4->Location = System::Drawing::Point(4, 4);
-               this->flowLayoutPanel4->Margin = System::Windows::Forms::Padding(4);
+               this->flowLayoutPanel4->Location = System::Drawing::Point(3, 3);
                this->flowLayoutPanel4->Name = L"flowLayoutPanel4";
-               this->flowLayoutPanel4->Size = System::Drawing::Size(427, 247);
+               this->flowLayoutPanel4->Size = System::Drawing::Size(320, 201);
                this->flowLayoutPanel4->TabIndex = 5;
                this->flowLayoutPanel4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Simulacion::flowLayoutPanel4_Paint);
                // 
@@ -319,10 +323,9 @@ namespace ProyectoUnegTienda {
                this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei UI", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
                this->label11->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-               this->label11->Location = System::Drawing::Point(4, 0);
-               this->label11->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label11->Location = System::Drawing::Point(3, 0);
                this->label11->Name = L"label11";
-               this->label11->Size = System::Drawing::Size(234, 19);
+               this->label11->Size = System::Drawing::Size(191, 17);
                this->label11->TabIndex = 3;
                this->label11->Text = L"En espera para vaciar carrito...";
                this->label11->Click += gcnew System::EventHandler(this, &Simulacion::label11_Click);
@@ -331,10 +334,9 @@ namespace ProyectoUnegTienda {
                // 
                this->flowLayoutPanel5->BackColor = System::Drawing::Color::LightSteelBlue;
                this->flowLayoutPanel5->Controls->Add(this->label12);
-               this->flowLayoutPanel5->Location = System::Drawing::Point(4, 259);
-               this->flowLayoutPanel5->Margin = System::Windows::Forms::Padding(4);
+               this->flowLayoutPanel5->Location = System::Drawing::Point(3, 210);
                this->flowLayoutPanel5->Name = L"flowLayoutPanel5";
-               this->flowLayoutPanel5->Size = System::Drawing::Size(427, 524);
+               this->flowLayoutPanel5->Size = System::Drawing::Size(320, 426);
                this->flowLayoutPanel5->TabIndex = 6;
                // 
                // label12
@@ -344,10 +346,9 @@ namespace ProyectoUnegTienda {
                this->label12->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
                this->label12->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-               this->label12->Location = System::Drawing::Point(4, 0);
-               this->label12->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+               this->label12->Location = System::Drawing::Point(3, 0);
                this->label12->Name = L"label12";
-               this->label12->Size = System::Drawing::Size(225, 24);
+               this->label12->Size = System::Drawing::Size(178, 19);
                this->label12->TabIndex = 4;
                this->label12->Text = L"En Espera para Facturar...";
                this->label12->Click += gcnew System::EventHandler(this, &Simulacion::label12_Click);
@@ -359,9 +360,10 @@ namespace ProyectoUnegTienda {
                this->label9->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
                this->label9->ForeColor = System::Drawing::SystemColors::Control;
-               this->label9->Location = System::Drawing::Point(1517, 863);
+               this->label9->Location = System::Drawing::Point(1138, 701);
+               this->label9->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
                this->label9->Name = L"label9";
-               this->label9->Size = System::Drawing::Size(156, 22);
+               this->label9->Size = System::Drawing::Size(125, 17);
                this->label9->TabIndex = 2;
                this->label9->Text = L"Clientes en cola:";
                this->label9->Click += gcnew System::EventHandler(this, &Simulacion::label9_Click);
@@ -372,19 +374,19 @@ namespace ProyectoUnegTienda {
                this->flowLayoutPanel3->Controls->Add(this->label2);
                this->flowLayoutPanel3->Controls->Add(this->label7);
                this->flowLayoutPanel3->Controls->Add(this->label10);
-               this->flowLayoutPanel3->Location = System::Drawing::Point(0, 325);
-               this->flowLayoutPanel3->Margin = System::Windows::Forms::Padding(4);
+               this->flowLayoutPanel3->Location = System::Drawing::Point(0, 264);
                this->flowLayoutPanel3->Name = L"flowLayoutPanel3";
-               this->flowLayoutPanel3->Size = System::Drawing::Size(1073, 410);
+               this->flowLayoutPanel3->Size = System::Drawing::Size(805, 333);
                this->flowLayoutPanel3->TabIndex = 5;
                this->flowLayoutPanel3->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Simulacion::flowLayoutPanel3_Paint);
                // 
                // puestoEnCola
                // 
                this->puestoEnCola->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola->Location = System::Drawing::Point(1535, 48);
+               this->puestoEnCola->Location = System::Drawing::Point(1151, 39);
+               this->puestoEnCola->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
                this->puestoEnCola->Name = L"puestoEnCola";
-               this->puestoEnCola->Size = System::Drawing::Size(138, 70);
+               this->puestoEnCola->Size = System::Drawing::Size(104, 57);
                this->puestoEnCola->TabIndex = 4;
                this->puestoEnCola->Text = L"ElementoDeCola1";
                this->puestoEnCola->Visible = false;
@@ -392,9 +394,10 @@ namespace ProyectoUnegTienda {
                // puestoEnCola2
                // 
                this->puestoEnCola2->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola2->Location = System::Drawing::Point(1535, 132);
+               this->puestoEnCola2->Location = System::Drawing::Point(1151, 107);
+               this->puestoEnCola2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
                this->puestoEnCola2->Name = L"puestoEnCola2";
-               this->puestoEnCola2->Size = System::Drawing::Size(138, 70);
+               this->puestoEnCola2->Size = System::Drawing::Size(104, 57);
                this->puestoEnCola2->TabIndex = 6;
                this->puestoEnCola2->Text = L"ElementoDeCola2";
                this->puestoEnCola2->Visible = false;
@@ -402,9 +405,10 @@ namespace ProyectoUnegTienda {
                // puestoEnCola3
                // 
                this->puestoEnCola3->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola3->Location = System::Drawing::Point(1535, 221);
+               this->puestoEnCola3->Location = System::Drawing::Point(1151, 180);
+               this->puestoEnCola3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
                this->puestoEnCola3->Name = L"puestoEnCola3";
-               this->puestoEnCola3->Size = System::Drawing::Size(138, 70);
+               this->puestoEnCola3->Size = System::Drawing::Size(104, 57);
                this->puestoEnCola3->TabIndex = 7;
                this->puestoEnCola3->Text = L"ElementoDeCola3";
                this->puestoEnCola3->Visible = false;
@@ -413,9 +417,10 @@ namespace ProyectoUnegTienda {
                // puestoEnCola4
                // 
                this->puestoEnCola4->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola4->Location = System::Drawing::Point(1535, 309);
+               this->puestoEnCola4->Location = System::Drawing::Point(1151, 251);
+               this->puestoEnCola4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
                this->puestoEnCola4->Name = L"puestoEnCola4";
-               this->puestoEnCola4->Size = System::Drawing::Size(138, 70);
+               this->puestoEnCola4->Size = System::Drawing::Size(104, 57);
                this->puestoEnCola4->TabIndex = 8;
                this->puestoEnCola4->Text = L"ElementoDeCola4";
                this->puestoEnCola4->Visible = false;
@@ -423,9 +428,10 @@ namespace ProyectoUnegTienda {
                // puestoEnCola5
                // 
                this->puestoEnCola5->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola5->Location = System::Drawing::Point(1535, 397);
+               this->puestoEnCola5->Location = System::Drawing::Point(1151, 323);
+               this->puestoEnCola5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
                this->puestoEnCola5->Name = L"puestoEnCola5";
-               this->puestoEnCola5->Size = System::Drawing::Size(138, 70);
+               this->puestoEnCola5->Size = System::Drawing::Size(104, 57);
                this->puestoEnCola5->TabIndex = 9;
                this->puestoEnCola5->Text = L"ElementoDeCola1";
                this->puestoEnCola5->Visible = false;
@@ -433,38 +439,33 @@ namespace ProyectoUnegTienda {
                // puestoEnCola6
                // 
                this->puestoEnCola6->BackColor = System::Drawing::Color::DarkOrange;
-               this->puestoEnCola6->Location = System::Drawing::Point(1535, 486);
+               this->puestoEnCola6->Location = System::Drawing::Point(1151, 395);
+               this->puestoEnCola6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
                this->puestoEnCola6->Name = L"puestoEnCola6";
-               this->puestoEnCola6->Size = System::Drawing::Size(138, 70);
+               this->puestoEnCola6->Size = System::Drawing::Size(104, 57);
                this->puestoEnCola6->TabIndex = 10;
                this->puestoEnCola6->Text = L"puestoEnCola6";
                this->puestoEnCola6->Visible = false;
                // 
                // pausarOreanudarButton
                // 
+               this->pausarOreanudarButton->BackColor = System::Drawing::Color::Blue;
+               this->pausarOreanudarButton->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                   static_cast<System::Byte>(0)));
+               this->pausarOreanudarButton->ForeColor = System::Drawing::Color::White;
                this->pausarOreanudarButton->Location = System::Drawing::Point(0, 0);
                this->pausarOreanudarButton->Name = L"pausarOreanudarButton";
                this->pausarOreanudarButton->Size = System::Drawing::Size(75, 23);
                this->pausarOreanudarButton->TabIndex = 2;
-               // 
-               // cerrarProgramaButton
-               // 
-               this->cerrarProgramaButton->Location = System::Drawing::Point(968, 60);
-               this->cerrarProgramaButton->Name = L"cerrarProgramaButton";
-               this->cerrarProgramaButton->Size = System::Drawing::Size(178, 80);
-               this->cerrarProgramaButton->TabIndex = 2;
-               this->cerrarProgramaButton->Text = L"Salir";
-               this->cerrarProgramaButton->BringToFront();
-               this->cerrarProgramaButton->UseVisualStyleBackColor = false;
-               this->cerrarProgramaButton->ForeColor = System::Drawing::Color::White;
-               this->cerrarProgramaButton->Click += gcnew System::EventHandler(this, &Simulacion::CerrarPrograma);
+               this->pausarOreanudarButton->UseVisualStyleBackColor = false;
                // 
                // Simulacion
                // 
-               this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+               this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
                this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
                this->BackColor = System::Drawing::Color::DarkSlateGray;
-               this->ClientSize = System::Drawing::Size(1768, 922);
+               this->ClientSize = System::Drawing::Size(1028, 609);
+               this->ControlBox = false;
                this->Controls->Add(this->puestoEnCola6);
                this->Controls->Add(this->puestoEnCola5);
                this->Controls->Add(this->puestoEnCola4);
@@ -478,7 +479,7 @@ namespace ProyectoUnegTienda {
                this->Controls->Add(this->flowLayoutPanel1);
                this->Controls->Add(this->flowLayoutPanel3);
                this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
-               this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+               this->Margin = System::Windows::Forms::Padding(2);
                this->Name = L"Simulacion";
                this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
                this->Text = L"Simulación";

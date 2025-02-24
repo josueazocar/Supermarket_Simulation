@@ -1,6 +1,10 @@
 #include "MenuForm.h"
 //#include "Form1.h" // Asegúrate de incluir Form1 si lo vas a utilizar
 
+int valorVolverEntero;
+int valorTminimoEntero;
+int valorTmaximoEntero;
+
 using namespace System;
 using namespace System::Windows::Forms;
 

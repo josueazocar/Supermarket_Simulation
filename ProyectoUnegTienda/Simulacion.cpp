@@ -10,6 +10,7 @@
 #include "factura.h"
 #include <string>
 #include <msclr/marshal_cppstd.h> // Para la conversión entre std::string y System::String
+#include "MenuForm.h"
 
 using namespace ProyectoUnegTienda;
 using namespace System;
@@ -24,6 +25,10 @@ void Simulacion::EmpezarSimulacion()
     // Reiniciar variables y valores en cola_clientes y pila
     ReiniciarColaClientes();
     ReiniciarPila();
+
+    tiempoMoverAlfinal = valorVolverEntero;
+    tiempo_generacionMinimo = valorTminimoEntero;
+    tiempo_generacionMaximo = valorTmaximoEntero;
 
     // Detener y limpiar los temporizadores existentes
     if (timer_creacion_factura != nullptr) timer_creacion_factura->Stop();
@@ -103,15 +108,17 @@ void Simulacion::EmpezarSimulacion()
     timer_carrito6->Start();
 
     timer_gestion_de_clientes = gcnew System::Windows::Forms::Timer();
-    timer_gestion_de_clientes->Interval = tiempo_aletorio_clientes();
+    timer_gestion_de_clientes->Interval = tiempo_aletorio_clientes(tiempo_generacionMinimo, tiempo_generacionMaximo);
     timer_gestion_de_clientes->Tick += gcnew EventHandler(this, &Simulacion::GestionarClientes);
     timer_gestion_de_clientes->Start();
 
-
+    pausarOreanudarButton->BackColor = System::Drawing::Color::Blue;
+    pausarOreanudarButton->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+        static_cast<System::Byte>(0)));
     pausarOreanudarButton = gcnew System::Windows::Forms::Button();
     pausarOreanudarButton->Text = "Pausar";
-    pausarOreanudarButton->Location = System::Drawing::Point(47, 50);
-    pausarOreanudarButton->Size = System::Drawing::Size(178, 80);
+    pausarOreanudarButton->Location = System::Drawing::Point(263, 24);
+    pausarOreanudarButton->Size = System::Drawing::Size(228, 55);
     pausarOreanudarButton->Click += gcnew System::EventHandler(this, &Simulacion::pausarOreanudarButton_click);
     pausarOreanudarButton->BringToFront();
     pausarOreanudarButton->UseVisualStyleBackColor = false;
@@ -127,6 +134,8 @@ void Simulacion::EmpezarSimulacion()
 
     System::Diagnostics::Debug::WriteLine("Temporizadores iniciados.");
 }
+
+
 
 System::Void Simulacion::Simulacion_Load(System::Object^ sender, System::EventArgs^ e) {
     EmpezarSimulacion(); // Iniciar la simulación al cargar el formulario 
@@ -156,33 +165,15 @@ System::Void Simulacion::MoverClientesAlFinal(System::Object^ sender, System::Ev
 
 System::Void Simulacion::GestionarClientes(System::Object^ sender, System::EventArgs^ e) {
 
-    if (carritos_utilizados[0] == false) {
-        SeñaldeFuncionamiento[0] = true;
-    }
-    else
-        if (carritos_utilizados[1] == false) {
-            SeñaldeFuncionamiento[1] = true;
+    for (int i = 0; i < 6; i++) {
+        if (!carritos_utilizados[i]) {
+            SeñaldeFuncionamiento[i] = true;
+            carritos_utilizados[i] = true;
+            break;
         }
-        else
-            if (carritos_utilizados[2] == false) {
-                SeñaldeFuncionamiento[2] = true;
-            }
-            else
-                if (carritos_utilizados[3] == false) {
-                    SeñaldeFuncionamiento[3] = true;
-                }
-                else
-                    if (carritos_utilizados[4] == false) {
-                        SeñaldeFuncionamiento[4] = true;
-                    }
-                    else
-                        if (carritos_utilizados[5] == false) {
-                            SeñaldeFuncionamiento[5] = true;
-                        }
+    }
 
 }
-
-
 
     System::Void Simulacion::llenado_de_carrito(System::Object ^ sender, System::EventArgs ^ e) {
 
@@ -691,6 +682,7 @@ void Simulacion::ActualizarVisualizacionCola() {
         labelIndex++;
     }
 }
+
 System::Void Simulacion::pausarOreanudarButton_click(System::Object^ sender, System::EventArgs^ e) {
     if (isPaused) {
         ReanudarTemporizadores();
@@ -703,6 +695,7 @@ System::Void Simulacion::pausarOreanudarButton_click(System::Object^ sender, Sys
     isPaused = !isPaused;
     System::Diagnostics::Debug::WriteLine("boton presionado.");
 }
+
 System::Void Simulacion::PausarTemporizadores() {
     timer_creacion_factura->Stop();
     timer_carrito1->Stop();

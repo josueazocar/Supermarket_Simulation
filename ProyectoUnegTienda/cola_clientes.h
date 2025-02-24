@@ -25,7 +25,8 @@ namespace Tienda {
 		int carrito_id; // ID del carrito asignado al cliente
 	};
 }
-
+extern int tiempo_generacionMinimo;
+extern int tiempo_generacionMaximo;
 extern int ReferenciaCliente;
 extern int tiempoCarrito[6];
 extern int CronometroCarrito[6];
@@ -40,7 +41,6 @@ extern std::vector<bool> carritos_llenos;
 extern std::vector<bool> clientePagando;
 extern std::vector<bool> carritos_utilizados;
 extern std::vector<bool> SeñaldeFuncionamiento;
-extern std::uniform_int_distribution<int> tiempo_cliente;
 extern std::uniform_int_distribution<int> rangoAleatorio;
 extern std::set<int> indices_usados;
 
@@ -55,7 +55,7 @@ std::string obtenerTelefonoAleatorio();
 void ReiniciarColaClientes();
 void AsignacionDatos(int indice_cliente, System::Windows::Forms::Label^ label);
 int TamanoCola();
-int tiempo_aletorio_clientes();
+int tiempo_aletorio_clientes(int tiempo_generacionMinimo, int tiempo_generacionMaximo);
 void QuitarClienteCola(int indice_carrito);
 void TiempoClienteEnCola(int indice);
 void moverClienteAlFinal(int carrito_id);

@@ -1,3 +1,7 @@
-﻿  Simulacion.cpp
-  cola_clientes.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  ProyectoUnegTienda.vcxproj -> C:\Users\jass0\source\repos\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.exe
+﻿  Main.cpp
+  Simulacion.cpp
+  cola_clientes.cpp
+C:\Users\Azocar\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\cola_clientes.cpp(116,35): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+  Generando código...
+  cola_clientes.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  ProyectoUnegTienda.vcxproj -> C:\Users\Azocar\Documents\GitHub\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.exe
