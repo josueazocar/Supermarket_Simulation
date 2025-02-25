@@ -32,6 +32,9 @@ extern int tiempoCarrito[6];
 extern int CronometroCarrito[6];
 extern int num_ejecuciones[6];
 extern int tiempoMoverAlfinal;
+extern int NumeroClientesAtendidos;
+extern int NumeroClientesRecibidos;
+extern int NumeroClientesDevueltos;
 
 extern Tienda::clientes cliente[6];
 extern std::queue<Tienda::clientes> cola_clientes;

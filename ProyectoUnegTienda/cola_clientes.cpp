@@ -11,10 +11,13 @@ int tiempo_generacionMinimo;
 int tiempo_generacionMaximo;
 int ReferenciaCliente=0;
 int tiempoMoverAlfinal;
+int NumeroClientesAtendidos = 0;
+int NumeroClientesRecibidos = 0;
+int NumeroClientesDevueltos = 0; //variables utilizadas como contadores para los reportes
 
-int tiempoCarrito[6] = { 0,0,0,0,0,0 };
-int CronometroCarrito[6] = { 0,0,0,0,0,0 };
-int num_ejecuciones[6] = { 0,0,0,0,0,0 };
+int tiempoCarrito[6] = { 0,0,0,0,0,0 }; //Contiene la cantidad de segundos aleatoria en que el carrito (n) se ejecuta
+int CronometroCarrito[6] = { 0,0,0,0,0,0 }; //Cronometriza la cantidad de tiempo en que el carrito esta en ejecuacion hasta que es vaciado
+int num_ejecuciones[6] = { 0,0,0,0,0,0 }; //Contiene la cantidad de veces que se ha ejecutado el carrito (n)
 
 std::vector<bool> carritos_llenos(6, false);
 std::vector<bool> carritos_utilizados(6, false);
@@ -46,16 +49,16 @@ void seleccionarDatosAleatorio(std::set<int>& indices_usados) {
 }
     std::string obtenerNombreAleatorio() {
         std::string nombres[50] = {
-            "Juan Pérez", "María Gómez", "Carlos Rodríguez", "Ana Torres", "Luis Martínez",
-            "Laura Sánchez", "Pedro Díaz", "Sofía López", "Javier Morales", "Isabel Castro",
-            "Diego Romero", "Valentina Silva", "Andrés Ortega", "Camila Ruiz", "Fernando Jiménez",
-            "Gabriela Mendoza", "Ricardo Herrera", "Natalia Vargas", "Samuel Ríos", "Lucía Cordero",
-            "Alejandro Salazar", "Claudia Paredes", "Miguel Ángel Fernández", "Patricia León", "David Castillo",
-            "Mariana Salas", "Cristian Soto", "Elena Aguirre", "Hugo Peña", "Silvia Bravo", 
-            "Raúl Méndez", "Adriana Guzmán", "José Luis Navarro", "Daniela Rojas", "Roberto Vega",
-            "Verónica Medina", "Arturo Delgado", "Carmen Vega", "Oscar Ponce", "Beatriz Campos",
-            "Manuel Rivas", "Lorena Miranda", "Francisco Montes", "Alicia Solís", "Guillermo Núñez",
-            "Rosa María Delgado", "Enrique Campos", "Teresa Orozco", "Jorge Méndez", "Alejandra Ríos"
+            "Juan Perez", "Maria Gomez", "Carlos Rodriguez", "Ana Torres", "Luis Martinez",
+            "Laura Sanchez", "Pedro Diaz", "Sofia Lopez", "Javier Morales", "Isabel Castro",
+            "Diego Romero", "Valentina Silva", "Andres Ortega", "Camila Ruiz", "Fernando Jimenez",
+            "Gabriela Mendoza", "Ricardo Herrera", "Natalia Vargas", "Samuel Rios", "Lucia Cordero",
+            "Alejandro Salazar", "Claudia Paredes", "Miguel Angel Fernandez", "Patricia Leon", "David Castillo",
+            "Mariana Salas", "Cristian Soto", "Elena Aguirre", "Hugo Silva", "Silvia Bravo", 
+            "Raul Mendez", "Adriana Guzman", "Jose Luis Navarro", "Daniela Rojas", "Roberto Vega",
+            "Veronica Medina", "Arturo Delgado", "Carmen Vega", "Oscar Ponce", "Beatriz Campos",
+            "Manuel Rivas", "Lorena Miranda", "Francisco Montes", "Alicia Solis", "Guillermo Naranjo",
+            "Rosa Maria Delgado", "Enrique Campos", "Teresa Orozco", "Jorge Mendez", "Alejandra Rios"
         };
 
         return nombres[indice_random];
@@ -96,6 +99,8 @@ void seleccionarDatosAleatorio(std::set<int>& indices_usados) {
 
 
     void AsignacionDatos(int indice_cliente, System::Windows::Forms::Label^ label) {
+
+        NumeroClientesRecibidos++;
         seleccionarDatosAleatorio(indices_usados);
         cliente[indice_cliente].nombres = obtenerNombreAleatorio();
         cliente[indice_cliente].cedula = obtenerCedulaAleatoria();
@@ -129,6 +134,7 @@ void AgregarClienteCola(int indice_carrito) {
 }
 
 void QuitarClienteCola(int indice_carrito) {
+    NumeroClientesAtendidos++;
     clientePagando[indice_carrito] = false;
     carritos_llenos[indice_carrito] = false;
     carritos_utilizados[indice_carrito] = false;
@@ -160,6 +166,7 @@ void TiempoClienteEnCola (int indice) {
 }
 
 void moverClienteAlFinal(int carrito_id) {
+    NumeroClientesDevueltos++;
     std::queue<Tienda::clientes> cola_temporal;
     Tienda::clientes cliente_encontrado;
     bool encontrado = false;

@@ -1,7 +1,7 @@
 ﻿  Main.cpp
   Simulacion.cpp
   cola_clientes.cpp
-C:\Users\Azocar\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\cola_clientes.cpp(116,35): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\cola_clientes.cpp(121,35): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
   Generando código...
   cola_clientes.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
-  ProyectoUnegTienda.vcxproj -> C:\Users\Azocar\Documents\GitHub\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.exe
+  ProyectoUnegTienda.vcxproj -> C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.exe

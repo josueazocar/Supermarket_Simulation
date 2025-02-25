@@ -7,7 +7,6 @@
 #include <ctime>
 #include <set>
 #include <cstring>
-#include "factura.h"
 #include <string>
 #include <msclr/marshal_cppstd.h> // Para la conversión entre std::string y System::String
 #include "MenuForm.h"
@@ -19,6 +18,7 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
+using namespace Factura_Reportes;
 
 void Simulacion::EmpezarSimulacion()
 {
@@ -26,6 +26,7 @@ void Simulacion::EmpezarSimulacion()
     ReiniciarColaClientes();
     ReiniciarPila();
 
+	// Obtener los valores parametrizables de los controles de la ventana principal
     tiempoMoverAlfinal = valorVolverEntero;
     tiempo_generacionMinimo = valorTminimoEntero;
     tiempo_generacionMaximo = valorTmaximoEntero;
@@ -49,10 +50,13 @@ void Simulacion::EmpezarSimulacion()
     contador_carrito5 = 0;
     contador_carrito6 = 0;
     Precio_total_para_factura = 0;
+    indice_producto_mas_vendido=0;
+
+	// Inicializa los valores booleanos
     std::fill(std::begin(carritos_utilizados), std::end(carritos_utilizados), false);
     std::fill(std::begin(carritos_llenos), std::end(carritos_llenos), false);
     std::fill(std::begin(SeñaldeFuncionamiento), std::end(SeñaldeFuncionamiento), false);
-
+    std::fill(std::begin(clientePagando), std::end(clientePagando), false);
 
     // Inicializa y empieza el temporizador 
     inicializarArticulos();
@@ -112,17 +116,9 @@ void Simulacion::EmpezarSimulacion()
     timer_gestion_de_clientes->Tick += gcnew EventHandler(this, &Simulacion::GestionarClientes);
     timer_gestion_de_clientes->Start();
 
-    pausarOreanudarButton->BackColor = System::Drawing::Color::Blue;
-    pausarOreanudarButton->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-        static_cast<System::Byte>(0)));
-    pausarOreanudarButton = gcnew System::Windows::Forms::Button();
-    pausarOreanudarButton->Text = "Pausar";
-    pausarOreanudarButton->Location = System::Drawing::Point(263, 24);
-    pausarOreanudarButton->Size = System::Drawing::Size(228, 55);
     pausarOreanudarButton->Click += gcnew System::EventHandler(this, &Simulacion::pausarOreanudarButton_click);
     pausarOreanudarButton->BringToFront();
-    pausarOreanudarButton->UseVisualStyleBackColor = false;
-	pausarOreanudarButton->ForeColor = System::Drawing::Color::White;
+
     panel1->Controls->Add(this->pausarOreanudarButton);
 
     timer_MoverClientesAlFinal = gcnew System::Windows::Forms::Timer();
@@ -184,8 +180,8 @@ System::Void Simulacion::GestionarClientes(System::Object^ sender, System::Event
             }
 
 
-            agregarProductoAlCarrito(carrito[0], indices_utilizados, total_productos[0]);
-            mostrarcarrito2(carrito[0], label3, 1);
+            agregarProductoAlCarrito2(carrito[0], indices_utilizados, total_productos[0]);
+            mostrarcarrito(carrito[0], label3, 1);
             contador_carrito1++;
             
         }
@@ -212,8 +208,8 @@ System::Void Simulacion::llenado_de_carrito2(System::Object^ sender, System::Eve
 
         }
    
-        agregarProductoAlCarrito(carrito[1], indices_utilizados2, total_productos[1]);
-        mostrarcarrito2(carrito[1], label4, 2);
+        agregarProductoAlCarrito2(carrito[1], indices_utilizados2, total_productos[1]);
+        mostrarcarrito(carrito[1], label4, 2);
         contador_carrito2++;
     } else {
         if (contador_carrito2 == 10) {
@@ -240,8 +236,8 @@ System::Void Simulacion::llenado_de_carrito3(System::Object^ sender, System::Eve
 
 
 
-        agregarProductoAlCarrito(carrito[2], indices_utilizados3, total_productos[2]);
-        mostrarcarrito2(carrito[2], label5, 3);
+        agregarProductoAlCarrito2(carrito[2], indices_utilizados3, total_productos[2]);
+        mostrarcarrito(carrito[2], label5, 3);
         contador_carrito3++;
 
     } else {
@@ -266,8 +262,8 @@ System::Void Simulacion::llenado_de_carrito4(System::Object^ sender, System::Eve
             AsignacionDatos(3, label2);
         }
 
-        agregarProductoAlCarrito(carrito[3], indices_utilizados4, total_productos[3]);
-        mostrarcarrito2(carrito[3], label2, 4);
+        agregarProductoAlCarrito2(carrito[3], indices_utilizados4, total_productos[3]);
+        mostrarcarrito(carrito[3], label2, 4);
         contador_carrito4++;
 
     } else {
@@ -296,8 +292,8 @@ System::Void Simulacion::llenado_de_carrito5(System::Object^ sender, System::Eve
             AsignacionDatos(4, label7);
         }
 
-        agregarProductoAlCarrito(carrito[4], indices_utilizados5, total_productos[4]);
-        mostrarcarrito2(carrito[4], label7, 5);
+        agregarProductoAlCarrito2(carrito[4], indices_utilizados5, total_productos[4]);
+        mostrarcarrito(carrito[4], label7, 5);
         contador_carrito5++;
 
     } else {
@@ -322,8 +318,8 @@ System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::Eve
        }
 
         carritos_utilizados[5] = true;
-        agregarProductoAlCarrito(carrito[5], indices_utilizados6, total_productos[5]);
-        mostrarcarrito2(carrito[5], label10, 6);
+        agregarProductoAlCarrito2(carrito[5], indices_utilizados6, total_productos[5]);
+        mostrarcarrito(carrito[5], label10, 6);
         contador_carrito6++;
     } else {
         if (contador_carrito6 == 10) {
@@ -339,7 +335,6 @@ System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::Eve
 
 System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::EventArgs^ e) {
     obtener_cliente_en_cola(cola_clientes);
-   // label11->Text = id_carrito_factura.ToString();
 
     if ((id_carrito_factura == 0) && (carritos_llenos[0] == true)) {
        
@@ -385,6 +380,8 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
         else {
             if (contador_carrito1==12) {
                 label12->Text = label12->Text +"                      Total: "+ Precio_total_para_factura + "Bs";
+				Crear_reporte_factura(label12);
+                total_de_ventas = Precio_total_para_factura + total_de_ventas;
                 Precio_total_para_factura = 0;
 				QuitarClienteCola(id_carrito_factura);
                 indices_utilizados.clear();
@@ -435,6 +432,8 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
         else {
             if (contador_carrito2 == 12) {
                 label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
+                Crear_reporte_factura(label12);
+                total_de_ventas = Precio_total_para_factura + total_de_ventas;
                 Precio_total_para_factura = 0;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados2.clear();
@@ -484,6 +483,8 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
         else {
             if (contador_carrito3 == 12) {
                 label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
+				Crear_reporte_factura(label12);
+                total_de_ventas = Precio_total_para_factura + total_de_ventas;
                 Precio_total_para_factura = 0;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados3.clear();
@@ -532,6 +533,8 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
         else {
             if (contador_carrito4 == 12) {
                 label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
+				Crear_reporte_factura(label12);
+                total_de_ventas = Precio_total_para_factura + total_de_ventas;
                 Precio_total_para_factura = 0;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados4.clear();
@@ -581,6 +584,8 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
         else {
             if (contador_carrito5 == 12) {
                 label12->Text = label12->Text + "                      Total: " + Precio_total_para_factura + "Bs";
+				Crear_reporte_factura(label12);
+                total_de_ventas = Precio_total_para_factura + total_de_ventas;
                 Precio_total_para_factura = 0;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados5.clear();
@@ -630,6 +635,8 @@ System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::Eve
         else {
             if (contador_carrito6 == 12) {
                 label12->Text = label12->Text + "                     Total: " + Precio_total_para_factura + "Bs";
+				Crear_reporte_factura(label12);
+                total_de_ventas = Precio_total_para_factura + total_de_ventas;
                 Precio_total_para_factura = 0;
                 QuitarClienteCola(id_carrito_factura);
                 indices_utilizados6.clear();
@@ -722,4 +729,19 @@ System::Void Simulacion::ReanudarTemporizadores() {
     timer_MoverClientesAlFinal->Start();
     timerCronometro->Start(); 
     System::Diagnostics::Debug::WriteLine("Simulación reanudada.");
+}
+
+System::Void Simulacion::Producto_masvendido() {
+
+    int max_ventas = articulos[0].stock;
+
+    for (int i = 1; i < 10; i++) {
+        if (articulos[i].stock < max_ventas) {
+            max_ventas = articulos[i].stock;
+            indice_producto_mas_vendido = i;
+        }
+    }
+
+    stock_mas_bajo = std::string(articulos[indice_producto_mas_vendido].nombres);
+
 }

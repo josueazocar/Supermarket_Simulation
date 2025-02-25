@@ -1,7 +1,8 @@
 // "Simulacion.h"
-
 #pragma once
-//#include "cola_clientes.h"
+#include "factura.h"
+#include "cola_clientes.h"
+
 namespace ProyectoUnegTienda {
 
     using namespace System;
@@ -10,6 +11,7 @@ namespace ProyectoUnegTienda {
     using namespace System::Windows::Forms;
     using namespace System::Data;
     using namespace System::Drawing;
+    using namespace Factura_Reportes;
 
     public ref class Simulacion : public System::Windows::Forms::Form
     {
@@ -72,6 +74,9 @@ namespace ProyectoUnegTienda {
         int contador_carrito5;
         int contador_carrito6;
         int Precio_total_para_factura;
+        int indice_producto_mas_vendido;
+       
+
 
     private: System::Windows::Forms::Label^ label10;
 
@@ -260,7 +265,7 @@ namespace ProyectoUnegTienda {
                this->cerrarProgramaButton->Name = L"cerrarProgramaButton";
                this->cerrarProgramaButton->Size = System::Drawing::Size(589, 34);
                this->cerrarProgramaButton->TabIndex = 2;
-               this->cerrarProgramaButton->Text = L"Salir";
+               this->cerrarProgramaButton->Text = L"Detener Simulación";
                this->cerrarProgramaButton->UseVisualStyleBackColor = false;
                this->cerrarProgramaButton->Click += gcnew System::EventHandler(this, &Simulacion::CerrarPrograma);
                // 
@@ -449,15 +454,16 @@ namespace ProyectoUnegTienda {
                // 
                // pausarOreanudarButton
                // 
-               this->pausarOreanudarButton->BackColor = System::Drawing::Color::Blue;
+               this->pausarOreanudarButton->BackColor = System::Drawing::Color::DarkBlue;
                this->pausarOreanudarButton->Font = (gcnew System::Drawing::Font(L"Microsoft YaHei", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(0)));
                this->pausarOreanudarButton->ForeColor = System::Drawing::Color::White;
-               this->pausarOreanudarButton->Location = System::Drawing::Point(0, 0);
+               this->pausarOreanudarButton->Location = System::Drawing::Point(263, 24);
                this->pausarOreanudarButton->Name = L"pausarOreanudarButton";
-               this->pausarOreanudarButton->Size = System::Drawing::Size(75, 23);
+               this->pausarOreanudarButton->Size = System::Drawing::Size(228, 55);
                this->pausarOreanudarButton->TabIndex = 2;
                this->pausarOreanudarButton->UseVisualStyleBackColor = false;
+               this->pausarOreanudarButton->Text = "Pausar";
                // 
                // Simulacion
                // 
@@ -544,6 +550,8 @@ private: System::Void pausarOreanudarButton_click(System::Object^ sender, System
 private: System::Void PausarTemporizadores();
 private: System::Void ReanudarTemporizadores();
 
+private: System::Void Producto_masvendido();
+
 private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e) {
     
 }
@@ -597,8 +605,24 @@ private: System::Void CerrarPrograma(System::Object^ sender, System::EventArgs^ 
     contador_carrito6 = 0;
     Precio_total_para_factura = 0;
 
+    for (int i = 0; i < 6; i++) { //restablecer contadores en arreglos
+
+        tiempoCarrito[i] = 0; //Contiene la cantidad de segundos aleatoria en que el carrito (n) se ejecuta
+        CronometroCarrito[i] = 0;  //Cronometriza la cantidad de tiempo en que el carrito esta en ejecuacion hasta que es vaciado
+		num_ejecuciones[i] = 0; //Contiene la cantidad de veces que se ha ejecutado el carrito (n)
+    }
+
     // Cerrar el formulario
     this->Close();
+    Producto_masvendido();
+    Mostrar_reportes();
+    EliminarReportesFacturas();
+    
+    //Reiniciar reportes
+    total_de_ventas = 0;
+    NumeroClientesAtendidos = 0;
+    NumeroClientesRecibidos = 0;
+    NumeroClientesDevueltos = 0; //variables utilizadas como contadores para los reportes
 }
 };
 }

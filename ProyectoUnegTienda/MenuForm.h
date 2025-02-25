@@ -275,6 +275,8 @@ namespace ProyectoUnegTienda {
 				this->Controls->Add(empezarSimulacionBoton);
 				this->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
+				this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+				this->MaximizeBox = false;
 				this->Name = L"MenuForm";
 				this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 				this->Text = L"Carrito de Compras (inicio)";

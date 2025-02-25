@@ -2,6 +2,7 @@
 #ifndef PILA_H
 #define PILA_H
 
+#include <algorithm>
 #include <iostream>
 #include <string.h>
 #include <random>
@@ -25,7 +26,7 @@ namespace Tienda {
 }
 
 // Declaraciones de funciones
-void mostrarcarrito2(const std::stack<Tienda::productos>& carrito, System::Windows::Forms::Label^ label, int nro_carrito);
+void mostrarcarrito(const std::stack<Tienda::productos>& carrito, System::Windows::Forms::Label^ label, int nro_carrito);
 int tiempo_aletorio();
 int numeroaleatorio();
 int numeroaleatorio_for();
@@ -33,9 +34,8 @@ const char* seleccionarNombreAleatorio(std::set<int>& indices_utilizados);
 void inicializarArticulos();
 void seleccionar_indice_random(std::set<int>& indices_utilizados);
 void agregarProductoAlCarrito(std::stack<Tienda::productos>& carrito, std::set<int>& indices_utilizados, int& total_productos);
-void mostrarcarrito(std::stack<Tienda::productos>& carrito, System::Windows::Forms::Label^ label_2, System::Windows::Forms::Label^ label);
+void agregarProductoAlCarrito2(std::stack<Tienda::productos>& carrito, std::set<int>& indices_utilizados, int& total_productos);
 void mostrar_total_productos(System::Windows::Forms::Label^ label, int& total_productos);
-void Proceso_llenado_completo(int contador, std::stack<Tienda::productos>& carrito, std::set<int>& indices_utilizados, int& total_productos, System::Windows::Forms::Label^ label_2, System::Windows::Forms::Label^ label);
 void ReiniciarPila();
 
 // Declaración de variables globales
