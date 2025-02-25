@@ -215,6 +215,12 @@ void ReiniciarColaClientes() {
     }
 }
         
-    
+bool clientes_haciendo_compras(){
+	for (int i = 0; i < 6; i++) {
+        if (SeñaldeFuncionamiento[i] == true)
+            return true;
+	}
+	return false;
+}
 
 

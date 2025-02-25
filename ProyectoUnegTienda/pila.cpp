@@ -47,61 +47,61 @@ void inicializarArticulos() {
     strcpy(articulos[0].nombres, "Harina Pan");
     articulos[0].precio = 50;
     strcpy(articulos[0].descripcion, "Harina de maíz precocida");
-    articulos[0].stock = 35;
+    articulos[0].stock = 150;
     articulos[0].id = 1;
 
     strcpy(articulos[1].nombres, "Arroz Mary");
     articulos[1].precio = 60;
     strcpy(articulos[1].descripcion, "Arroz blanco tipo I");
-    articulos[1].stock = 35;
+    articulos[1].stock = 150;
     articulos[1].id = 2;
 
     strcpy(articulos[2].nombres, "Leche La Campestre");
     articulos[2].precio = 120;
     strcpy(articulos[2].descripcion, "Leche en polvo");
-    articulos[2].stock = 35;
+    articulos[2].stock = 150;
     articulos[2].id = 3;
 
     strcpy(articulos[3].nombres, "Champu Elvive");
     articulos[3].precio = 260;
     strcpy(articulos[3].descripcion, "Champu anticaspa");
-    articulos[3].stock = 35;
+    articulos[3].stock = 150;
     articulos[3].id = 4;
 
     strcpy(articulos[4].nombres, "Jabon Las llaves");
     articulos[4].precio = 80;
     strcpy(articulos[4].descripcion, "Jabon para lavar");
-    articulos[4].stock = 35;
+    articulos[4].stock = 150;
     articulos[4].id = 5;
 
     strcpy(articulos[5].nombres, "Crema dental");
     articulos[5].precio = 60;
     strcpy(articulos[5].descripcion, "Crema para lavarse los dientes");
-    articulos[5].stock = 35;
+    articulos[5].stock = 150;
     articulos[5].id = 6;
 
     strcpy(articulos[6].nombres, "Jamon Plumrose");
     articulos[6].precio = 460;
     strcpy(articulos[6].descripcion, "Barra de jamon plumrose 2KL");
-    articulos[6].stock = 35;
+    articulos[6].stock = 150;
     articulos[6].id = 7;
 
     strcpy(articulos[7].nombres, "Salchichas Plumrose");
     articulos[7].precio = 230;
     strcpy(articulos[7].descripcion, "Salchichas de pollo 400gr");
-    articulos[7].stock = 35;
+    articulos[7].stock = 150;
     articulos[7].id = 8;
 
     strcpy(articulos[8].nombres, "Avena Quacker");
     articulos[8].precio = 280;
     strcpy(articulos[8].descripcion, "Avena en hojuelas 500gr");
-    articulos[8].stock = 35;
+    articulos[8].stock = 150;
     articulos[8].id = 9;
 
     strcpy(articulos[9].nombres, "Barra limpiadora Dove");
     articulos[9].precio = 130;
     strcpy(articulos[9].descripcion, "Barra de jabon dermolimpiador neutro");
-    articulos[9].stock = 35;
+    articulos[9].stock = 150;
     articulos[9].id = 10;
 }
 
@@ -206,4 +206,12 @@ void ReiniciarPila() {
             carrito[i].pop();
         }
     }
+}
+
+bool stock_se_termino() {
+    for (int i = 0; i < 10; ++i) {
+        if (articulos[i].stock > 0)
+            return false;
+    }
+    return true;
 }

@@ -62,5 +62,6 @@ int tiempo_aletorio_clientes(int tiempo_generacionMinimo, int tiempo_generacionM
 void QuitarClienteCola(int indice_carrito);
 void TiempoClienteEnCola(int indice);
 void moverClienteAlFinal(int carrito_id);
+bool clientes_haciendo_compras();
 
 #endif // COLA_CLIENTES_H

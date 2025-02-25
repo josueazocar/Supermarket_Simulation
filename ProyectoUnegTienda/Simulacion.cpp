@@ -161,14 +161,15 @@ System::Void Simulacion::MoverClientesAlFinal(System::Object^ sender, System::Ev
 
 System::Void Simulacion::GestionarClientes(System::Object^ sender, System::EventArgs^ e) {
 
-    for (int i = 0; i < 6; i++) {
-        if (!carritos_utilizados[i]) {
-            SeñaldeFuncionamiento[i] = true;
-            carritos_utilizados[i] = true;
-            break;
+    if (stock_se_termino()==false) {
+        for (int i = 0; i < 6; i++) {
+            if (!carritos_utilizados[i]) {
+                SeñaldeFuncionamiento[i] = true;
+                carritos_utilizados[i] = true;
+                break;
+            }
         }
     }
-
 }
 
     System::Void Simulacion::llenado_de_carrito(System::Object ^ sender, System::EventArgs ^ e) {
@@ -334,6 +335,7 @@ System::Void Simulacion::llenado_de_carrito6(System::Object^ sender, System::Eve
 }
 
 System::Void Simulacion::Creacion_de_factura(System::Object^ sender, System::EventArgs^ e) {
+    No_hay_Stock(sender, e);
     obtener_cliente_en_cola(cola_clientes);
 
     if ((id_carrito_factura == 0) && (carritos_llenos[0] == true)) {
@@ -732,16 +734,30 @@ System::Void Simulacion::ReanudarTemporizadores() {
 }
 
 System::Void Simulacion::Producto_masvendido() {
+    if (stock_se_termino()) {
 
-    int max_ventas = articulos[0].stock;
+        stock_mas_bajo = "Todos AGOTADOS!";
 
-    for (int i = 1; i < 10; i++) {
-        if (articulos[i].stock < max_ventas) {
-            max_ventas = articulos[i].stock;
-            indice_producto_mas_vendido = i;
+    } else if (NumeroClientesRecibidos > 0) {
+
+        int max_ventas = articulos[0].stock;
+        for (int i = 1; i < 10; i++) {
+            if (articulos[i].stock < max_ventas) {
+                max_ventas = articulos[i].stock;
+                indice_producto_mas_vendido = i;
+            }
         }
+
+        stock_mas_bajo = std::string(articulos[indice_producto_mas_vendido].nombres);
     }
+    else {
+		stock_mas_bajo = "No hay ventas";
+    }
+}
 
-    stock_mas_bajo = std::string(articulos[indice_producto_mas_vendido].nombres);
+System::Void Simulacion::No_hay_Stock(System::Object^ sender, System::EventArgs^ e) {
 
+    if (stock_se_termino() && TamanoCola()==0 && clientes_haciendo_compras()==false) {
+        CerrarPrograma(sender, e);
+    }
 }

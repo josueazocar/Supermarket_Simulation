@@ -35,6 +35,7 @@ void inicializarArticulos();
 void seleccionar_indice_random(std::set<int>& indices_utilizados);
 void agregarProductoAlCarrito(std::stack<Tienda::productos>& carrito, std::set<int>& indices_utilizados, int& total_productos);
 void agregarProductoAlCarrito2(std::stack<Tienda::productos>& carrito, std::set<int>& indices_utilizados, int& total_productos);
+bool stock_se_termino();
 void mostrar_total_productos(System::Windows::Forms::Label^ label, int& total_productos);
 void ReiniciarPila();
 

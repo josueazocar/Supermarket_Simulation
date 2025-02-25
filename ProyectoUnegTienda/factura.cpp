@@ -44,6 +44,7 @@ namespace Factura_Reportes {
             panelTotal->Controls->Add(Texto_reportes);
             this->Controls->Add(panelTotal); // Agregar al formulario
 
+            this->Icon = gcnew System::Drawing::Icon(Application::StartupPath + L"\\imagenes\\carrito.ico");
             this->MaximizeBox = false;
             this->MinimizeBox = false;
             this->Text = "Visor de Facturas y Reportes";
