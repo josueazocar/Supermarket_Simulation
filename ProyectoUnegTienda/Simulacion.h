@@ -255,9 +255,9 @@ namespace ProyectoUnegTienda {
                this->panel1->BackColor = System::Drawing::Color::Sienna;
                this->panel1->Controls->Add(this->cerrarProgramaButton);
                this->panel1->Controls->Add(this->label8);
-               this->panel1->Location = System::Drawing::Point(0, 500);
+               this->panel1->Location = System::Drawing::Point(0, 574);
                this->panel1->Name = L"panel1";
-               this->panel1->Size = System::Drawing::Size(1075, 263);
+               this->panel1->Size = System::Drawing::Size(1075, 152);
                this->panel1->TabIndex = 2;
                this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Simulacion::panel1_Paint);
                // 
