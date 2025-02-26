@@ -11,8 +11,8 @@ int tiempo_generacionMinimo;
 int tiempo_generacionMaximo;
 int ReferenciaCliente = 0;
 int tiempoMoverAlfinal;
-int NumeroClientesAtendidos = 0;
-int NumeroClientesRecibidos = 0;
+int NumeroClientesAtendidos = 0; //variables utilizadas como contadores para los reportes
+int NumeroClientesRecibidos = 0; //variables utilizadas como contadores para los reportes
 int NumeroClientesDevueltos = 0; //variables utilizadas como contadores para los reportes
 
 int tiempoCarrito[6] = { 0,0,0,0,0,0 }; //Contiene la cantidad de segundos aleatoria en que el carrito (n) se ejecuta
@@ -24,6 +24,7 @@ std::vector<bool> carritos_utilizados(6, false);
 std::vector<bool> SeñaldeFuncionamiento(6, false);
 std::vector<bool> clientePagando(6, false);
 std::set<int> indices_usados;
+std::set<int> clientesMovidos;
 
 // Inicialización de variables globales
 Tienda::clientes cliente[6];
@@ -136,6 +137,8 @@ void AgregarClienteCola(int indice_carrito) { //Agregar cliente a la cola
 
 void QuitarClienteCola(int indice_carrito) {
 	NumeroClientesAtendidos++;
+	clientesMovidos.erase(indice_carrito); //se elimina el ID del carrito del conjunto de carritos movidos para que pueda añadirse al mover otro cliente... 
+											//al final de la cola con el mismo carrito		
 	clientePagando[indice_carrito] = false;
 	carritos_llenos[indice_carrito] = false;
 	carritos_utilizados[indice_carrito] = false;
@@ -167,7 +170,7 @@ void TiempoClienteEnCola(int indice) {
 }
 
 void moverClienteAlFinal(int carrito_id) {
-	NumeroClientesDevueltos++;
+	
 	std::queue<Tienda::clientes> cola_temporal;
 	Tienda::clientes cliente_encontrado;
 	bool encontrado = false;
@@ -194,7 +197,14 @@ void moverClienteAlFinal(int carrito_id) {
 
 	if (encontrado) {
 		cola_clientes.push(cliente_encontrado);
+
+		// Insertar el carrito_id en el set y verificar si es nuevo
+		auto resultado = clientesMovidos.insert(carrito_id);
+		if (resultado.second) {  // Si se insertó un nuevo elemento
+			NumeroClientesDevueltos++;
+		}
 	}
+	
 }
 
 void ReiniciarColaClientes() {
@@ -211,6 +221,7 @@ void ReiniciarColaClientes() {
 	std::fill(std::begin(SeñaldeFuncionamiento), std::end(SeñaldeFuncionamiento), false);
 	std::fill(std::begin(clientePagando), std::end(clientePagando), false);
 	indices_usados.clear();
+	clientesMovidos.clear();
 	while (!cola_clientes.empty()) {
 		cola_clientes.pop();
 	}

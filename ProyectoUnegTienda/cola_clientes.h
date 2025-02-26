@@ -46,7 +46,7 @@ extern std::vector<bool> carritos_utilizados;
 extern std::vector<bool> SeñaldeFuncionamiento;
 extern std::uniform_int_distribution<int> rangoAleatorio;
 extern std::set<int> indices_usados;
-
+extern std::set<int> clientesMovidos;
 
 // Declaraciones de funciones
 void seleccionarDatosAleatorio(std::set<int>& indices_usados);

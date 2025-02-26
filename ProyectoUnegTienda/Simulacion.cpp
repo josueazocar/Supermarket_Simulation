@@ -54,19 +54,13 @@ void Simulacion::EmpezarSimulacion()
 	Precio_total_para_factura = 0;
 	indice_producto_mas_vendido = 0;
 
-	// Inicializa los valores booleanos
-	std::fill(std::begin(carritos_utilizados), std::end(carritos_utilizados), false);
-	std::fill(std::begin(carritos_llenos), std::end(carritos_llenos), false);
-	std::fill(std::begin(SeñaldeFuncionamiento), std::end(SeñaldeFuncionamiento), false);
-	std::fill(std::begin(clientePagando), std::end(clientePagando), false);
-
 	// Inicializa y empieza el temporizador 
 	inicializarArticulos();
 	std::srand(static_cast<unsigned>(std::time(nullptr))); // Inicializar el generador de números aleatorios
 
 	// Configura el temporizador de creación de facturas
 	timer_creacion_factura = gcnew System::Windows::Forms::Timer();
-	timer_creacion_factura->Interval = 2100;
+	timer_creacion_factura->Interval = 2150;
 	timer_creacion_factura->Tick += gcnew EventHandler(this, &Simulacion::Creacion_de_factura);
 	timer_creacion_factura->Start();
 
