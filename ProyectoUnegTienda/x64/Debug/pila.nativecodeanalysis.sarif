@@ -20,13 +20,21 @@
       "artifacts": [
         {
           "location": {
-            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/x64/debug/.netframework,version=v4.8.assemblyattributes.cpp"
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/pila.cpp"
           },
           "roles": [
             "analysisTarget"
           ],
           "hashes": {
-            "sha-256": "49ce548ce02d49ae2598eea4aab7b83996bc4d103aa8caf7e401ab05c8d93df1"
+            "sha-256": "6de0b58e6fc6c47d646ee32aa947e9575a9ccc55d6f457c90fb25c1b2214dfe4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/pila.h"
+          },
+          "hashes": {
+            "sha-256": "ca87047767ae7a83d37b004898caf8c928135956eb4d870197d01def832ce500"
           }
         }
       ]

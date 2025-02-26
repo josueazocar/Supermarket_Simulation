@@ -14,14 +14,16 @@
 #include "cola_clientes.h"
 #include <queue>
 
+// Declaración de variables globales
 extern int total_de_ventas;
 extern int id_carrito_factura;
 extern std::string stock_mas_bajo;
 
+// Declaraciones de funciones
 namespace Factura_Reportes {
-    void Crear_reporte_factura(System::Windows::Forms::Label^ label);
-    void Mostrar_reportes();
-    void EliminarReportesFacturas();
+	void Crear_reporte_factura(System::Windows::Forms::Label^ label);
+	void Mostrar_reportes();
+	void EliminarReportesFacturas();
 }
 void obtener_cliente_en_cola(std::queue<Tienda::clientes>& cola_clientes);
 void quitar_total_productos(System::Windows::Forms::Label^ label, int& total_productos, int nro_carrito);

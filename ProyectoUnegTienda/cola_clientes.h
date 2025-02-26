@@ -2,7 +2,6 @@
 #ifndef COLA_CLIENTES_H
 #define COLA_CLIENTES_H
 
-#include <iostream>
 #include <string.h>
 #include <random>
 #include <ctime>
@@ -12,19 +11,21 @@
 #include <queue>
 #include <chrono>
 #include <cstdlib>
-#include <thread> // Asegúrate de incluir esta cabecera
+#include <thread> 
 #include "pila.h"
 #include <string>
+#include <iostream>
 
 namespace Tienda {
 	struct clientes {
-		std:: string nombres;
-		std:: string cedula;
-		std:: string telefono;
-		std:: string color;
+		std::string nombres;
+		std::string cedula;
+		std::string telefono;
+		std::string color;
 		int carrito_id; // ID del carrito asignado al cliente
 	};
 }
+
 extern int tiempo_generacionMinimo;
 extern int tiempo_generacionMaximo;
 extern int ReferenciaCliente;
@@ -38,7 +39,6 @@ extern int NumeroClientesDevueltos;
 
 extern Tienda::clientes cliente[6];
 extern std::queue<Tienda::clientes> cola_clientes;
-
 extern std::mt19937 rng;
 extern std::vector<bool> carritos_llenos;
 extern std::vector<bool> clientePagando;

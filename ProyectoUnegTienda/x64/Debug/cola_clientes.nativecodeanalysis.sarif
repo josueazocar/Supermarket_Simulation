@@ -1,0 +1,75 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.42.34435.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/cola_clientes.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "0421888252b824c7f893368c0f4c8df106d24dc7cbf038282816a01846405797"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/cola_clientes.h"
+          },
+          "hashes": {
+            "sha-256": "d26fc1ef91b093fa74308f34d7811611586cb97291acf0f93e015c7e235ec33e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/pila.h"
+          },
+          "hashes": {
+            "sha-256": "ca87047767ae7a83d37b004898caf8c928135956eb4d870197d01def832ce500"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/menuform.h"
+          },
+          "hashes": {
+            "sha-256": "2a9bf760739dc4fb57a24545a29d496d1d53e13c353f8b2c08397a7a22faa176"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/simulacion.h"
+          },
+          "hashes": {
+            "sha-256": "5f0436bcbf8f8455b4c7600beccbc8af55c1b33ed251f3294508b0de85893f86"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/factura.h"
+          },
+          "hashes": {
+            "sha-256": "c25aa91c9e96957da529505c568bcec875a9f833e6a5bbb64f46890978803ae9"
+          }
+        }
+      ]
+    }
+  ]
+}

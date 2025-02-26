@@ -20,21 +20,13 @@
       "artifacts": [
         {
           "location": {
-            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/main.cpp"
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/simulacion.cpp"
           },
           "roles": [
             "analysisTarget"
           ],
           "hashes": {
-            "sha-256": "83968cb83fa1ccad5315413c4d5406ae88dc977635b00887a1b58bc179cc4531"
-          }
-        },
-        {
-          "location": {
-            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/menuform.h"
-          },
-          "hashes": {
-            "sha-256": "2a9bf760739dc4fb57a24545a29d496d1d53e13c353f8b2c08397a7a22faa176"
+            "sha-256": "72e23fdd44f53a4a22748e1f8c2bdbbc51646156f922c227a1409947a6b789df"
           }
         },
         {
@@ -67,6 +59,14 @@
           },
           "hashes": {
             "sha-256": "d26fc1ef91b093fa74308f34d7811611586cb97291acf0f93e015c7e235ec33e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/azocar 2/documents/github/proyectounegtienda/proyectounegtienda/menuform.h"
+          },
+          "hashes": {
+            "sha-256": "2a9bf760739dc4fb57a24545a29d496d1d53e13c353f8b2c08397a7a22faa176"
           }
         }
       ]
