@@ -1,6 +1,29 @@
-﻿  Simulacion.cpp
+﻿  Main.cpp
+  Simulacion.cpp
   cola_clientes.cpp
 C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\cola_clientes.cpp(123,29): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+  factura.cpp
+  pila.cpp
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(32,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(34,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(38,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(40,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(44,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(46,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(50,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(52,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(56,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(58,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(62,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(64,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(68,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(70,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(74,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(76,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(80,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(82,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(86,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\ProyectoUnegTienda\pila.cpp(88,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   Generando código...
   cola_clientes.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
   ProyectoUnegTienda.vcxproj -> C:\Users\Azocar 2\Documents\GitHub\ProyectoUnegTienda\x64\Debug\ProyectoUnegTienda.exe
